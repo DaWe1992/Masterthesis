@@ -1,0 +1,26 @@
+\begin{table}[H]
+	\centering
+	\begin{tabular}{| l ? c | c | c | c | c |}
+		\hline
+		\rowcolor{tud9c!50}
+		\multicolumn{6}{| c |}{\textbf{Top-three counts}}
+		\\ \hline
+		\textbf{Embedding} & \textbf{EN} & \textbf{DE} & \textbf{RU} & \textbf{TR} & \textbf{KA}
+		\\ \hline\hline
+		Vanilla Average 		& \textbf{0} (0.00) & \textbf{1} (0.11) & \textbf{3} (0.33) & \textbf{1} (0.11) & \textbf{0} (0.00) \\ \hline
+		p-Means 			& \textbf{3} (0.33) & \textbf{1} (0.11) & \textbf{3} (0.33) & \textbf{3} (0.33) & \textbf{4} (0.57) \\ \hline
+		SIF 				& \textbf{0} (0.00) & \textbf{0} (0.00) & \textbf{1} (0.11) & \textbf{1} (0.11) & \textbf{0} (0.00) \\ \hline
+		GEM 				& \textbf{0} (0.00) & \textbf{1} (0.11) & \textbf{1} (0.11) & \textbf{2} (0.22) & \textbf{0} (0.00) \\ \hline
+		hier. Pooling 		& \textbf{0} (0.00) & \textbf{0} (0.00) & \textbf{0} (0.00) & \textbf{0} (0.00) & \textbf{0} (0.00) \\ \hline
+		BOREP 			& \textbf{0} (0.00) & \textbf{1} (0.11) & \textbf{0} (0.00) & \textbf{0} (0.00) & \textbf{1} (0.14) \\ \hline
+		Random BiLSTM 	& \textbf{3} (0.33) & \textbf{2} (0.22) & \textbf{3} (0.33) & \textbf{2} (0.22) & \textbf{2} (0.29) \\ \hline
+		InferSent 			& \textbf{7} (0.78) & \textbf{2} (0.22) & \textbf{1} (0.11) & \textbf{1} (0.11) & \textbf{3} (0.43) \\ \hline
+		Quick-Thought 		& \textbf{5} (0.56) & \textbf{5} (0.56) & \textbf{5} (0.56) & \textbf{4} (0.44) & \textbf{2} (0.29) \\ \hline
+		sent2vec 			& \textbf{0} (0.00) & \textbf{4} (0.44) & \textbf{2} (0.22) & \textbf{1} (0.11) & \textbf{2} (0.29) \\ \hline
+		BERT 			& \textbf{2} (0.22) & \textbf{3} (0.33) & \textbf{3} (0.33) & \textbf{5} (0.56) & \textbf{3} (0.43) \\ \hline
+		LASER 			& \textbf{7} (0.78) & \textbf{7} (0.78) & \textbf{5} (0.56) & \textbf{8} (0.89) & \textbf{4} (0.57) \\ \hline
+	\end{tabular}
+	\caption[Top-three counts (F1 scores) of each embedding in the languages considered]{Top-three counts (F1 scores) of each embedding in the languages considered.
+	The numbers in parentheses represent the counts normalized by the number of probing tasks.}
+	\label{tab:top_three_counts}
+\end{table}

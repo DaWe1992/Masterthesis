@@ -1,0 +1,52 @@
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.1}
+	\begin{tabularx}{\textwidth}{| X Y | Y Y |}
+		\hline
+		Language: \textbf{EN}										&
+		\textbf{$\clubsuit$} 											&
+		\textbf{$\spadesuit$}					 						&
+		\textbf{$\spadesuit$}											\\
+					 												&
+		\textbf{Accuracy} 											&
+		\textbf{Accuracy} 											&
+		\textbf{F1} 													\\
+		\textbf{\textit{Vanilla avg (FastText)}} & & &				 	\\
+		\hline
+		$\triangleright$ \caps{SentLen} \textcolor{red}{$\ominus$}	
+								&	72.27	&	30.22	&	0.24	\\
+		$\triangleright$ \caps{WC} \textcolor{green!80!black}{$\oplus$} 
+								&	46.73	&	75.92	&	0.58	\\
+		$\triangleright$ \caps{Voice}	
+								&	89.47	&	80.82	&	0.80	\\
+		$\triangleright$ \caps{SubjNum}
+								&	81.43	&	89.70	&	0.86	\\
+		& & &														\\
+		\textbf{\textit{sent2vec}} & & & 								\\
+		\hline
+		$\triangleright$ \caps{SentLen} \textcolor{red}{$\ominus$}
+								&	64.76	&	31.00	&	0.25	\\
+		$\triangleright$ \caps {WC} 	
+								&	79.23	&	81.56	&	0.79	\\
+		$\triangleright$ \caps{Voice}
+								&	89.04	&	79.09	&	0.78	\\
+		$\triangleright$ \caps{SubjNum}
+								&	80.88	&	82.85	&	0.76	\\
+		& & & 														\\
+		\textbf{\textit{LASER}} & & & 									\\
+		\hline
+		$\triangleright$ \caps{SentLen}
+								&	85.98	&	74.97	&	0.70	\\
+		$\triangleright$ \caps{WC} \textcolor{green!80!black}{$\oplus$}
+								&	59.79	&	89.98	&	0.83	\\
+		$\triangleright$ \caps{Voice}	
+								&	92.85	&	90.92	&	0.90	\\
+		$\triangleright$ \caps{SubjNum}
+								&	94.21	&	92.91	&	0.90	\\
+		\hline
+	\end{tabularx}
+	\caption[Comparison with the results of Krasnowska et al.]
+		{Comparison of the results to the paper `\caps{Empirical Linguistic Study of Sentence Embeddings}'
+			\citep{Krasnowska.2019}.}
+	\label{tab:comparison_krasnowska}
+\end{table}

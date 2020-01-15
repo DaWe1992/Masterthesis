@@ -1,0 +1,718 @@
+\documentclass[accentcolor=tud1a,colorbacktitle,inverttitle,landscape,german,presentation,t]{tudbeamer}
+
+\input{preamble}
+
+
+% begin of document
+% =============================================================
+\begin{document}
+
+% general information about presentation
+\title[]{Interpretability of sentence embeddings in low-resource languages}
+\subtitle{Mid-term presentation; \today}
+
+\author{Daniel Wehner}
+\institute[TUD UKP]{Ubiquitous Knowledge Processing, TU Darmstadt}
+\logo{\color{tudtextaccent}\large UKP}
+\date{\today}
+
+\begin{titleframe}
+\end{titleframe}
+
+
+% Agenda
+\begin{frame}{Agenda}{}
+	\tableofcontents
+\end{frame}
+
+
+% Section: Introduction
+\section{Introduction}
+\divider{Introduction}
+
+
+% Introduction
+\begin{frame}{Introduction}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Sentence embeddings are vectorial representations of sentences.
+		\item They can be fed into ML classifiers.
+		\item They have become an \textbf{integral part} in NLP applications.
+		\begin{itemize}
+			\item Boosted downstream task performance.
+			\item Plethora of algorithms like \textit{InferSent}, \textit{sent2vec}, \textit{Quickthought}, and many more!
+		\end{itemize}
+		\item Neural networks are often used to obtain such embeddings.
+		\item \textcolor{red}{\textbf{Problem:} Neural networks are black-box models!}
+		\item Workshops like \textbf{BlackBoxNLP} attempt to \\
+			shed light onto this and open the black-box.
+	\end{itemize}
+
+	\abspos{10.5}{11.5}{images/black_box}{0.2}
+\end{frame}
+
+
+% Interpretability of Sentence Embeddings
+\begin{frame}{Interpretability of Sentence Embeddings}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item It is advantageous to know what is captured by an embedding.
+		\begin{itemize}
+			\item Relevant for the choice of an embedding technique for a specific task.
+			\item Allows for a quality assessment of sentence embeddings.
+		\end{itemize}
+		\item Many authors (Shi.2016, Adi.2017, Conneau.2018; inter alia) introduce the notion of \textbf{probing tasks}.
+		\item What are probing tasks?
+	\end{itemize}
+
+	\vspace*{3mm}
+	\divideTwo{0.19}{
+		\centering
+		\includegraphics[scale=0.2]{images/probing}
+	}{0.79}{
+		\begin{itemize}\setlength\itemsep{1em}
+			\item Simple classification tasks that probe an embedding for \textbf{linguistic properties}.
+			\item Mostly restricted to the English language in the literature.
+		\end{itemize}
+	}
+\end{frame}
+
+
+% Scope of this Thesis
+\begin{frame}{Scope of this Thesis}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item The focus in this thesis is on \textbf{lower-resource languages}.
+		\item Languages considered:
+
+		\vspace*{2mm}
+		{\small
+		\begin{tabbing}
+			\hspace*{3.5cm}\=\hspace*{3.5cm}\=\kill
+			\textbf{English (EN)} 		\>											\>					\\
+			\textbf{German (DE)}		\> Deutsch 									\> 					\\
+			\textbf{Russian (RU)} 		\> \foreignlanguage{russian}{русский язык} 	\>	low-resource 	\\
+			\textbf{Turkish (TR)} 		\> Türkçe 									\> 	low-resource 	\\
+			\textbf{Georgian (KA)}	\> {\mxedr{kartuli ena}} 						\> 	low-resource
+		\end{tabbing}}
+		
+		\item Process:
+		\begin{figure}
+			\includegraphics[scale=0.2]{images/thesis_process}
+		\end{figure}
+	\end{itemize}
+\end{frame}
+
+
+% Current Status
+\begin{frame}{Current Status}{}
+	\vspace*{-9mm}
+	\small
+	\begin{center}\parbox{0cm}{
+	\begin{tabbing}
+		\hspace*{1cm}\=\hspace{5cm}\= \kill
+		\textbf{Item} 				\>								\>	\textalign[c]{\textbf{Status}}					\\
+		Literature review 				\>								\>	\textalign[c]{\textcolor{orange}{$\bullet$}}		\\
+		Implementation of... 			\>								\> 												\\
+									\>	...word embeddings			\> 	\textalign[c]{\textcolor{green}{\checkmark}} 	\\
+									\>	...sentence embeddings	 	\> 	\textalign[c]{\textcolor{green}{\checkmark}}	\\
+									\> 	...probing tasks	 			\> 	\textalign[c]{\textcolor{green}{\checkmark}} 	\\
+									\>	...downstream tasks 			\> 	\textalign[c]{\textcolor{green}{\checkmark}} 	\\
+		Training of... 				\>								\> 												\\
+									\> 	...word embeddings	 		\> 	\textalign[c]{\textcolor{green}{\checkmark}} 	\\
+									\>	...sentence embeddings 		\> 	\textalign[c]{\textcolor{green}{\checkmark}} 	\\
+		Translation of resources
+									\> 								\> 	\textalign[c]{\textcolor{orange}{$\bullet$}} 		\\
+		Natural language generation 	\>								\> 	\textalign[c]{\textcolor{red}{$\bm{\times}$}} 	\\
+		Interpretation of results		\> 								\>	\textalign[c]{\textcolor{orange}{$\bullet$}} 		\\
+		Writing thesis				\> 								\> 	\textalign[c]{\textcolor{orange}{$\bullet$}}
+	\end{tabbing}}
+	\end{center}
+	\textbf{Legend:}~~~~ \textcolor{green}{\checkmark} done~~~~~~ \textcolor{orange}{$\bullet$} in progress~~~~~~
+						\textcolor{red}{$\bm{\times}$} not started
+\end{frame}
+
+
+% Section: Embedding Algorithms
+\section{Embedding Algorithms}
+\divider{Embedding Algorithms}
+
+
+% Sentence Embedding Algorithms
+\begin{frame}{Sentence Embedding Algorithms}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Two types (Yang.2018):
+		\begin{itemize}
+			\item \textbf{Non-parametric:} No training required, average of word embeddings.
+			\item \textbf{Parametric:} Sentence embeddings are trained from scratch.
+		\end{itemize}
+		\item Selected algorithms for the experiments:
+	\end{itemize}
+	
+	\hspace*{6mm}
+	{\footnotesize
+	\divideTwo{0.49}{
+		\begin{itemize}
+			\item Bag of vectors (vanilla average; 300\,d)
+			\item $p$-means ($p \in \{1, 2, 3, -\infty, +\infty\}$; 1,500\,d)
+			\item Geometric embeddings (GEM; 300\,d)
+			\item Smooth inverse frequency (SIF; 300\,d)
+			\item Hierarchical pooling (300\,d)
+			\item Random embeddings (4,096 / 8,192\,d)
+		\end{itemize}
+	}{0.39}{
+		\begin{itemize}
+			\item InferSent (2,048\,d)
+			\item Quickthought (2,400\,d)
+			\item sent2vec (700\,d)
+			\item LASER (1,024\,d)
+			\item BERT (768\,d)
+		\end{itemize}
+	}}
+
+	\begin{textblock*}{4cm}(1.5cm,8cm)
+		\textblockcolour{tud1a!40}
+		\vspace*{1mm}
+		\centering
+   		\textbf{Non-parametric} \strut
+		\vspace*{1mm}
+	\end{textblock*}
+
+	\begin{textblock*}{4cm}(8cm,8cm)
+		\textblockcolour{tud1a!40}
+		\vspace*{1mm}
+		\centering
+   		\textbf{Parametric} \strut
+		\vspace*{1mm}
+	\end{textblock*}
+\end{frame}
+
+
+% Training Details
+\begin{frame}{Training Details}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item English pre-trained models were already available for download.
+		\item Other languages:
+		\begin{itemize}
+			\item Trained word2vec on respective Wikipedia dumps (CBoW, window size 10).
+			\item Fasttext and attract-repel embeddings available for all languages.
+			\item InferSent requires translation of SNLI for all languages.
+			\item Quickthought / sent2vec are trained on sentences extracted from Wikipedia.
+			\item LASER / BERT: Multi-lingual models are already available.
+		\end{itemize}
+		\item \textcolor{red}{Google translate API limits the number of translations per day. \\
+			$\Rightarrow$ \textbf{The translation process is slow!} \\[3mm]
+			$\approx$ 10,000 sentences / day.}
+	\end{itemize}
+	\abspos{10}{11.5}{images/snail}{0.3}
+\end{frame}
+
+
+% Section: Probing Tasks
+\section{Probing Tasks}
+\divider{Probing Tasks}
+
+
+% Probing Tasks
+\begin{frame}{Probing Tasks}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Conneau.2018 distinguishes between three types of probing tasks: \\
+			\textbf{Surface}, \textbf{Syntax} and \textbf{Semantics}
+		\item Possible probing tasks (many more in the literature):
+		\vspace*{2mm}
+		{\footnotesize
+		\begin{tabbing}
+			\hspace*{3.5cm}\=\hspace*{4.5cm}\=\kill
+			\ding{182}\ \textbf{Surface} 		\> 
+			\ding{183}\ \textbf{Syntax} 		\>
+			\ding{184}\ \textbf{Semantics} 	\\
+																							\\
+			Sentence length\rs 	\>	Bi-gram shift\rs 				\>	End of sentence\rs		\\
+			Word content\rs 		\>	Subject-verb agreement\rs		\> 	Grammaticality 			\\
+			...					\>	Subject-verb distance\rs		\> 	Object number 			\\
+								\> 	Top constituent\rs 			\>	Subject number			\\
+								\> 	Tree depth					\>	Tense					\\
+								\> 	Voice\rs						\> 	...						\\
+								\> 	Word order\rs 				\>							\\
+								\> 	...							\>							\\
+			{\scriptsize \rs\ $\widehat{=}$ implemented}
+	\end{tabbing}}
+	
+	\item Limited the number of instances to 10,000.
+	\end{itemize}
+\end{frame}
+
+
+% Probing Task: Sentence Length
+\begin{frame}{Probing Task: Sentence Length}{}
+	\probingtask{
+		Surface probing task.
+	}{
+		Given a sentence embedding predict the lengths of the original sentence.
+	}{
+		The probing task is phrased as a 10-way classification task. The bins are as follows: \\
+		{[1;4], [5;8], [9;12], [13-16], [17;20], [21;25], [26;29], [30;33], [34;55], [56;)}
+	}{
+		\lang{51}{51}{51}{51}{51}
+	}{
+		The fox jumped over the lazy dog . $\Rightarrow$ Class 1 [5;8] 
+	}
+	\abspos{13.5}{4.5}{images/img_sent_len}{0.2}
+\end{frame}
+
+
+% Probing Task: Subject-Verb Agreement
+\begin{frame}{Probing Task: Subject-Verb Agreement}{}
+	\probingtask{
+		Syntactic probing task.
+	}{
+		A classifier has to predict whether the verb form agrees with the form required by the subject of the sentence.
+	}{
+		The task is restricted to present tense. For each language the most common verbs and their conjugations were
+		acquired. Each sentence from the corpus was tested if it contains one of the words from the list. If it contains one
+		such word it is replaced by different word from the list.
+	}{
+		\lang{51}{51}{51}{51}{51}
+	}{
+		 The \underline{\smash{plane}}$_{\text{subj}}$ from London to Paris \underline{take}$_{\text{verb}}$
+		 	off without any delay . $\Rightarrow$ Class $\textit{`Disagree'}$
+	}
+	\abspos{13}{4}{images/img_sv_agree}{0.2}
+\end{frame}
+
+
+% Probing Task: End of Sentence
+\begin{frame}{Probing Task: End of Sentence}{}
+	\probingtask{
+		Semantic probing task.
+	}{
+		Decide where a sequence of words has to be split (end of one sentence, begin of another).
+	}{
+		Two sentences were concatenated with punctuation removed. Also, the words were lower-cased (except for German)
+		in order not to provide any hints. The possible split indices were again binned.
+	}{
+		\lang{51}{51}{51}{51}{51}
+	}{
+		 this is great $\Vert$ where are you
+	}
+	\abspos{13.3}{4.3}{images/img_eos}{0.2}
+\end{frame}
+
+
+% Section: Downstream Applications
+\section{Downstream Applications}
+\divider{Downstream Applications}
+
+
+% Downstream Applications
+\begin{frame}{Downstream Applications}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Downstream applications considered:
+		\begin{itemize}
+			\item \textbf{Argumentation mining} (Labels: \texttt{FOR}, \texttt{AGAINST}, \texttt{NONE})
+			\item \textbf{Sentiment analysis} (Labels: \texttt{POS}, \texttt{NEG}, \texttt{NEU})
+			\item (Natural language inference)
+		\end{itemize}
+		\item Data sets:
+		\begin{itemize}
+			\item Argumentation mining:
+			\begin{itemize}
+				\item Data set contains $\approx$ 25,000 sentences.
+				\item Various topics: abortion, nuclear energy, gun control, marijuana legalization, ...
+				\item Has to be translated into all target languages. \textcolor{green}{\ding{51}}
+			\end{itemize}
+			\item Sentiment analysis:
+			\begin{itemize}
+				\item Different data set for each language.
+				\item Created own data set for Georgian (since none could be found).
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+
+	\abspos{12.35}{4}{images/img_arg_min}{0.25}
+	\abspos{12}{7}{images/img_sentiment}{0.25}
+\end{frame}
+
+
+% Section: Results
+\section{Results}
+\divider{Results}
+
+
+% Probing Task Classifier
+\begin{frame}{Probing Task Classifier}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item The classifier is a Multi-Layer-Perceptron (MLP).
+		\item MLP architecture:
+		\begin{center}\parbox{0cm}{\begin{tabbing}
+			\hspace*{5.5cm}\=\kill
+			\textbf{\# hidden layers:} 				\>	1 			\\[1mm]
+			\textbf{\# hidden units:} 				\> 	300 		\\[1mm]
+			\textbf{Hidden layer activation func.:}	\>  	ReLU		\\[1mm]
+			\textbf{Dropout rate:}					\> 	0.50 		\\[1mm]
+			\textbf{\# epochs:} 					\>	30 			\\[1mm]
+			\textbf{Optimizer:} 					\> 	RmsProp	\\[1mm]
+			\textbf{Loss function:} 				\> Categorical cross-entropy
+		\end{tabbing}}
+		\end{center}
+		\item Later experiments will also be conducted without the hidden layer.
+	\end{itemize}
+\end{frame}
+
+
+% Bar Charts
+\begin{frame}[plain]{}{}
+	\input{tikz/sent_len_results}
+	\input{tikz/sv_agree_results}
+	\input{tikz/eos_results}
+
+	\begin{center}
+		\textcolor{tud2a}{\ding{110}} EN~~~~
+		\textcolor{tud1a}{\ding{110}} DE~~~~
+		\textcolor{tud1a!50}{\ding{110}} RU~~~~
+		\textcolor{gray}{\ding{110}} TR~~~~
+		$\square$ KA
+	\end{center}
+\end{frame}
+
+
+% Probing Task Results for Georgian
+\begin{frame}{Probing Task Results for Georgian}{}
+	\vspace*{-8mm}
+	\input{tables/results_probing_tasks_ka}
+\end{frame}
+
+
+% Training Set Size matters!
+\begin{frame}{Training Set Size matters!}{}
+	\vspace*{-4mm}
+	Example for EN:
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.35]{images/effect_training_set_size}
+	\end{figure}
+\end{frame}
+
+
+% Results Argumentation Mining
+\begin{frame}{Results Argumentation Mining}{}
+	\vspace*{-8mm}
+	\begin{center}\parbox{0cm}{\begin{tabbing}
+		\hspace*{3.5cm}\=\hspace*{4.5cm}\=\kill
+		\textbf{Language} 	\>
+		\textbf{Accuracy} 	\>
+		\textbf{Embedding}	\\[3mm]
+		-		\>	56.200 	\> 	Majority		\\[1mm]
+		EN		\>	65.407	\>	sent2vec 	\\[1mm]
+		DE		\>	65.080 	\>	LASER 		\\[1mm]
+		RU		\>	63.873	\> 	LASER 		\\[1mm]
+		TR		\>	64.106	\>	LASER 		\\[1mm]
+		KA		\>	61.867	\>	SIF
+	\end{tabbing}}
+	\end{center}
+
+	\begin{itemize}\setlength\itemsep{1em}
+		\item For downstream tasks it would be better to compute F1-scores.
+		\item It is not necessary to achieve state-of-the-art performance. \\
+			It is more important to be able to compare embeddings given an architecture.
+	\end{itemize}
+\end{frame}
+
+
+% Findings
+\begin{frame}{Findings}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Trained models usually perform best \\
+			(except for Georgian; models might need more training data).
+		\item All embeddings are above the majority baseline.
+		\item High accuracy for random embeddings probably due to high dimensionality. 
+		\item LASER performs well on sentence length, end of sentence, voice and subject-verb distance.
+		\item s2v shows strong performance on word content, otherwise bad performance.
+		\item Quickthought performs well on word order task.
+		\item \textbf{Training data set size matters!}
+	\end{itemize}
+\end{frame}
+
+
+% Section: Summary
+\section{Summary}
+\divider{Summary}
+
+
+% Summary
+\begin{frame}{Summary}{}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item It is \textbf{not clear} what linguistic properties are captured by sentence embeddings.
+		\item \textbf{Probing tasks} are an attempt to shed light onto this.
+		\item Downstream applications evaluate embeddings in \textbf{real applications}.
+		\item \textbf{Outlook:}
+		\begin{itemize}
+			\item Acquire \textbf{larger probing data sets} \\
+				(especially for word content and word order task).
+			\item \textbf{Interpretation of results} and comparison to literature.
+			\item Implementation of \textbf{NLG}.
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+% Thank you page
+\begin{frame}[plain]
+	\vfill\centering
+	\begin{tcolorbox}[width=4in,interior hidden,boxsep=5pt,left=0pt,right=0pt,top=2mm,
+		bottom=2mm,sharp corners,colback=tud1a!40,colframe=tud1a]%%
+		\centering
+		\Large\textbf{Thank you very much for your attention!}
+	\end{tcolorbox}
+	\vfill
+	\begin{center}\parbox{0cm}{
+	{\footnotesize
+	\begin{tabbing}
+		\hspace*{3.5cm}\=\kill
+		\textbf{Presenter:} 	\>	Daniel Wehner \\[2mm]
+		\textbf{Date:}		\>	\today \\[2mm]
+		\textbf{Topic:}		\>	Interpretability of sentence embeddings \\
+							\>	in low-resource languages \\
+	\end{tabbing}}}
+	\end{center}
+	\vfill
+	\centering
+	\includegraphics[scale=0.8]{tud_logo}
+	\vfill
+\end{frame}
+
+
+% Section: Appendix
+\section*{Appendix}
+\divider{Appendix}
+
+% Subsection: Further Probing Tasks
+\subsection*{Further Probing Tasks}
+\divider{Further Probing Tasks}
+
+
+% Probing Task: Word Content
+\begin{frame}{Probing Task: Word Content}{}
+	\probingtask{
+		Surface probing task.
+	}{
+		Decide which of 30 possible words is contained in the sentence.
+	}{
+		30 mid-frequency nouns were chosen for each language. Each sentence in the data set is chosen such that
+			\textbf{exactly one} noun from the list is contained in the sentence.
+	}{
+		\lang{51}{51}{51}{51}{51}
+	}{
+		 Federal elections took place last year. $\Rightarrow$ Class \textit{`Year'}
+	}
+	\abspos{13}{4}{images/img_wc}{0.25}
+\end{frame}
+
+
+% Probing Task: Word Order
+\begin{frame}{Probing Task: Word Order}{}
+	\vspace*{-3mm}
+	\probingtask{
+		Syntactic probing task.
+	}{
+		Decide if a word is located at the beginning, the end or in the middle of a sentence (3-way classification).
+	}{
+		The most common noun in the corpus was chosen. The data set comprises sentences which contain this word
+			\textbf{exactly once}. The word considered to be at the beginning/end if it is among the first/last 5 words
+			in the sentence (4 for Turkish and Georgian due to agglutinative property).
+	}{
+		\lang{51}{51}{51}{51}{51}
+	}{
+		 This \underline{\smash{year}} a new software $\Vert$ update was released which patched $\Vert$ 
+		 	most of the vulnerabilities . \\ $\Rightarrow$ Class \textit{`Beginning'}
+	}
+\end{frame}
+
+
+% Probing Task: Bi-Gram Shift
+\begin{frame}{Probing Task: Bi-Gram Shift}{}
+	\vspace*{-3mm}
+	\probingtask{
+		Syntactic probing task.
+	}{
+		Tests for a legal word order. The classifier has to decide if a bi-gram was switched or not.
+	}{
+		In 50\,\% of the time a word in the sentence was picked randomly which subsequently switched positions with its
+			right neighbor. In the other cases the sentences remained unaltered.
+	}{
+		\lang{51}{51}{51}{51}{51}
+	}{
+		 This is awesome . (Class 0) $\Rightarrow$ This awesome is . (Class 1)
+	}
+\end{frame}
+
+
+% Probing Task: Voice
+\begin{frame}{Probing Task: Voice}{}
+	\vspace*{-3mm}
+	\probingtask{
+		Syntactic probing task.
+	}{
+		Probes a sentence embedding whether it encodes information about the voice of the sentence (active / passive).
+	}{
+		Sentences from the corpus containing a passive construct were labeled accordingly.
+	}{
+		\lang{51}{51}{51}{51}{51}
+	}{
+		 This picture was painted by Leonardo Da Vinci. $\Rightarrow$ Class \textit{`Passive'}
+	}
+\end{frame}
+
+
+% Probing Task: Subject-Verb Distance
+\begin{frame}{Probing Task: Subject-Verb Distance}{}
+	\vspace*{-3mm}
+	\probingtask{
+		Syntactic probing task.
+	}{
+		A classifier has to predict how far subject and verb are apart.
+	}{
+		Similar to the sentence length task the number of words is binned. The bins were chosen as follows: 
+			[1], [2;4], [5;7], [8;12], [13;).
+			Given a sentence representation the classifier has to decide for a bin. The task is not implemented for Georgian
+			since the corpus does not include dependency parses.
+	}{
+		\lang{51}{51}{51}{51}{55}
+	}{
+		 The \underline{\smash{plane}}$_{\text{subj}}$ from London to Paris \underline{takes}$_{\text{verb}}$
+		 	off without any delay . $\Rightarrow$ Class 1 [2;4]
+	}
+\end{frame}
+
+
+% Probing Task: Top Constituent
+\begin{frame}{Probing Task: Top Constituent}{}
+	\vspace*{-3mm}
+	\probingtask{
+		Syntactic probing task.
+	}{
+		Sentences are labeled with their top constituent. The task is formulated as a 10-way classification task.
+	}{
+		The Stanford Parser was used for English and German. For Georgian a small data set was made available.
+			The 9 most frequent top constituents were taken as a label. The rest was labeled with `\texttt{Other}'.
+	}{
+		\lang{51}{51}{55}{55}{51}
+	}{
+		 The children went to school. $\Rightarrow$ \texttt{NP VP .}
+	}
+\end{frame}
+
+
+% Sentiment Data Set for Georgian
+\begin{frame}{Sentiment Data Set for Georgian}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Collected tweets from Georgian Twitter and labeled tweets with sentiment based on emojis used
+			(Choudhary.2018).
+		\vspace*{2mm}
+		\input{tables/emoji_sentiment}
+		\item Procedure:
+		\begin{enumerate}
+			\item Got a list of most frequent words.
+			\item Search term: One word from the list and an emoji.
+			\item Non-Georgian text was filtered / hashing to prevent duplicate tweets.
+			\item The data set contains around 13,000 tweets.
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+
+% Subsection: Detailed Results
+\subsection*{Detailed Results}
+\divider{Detailed Results}
+
+
+% Probing Task Results for English
+\begin{frame}{Probing Task Results for English}{}
+	\vspace*{-8mm}
+	\input{tables/results_probing_tasks_en}
+\end{frame}
+
+
+% Probing Task Results for German
+\begin{frame}{Probing Task Results for German}{}
+	\vspace*{-8mm}
+	\input{tables/results_probing_tasks_de}
+\end{frame}
+
+
+% Probing Task Results for Russian
+\begin{frame}{Probing Task Results for Russian}{}
+	\vspace*{-8mm}
+	\input{tables/results_probing_tasks_ru}
+\end{frame}
+
+
+% Probing Task Results for Turkish
+\begin{frame}{Probing Task Results for Turkish}{}
+	\vspace*{-8mm}
+	\input{tables/results_probing_tasks_tr}
+\end{frame}
+
+
+% Results for Argumentation Mining
+\begin{frame}{Results for Argumentation Mining}{}
+	\vspace*{-8mm}
+	\input{tables/results_arg_min}
+\end{frame}
+
+
+% Subsection: Visualizations
+\subsection*{Visualizations}
+\divider{Visualizations}
+
+
+% Visualization of Classifier Weights
+\begin{frame}{Visualization of Classifier Weights}{}
+	\vspace*{-4mm}
+	\begin{itemize}
+		\item Visualization of probing-task-classifier weights.
+		\item Answers the question which dimensions capture the information.
+		\item Example: Task \textit{`voice'}, \textit{`Quickthought'} embeddings and language \textit{`de'}:
+		\vspace*{4mm}
+		\begin{figure}
+			\centering
+			\includegraphics[scale=0.6]{images/weights_voice_qt}
+		\end{figure}
+		\vspace*{4mm}
+		\item Red bars indicate high weights, blue bars indicate low values, white / light bars represent weights around zero.
+		\item $\Rightarrow$ It might be useful to add a threshold.
+	\end{itemize}
+\end{frame}
+
+
+% Embedding Projections
+\begin{frame}{Embedding Projections}{}
+	\vspace*{-4mm}
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.5]{images/scatter_sent_len_laser}
+	\end{figure}
+\end{frame}
+
+
+% Confusion Matrix
+\begin{frame}{Confusion Matrix}{}
+	\vspace*{-4mm}
+	\begin{itemize}
+		\item Confusion matrix for task \textit{`sentence length'}, \textit{`LASER'} embeddings and language \textit{`de'}:
+	\end{itemize}
+
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.45]{images/conf_mat_sent_len_laser}
+	\end{figure}
+\end{frame}
+
+\end{document}

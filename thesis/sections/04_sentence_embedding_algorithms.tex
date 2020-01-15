@@ -1,0 +1,218 @@
+% =======================
+% Chapter: Sentence Embedding Algorithms
+%
+% Author: Daniel Wehner
+%
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Sentence Embedding Algorithms}
+\label{sec:sent_embs}
+
+\vspace*{-0.5mm}
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Chapter Introduction
+\subsection{Introduction}
+\label{sec:sent_embs_intro}
+
+Due to the significant impact word embeddings had on the performance of machine learning techniques in the context of \gls{nlp}, the question arose whether it is possible to encode even larger spans of text in terms of a single vector. \citep{Le.2014} were among the first researchers to introduce embeddings for sentences, paragraphs and even entire documents. This chapter gives an introduction to common sentence embedding algorithms. \citep{Yang.2018} distinguish between two major approaches: They differentiate between \textbf{non-parameterized} methods which combine underlying word embeddings and \textbf{parameterized} methods which train sentence embeddings from scratch. Table \vref{tab:sent_embs_types} gives an overview of common algorithms (\textit{not exhaustive}):
+
+% Table: Types and examples of sentence embeddings
+\vspace*{3mm}
+\input{tables/04_sent_embs_types}
+\vspace*{3mm}
+
+The rest of this chapter is organized as follows: Section \vref{sec:sent_embs_non_param} introduces some examples of non-parameterized algorithms which are going to be used in the experiments. Section \vref{sec:sent_embs_param} then presents their parameterized counterparts. Analogously to the previous chapter, details are given where and how the individual sentence encoders were obtained (cf. section \vref{sec:sent_embs_acquisition} for more information).
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Non-parameterized Sentence Embeddings
+\subsection{Non-parameterized Sentence Embeddings / Compositional Models}
+\label{sec:sent_embs_non_param}
+
+\vspace*{-1mm}
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Vanilla Average
+\subsubsection{Vanilla Average}
+\label{sec:vanilla_average}
+
+The most straightforward approach to generate a sentence representation is the \textit{vanilla average} technique. The embeddings of the words in the sentence to be encoded are averaged using a simple \textbf{arithmetic mean}: $\bm{v}_s = \frac{1}{T} \sum_{t=1}^T \bm{v}_{w_t}$, where $T$ denotes the length of the sentence. While this approach is very intuitive and easy to implement, it has severe shortcomings: \ding{182} It \textbf{neglects the word order}, therefore it is also referred to as a \gls{bow} approach. \ding{183}\,Furthermore, \textbf{stop-words and more informative words are weighted equally} \citep{Le.2014}. Figure \vref{fig:mean_sentence_embedding} shows an exemplary sentence:
+
+% Figure: Example for mean sentence embeddings
+\input{tikz/04_mean_sentence_embedding}
+
+\textit{Vanilla average} sentence embeddings are commonly used as a baseline. More sophisticated algorithms should be able to outperform this na\"{i}ve method. In fact, this algorithm is an instantiation of a more general family of algorithms which \citep{Shen.2018} call \glspl{swem}. An arithmetic mean is not the only pooling mechanism which can be applied. Other strategies include \textit{min-pooling}, \textit{max-pooling} or \textit{hierarchical pooling}. The latter technique makes use of a sliding window which is shifted over the input sentence, where all word representations in the window are pooled until finally, the resulting pooled vectors for each window are in turn combined to form the ultimate sentence vector.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Concatenated Power Means
+\subsubsection{Concatenated Power Means}
+\label{sec:concat_p_means}
+
+\citep{Rueckle.2018} propose to generalize the idea of average sentence embeddings to a concatenation of several power-means. The concatenation aims to capture more information about the sentence structure and is an attempt to make the comparison to trained models fairer. As was found by the authors, more complex and high-dimensional models like \textit{InferSent} are often directly compared to lower-dimensional average embeddings. Equation \vref{eq:p_mean} depicts the general form of a power mean. The equation introduces a hyper-parameter $p$ which specifies the type of average to be computed. As can directly be seen, the arithmetic mean is obtained by setting $p = 1$. Different values for $p$ yield different means. E.\,g. if $p = -1$, the output of the formula is the \textbf{harmonic mean}. For $p$ approaching (negative) $\infty$ the result is going to be the \textbf{maximum} (\textbf{minimum}) of the input data. The following paragraphs describe how this idea can be used to generate sentence embeddings which are more expressive.
+
+\begin{equation}
+	\label{eq:p_mean}
+	\overline{x} = \left[ \frac{x_1^p + x_2^p + \dots + x_T^p}{T} \right]^{\nicefrac{1}{p}}
+\end{equation}
+
+Let $\bm{S}^{(j)} = [\bm{v}_{w_1}^{(j)}, \bm{v}_{w_2}^{(j)}, \dots, \bm{v}_{w_T}^{(j)}] \in \mathbb{R}^{d_j \times T}$ be the embedding matrix of a sentence $s = \langle w_1, w_2, \dots, w_T \rangle$ of length $T$. $j$ is the index variable into the set of $l$ embedding spaces $\mathbb{E} = \{ \mathbb{E}^{(j)} \}_{j=1}^l$ and $d_j$ denotes the dimensionality of the word embeddings in the respective embedding spaces. $\mathbb{E}^{(j)}$ contains all word vectors that were trained by the same method. For example all \textit{word2vec} vectors constitute one embedding space whereas all \textit{FastText} vectors lie in a different embedding space. Further, let $f_p(\bm{S}^{(j)})$ with $f_p: \mathbb{R}^{d_j \times T} \mapsto \mathbb{R}^{d_j}$ be a mapping of a sentence embedding matrix to a single $p$-mean vector. The sentence representation for one embedding space is computed by applying function $f_p$ $k$ times with different values for $p$ and successively concatenating the results (concatenation is denoted by the $\oplus$ symbol): $\bm{v}_{s}^{(j)} = f_{p_1}\left(\bm{S}^{(j)}\right) \oplus f_{p_2}\left(\bm{S}^{(j)}\right) \oplus \dots \oplus f_{p_k}\left(\bm{S}^{(j)}\right)$. The ultimate sentence embedding $\bm{v}_s$ is generated by concatenating the representations from all embedding spaces $\mathbb{E}^{(j)}$.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Parameterized Sentence Embeddings
+\subsection{Parameterized Sentence Embeddings / Trained Encoders}
+\label{sec:sent_embs_param}
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% SkipThought
+\subsubsection{Skip-Thought and Quick-Thought}
+\label{sec:skipthought}
+
+\highlight{Skip-Thought.} Inspired by the \textit{Skip-Gram} model, \citep{Kiros.2015} proposed a sentence embedding algorithm named \textit{Skip-Thought}. Given a sentence $s_i$, the model's objective in the training phase is to predict the two neighboring sentences $s_{i-1}$ and $s_{i+1}$, respectively. Thus, the input to the model consists of a tuple of three sentences which have to be taken from an \textbf{ordered corpus}, i.\,e. nearby sentences have to be related. For example consider the following three sentences:
+
+\begin{center}
+	\colorbox{lightgray!15}{$\langle$ \textbf{I got back home} $\rangle_{s_{i-1}}$},
+	\colorbox{tud9c!15}{$\langle$ \textbf{I could see the cat on the steps} $\rangle_{s_i}$} and
+	\colorbox{lightgray!15}{$\langle$ \textbf{This was very strange} $\rangle_{s_{i+1}}$}
+\end{center}
+
+Especially well suited are book corpora which provide large amounts of contiguous text. \citep{Kiros.2015} trained the model on the \textit{BookCorpus} data set by \citep{Zhu.2015}. The training corpus is not annotated, hence \textit{Skip-Thought} belongs to the family of unsupervised machine learning algorithms. Figure \vref{fig:skipthought_architecture} depicts the model architecture: The middle sentence $s_i$ (\textit{`I could see the cat on the steps')} is first encoded into a compact representation $\bm{h}_i$ which is then passed on to two separate decoders which predict the surrounding sentences $s_{i-1}$ (\textit{`I got back home'}) and $s_{i+1}$ (\textit{`This was very strange'}). At each decoding step, the model is fed with its output one time step in the past as well as the vector representation of the middle sentence $\bm{h}_i$ (indicated by the gray dashed arrows in figure \vref{fig:skipthought_architecture}). Sometimes the model output is replaced by the gold label word. This method is called \textbf{teacher forcing} \citep{Williams.1998}. During the training process, the model aims to minimize the reconstruction error by maximizing the log-probability of the next word to be decoded, given all previously decoded words as well as the center sentence representation $\bm{h}_i$. This error is back-propagated not only through the decoders but also through the encoder component, thus forcing the encoder to put as much information about the center sentence $s_i$ as possible into $\bm{h}_i$. After training, the fixed-length encoder output represents the desired sentence embedding. Only the encoder is needed to embed new sentences, the decoders can be discarded. Their only purpose was to provide the training signal needed in the training procedure. \citep{Kiros.2015} use \glspl{gru} \citep{Chung.2014} for both, encoder and decoders.
+
+\input{tikz/04_skipthought_architecture}
+
+\highlight{Quick-Thought.} Based on the \textit{Skip-Thought} approach, \citep{Logeswaran.2018} proposed a different method called \textit{Quick-Thought}. One of the major problems with the earlier invented \textit{Skip-Thought} model is its word level objective which requires an excessive amount of computation. This entails a considerable slow-down of the algorithm and as a consequence, the training data sets and the vocabulary sizes have to be kept low which inhibits effective learning. \textit{Quick-Thought} provides a remedy by using a sentence-level objective which eschews much of the computational cost and can therefore be trained faster and on larger training data sets.\footnote{Hence the name \textit{\textbf{Quick}-Thought}.} For their model, \citep{Logeswaran.2018} rephrase the encoder-decoder approach as a \textbf{multi-class classification problem}: Given a sentence, the \textit{Quick-Thought} algorithm distinguishes a context sentence among a set of other contrastive sentences by only taking the respective sentence embeddings into account (cf. figure \vref{fig:quickthought}).
+
+% Figure: QuickThought architecture
+\input{tikz/04_quickthought_architecture}
+
+Another issue of the word-level objective is that \textbf{sentences can have a similar semantic meaning and yet exhibit a completely different surface form}. Already \citep{Humboldt.1836} observed that natural language makes \textit{`infinite use of finite means'}. Next to the semantic meaning of a sentence, standard encoder-decoder models also encode the surface form of the sentence which is usually not desired. The embeddings should be insusceptible to such superficial aspects. \textit{Quick-Thought} avoids this due to its training objective. \citep{Logeswaran.2018} also trained their models on the \textit{BookCorpus} data set \citep{Zhu.2015} and additionally on the \textit{UMBC} corpus \citep{Han.2013}, which consists of texts taken from crawled web-pages.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% InferSent
+\subsubsection{InferSent}
+\label{sec:infersent}
+
+The \textit{InferSent} algorithm proposed by \citep{Conneau.2017} differs from the previous methods in that it uses a supervised learning approach. The intention of \textit{InferSent} is to provide universal sentence embeddings, \textbf{i.\,e. they can be employed in a task-agnostic manner}.\footnote{Many word or sentence embeddings are trained for specific applications and perform poorly if they are transferred to tasks other than the one they were designed for. The term `task-agnostic' means that the embeddings are trained without specific downstream applications in mind which makes them usable in a wide range of tasks.} The authors address two major questions in their paper: Since the algorithm needs labeled training data, it is first of all important to ask which training data is suitable for learning high-quality sentence embeddings. The second, but not less important question is about the architecture which should be used to facilitate the learning process in an optimal way. Concerning the first question, \citep{Conneau.2017} claim that \textbf{the \gls{nli} task is adequate for the training of universal sentence embeddings}, since good performance in this task requires that the sentence representations incorporate semantic relationships to a large extent. The authors decided to use the \textit{\gls{snli}} data set (+ \textit{MultiNLI}) collected by \citep{Bowman.2015}: Given two sentences, $s_1$ and $s_2$, \gls{nli} is the task of deciding whether $s_2$ entails $s_1$, contradicts $s_1$ or whether there is no connection at all. Usually, $s_1$ is referred to as the \textbf{premise} sentence and $s_2$ as the \textbf{hypothesis} sentence. Table \vref{tab:snli_data_set} shows some exemplary sentence pairs with their corresponding annotations. The sentence pairs were labeled by five human annotators. Their judgments are listed in the last column of of table \vref{tab:snli_data_set}, where `\texttt{E}' stands for entailment, `\texttt{C}' for contradiction and `\texttt{N}' for neutral. As can be seen, even human annotators face problems in achieving a unanimous vote. The gold labels were therefore obtained by a majority vote.
+
+% Table: Example sentence pairs taken from the SNLI data set
+\vspace*{3mm}
+\input{tables/04_snli}
+\vspace*{3mm}
+
+The overall neural architecture underlying the \textit{InferSent} model is depicted in figure \vref{fig:infersent_architecture} (left). It consists of two parts: \ding{182} An encoder whose task is to encode a given sentence into a compact representation and \ding{183} a classifier which gets a pair of two encoded sentences ($\bm{p}$, $\bm{h}$) and two additional features calculated on top of these two representations (absolute difference of $\bm{p}$ and $\bm{h}: \vert \bm{p} - \bm{h}\vert$ and the Hadamard/element-wise product of the two embedding vectors involved: $\bm{p} \odot \bm{h}$) as input and subsequently outputs one of the three possible classes: \texttt{Entailment}, \texttt{Contradiction} or \texttt{Neutral}. The classifier which operates on top of the encoder is a standard fully connected \gls{mlp}. For the encoder, \citep{Conneau.2017} consider seven possible architectures: E.\,g. \textbf{\glspl{bilstm} with max/mean-pooling} (cf. figure \vref{fig:infersent_architecture}, right), \textbf{hierarchical \glspl{cnn}} or \textbf{self-attentive networks}. The evaluation results indicate the best performance for the \gls{bilstm} (max-pooling) architecture. Therefore, this type of encoder is going to be considered in the following.
+
+\begin{figure}
+\begin{minipage}{0.59\textwidth}
+% Figure: Global InferSent architecture
+\input{tikz/04_infersent_global_architecture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\textwidth}
+% Figure: InferSent encoder architecture
+\input{tikz/04_infersent_encoder_architecture}
+\end{minipage}
+\caption[\textit{InferSent} architecture]{Left: Global \textit{InferSent} architecture. Right: \textit{InferSent} encoder architecture. The images were taken and adapted from \citep{Conneau.2017}.}
+\label{fig:infersent_architecture}
+\end{figure}
+
+\glspl{lstm} were originally proposed by \citep{Hochreiter.1997}. They belong to the family of \glspl{rnn} and were especially designed to tackle the \textbf{vanishing gradient problem} \citep{Hochreiter.1998} by using a more complicated recurrent unit than the one used in standard \glspl{rnn}. Given an input sequence $\{ \bm{x}_t \}_{t=1}^T$ of length $T$, an \gls{lstm} generates a series of hidden states $\bm{h}_t$. At each time step $t$, it takes the current input $\bm{x}_t$ as well as the previous hidden state $\bm{h}_{t-1}$ into account. \textit{InferSent} uses a concatenation of two \glspl{lstm} operating in opposite directions. Models with this architecture are called \glspl{bilstm}. The input to the encoder is given by word embeddings. The original version \textit{InferSent1} uses \textit{GloVe} embeddings \citep{Pennington.2014}, whereas \textit{InferSent2} makes use of \textit{FastText} word embeddings \citep{Bojanowski.2017}.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% BERT
+\subsubsection{BERT}
+\label{sec:bert}
+
+\citep{Devlin.2018} propose a model called \gls{bert} which is based on the transformer architecture introduced by \citep{Vaswani.2017}. The model consists of a stack of such transformers (cf. figure \vref{fig:bert_architecture}). The model training consists of two phases: 
+
+\textbf{Phase} \ding{182}: In the first step, the embeddings are pre-trained using a \textbf{\gls{mlm}} which is inspired by the \textbf{Cloze task} \citep{Taylor.1953}: Approximately 15\,\% of the input words are randomly masked which subsequently have to be predicted by the model. Masking allows \gls{bert} to incorporate left as well as right contexts. This architectural characteristic distinguishes it from the \textit{OpenAI GPT} model published by \citep{Radford.2018} which only uses the left-context. A second task -- called \textbf{`two sentences task'} -- is used to pre-train the representations. This task is similar to the \gls{nli} task where the classifier has to predict whether or not the second sentence is a follow-up sentence of the first one.
+
+% Image: BERT architecture
+\input{tikz/04_bert_architecture}
+
+\textbf{Phase} \ding{183}: In an optional second step, the pre-trained embeddings can further be \textbf{fine-tuned on the downstream task for which the embeddings are used}. The authors report results for two different architectures, \textit{BERT\textsubscript{BASE}} and \textit{BERT\textsubscript{LARGE}}. The architectural characteristics of these two models are as follows:
+
+\begin{center}\parbox{0cm}{
+\begin{tabbing}
+	\hspace*{3.5cm}\=\hspace*{4.5cm}\=\hspace*{5.5cm}\=\kill
+	\textbf{Model} 	\>	\textbf{\# transformers} 	\>	\textbf{\# hidden units} 	\> 	\textbf{\# attention heads} 	\\[2mm]
+	\textit{BERT\textsubscript{BASE}}
+					\>	12						\>	768 					\>	12							\\[1mm]
+	\textit{BERT\textsubscript{LARGE}}
+					\>	24						\>	1,024					\> 	16
+\end{tabbing}}
+\end{center}
+\vspace*{-5mm}
+
+The model is primarily used to create \textbf{contextualized word embeddings} by using the transformer activations across different layers for one word. We obtain sentence representations from the model by using the activations of the last transformer layer (alternative: an average of several transformer layers). In the context of this thesis a multi-lingual version of the model is used which was trained for 104 different languages and it is publicly available on GitHub\github~ (without fine-tuning as described in step \ding{183}).\footnote{\url{https://github.com/google-research/bert/blob/master/multilingual.md} (retrieved: September 04, 2019)} Recently, \citep{Reimers.2019} have introduced a new \textit{\gls{bert}} version they call \textit{\gls{sbert}}. This model was designed specifically for the purpose of creating sentence embeddings. Unfortunately, time constraints prevented us from using this technique (due to its novelty).
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% LASER
+\subsubsection{LASER / Massively Multilingual Sentence Embeddings}
+\label{sec:laser}
+
+Massively multilingual sentence embeddings are a rather new approach introduced by \citep{Artetxe.2018}. The algorithm is implemented in the \textit{\gls{laser}} library which is why the representations are referred to as \textit{\gls{laser}} embeddings throughout this thesis. As the name already implies, this approach creates a \textbf{single shared embedding space for all the languages considered} during the training procedure. Therefore, only one model is needed to embed sentences in various languages.
+
+Figure \vref{fig:laser_architecture} shows the architecture of the model which is similar to \citep{Schwenk.2018}. It leverages an \textbf{encoder-decoder approach} where the encoder is given by a \gls{bilstm}. The words of the input sentences are represented using a joint \gls{bpe} vocabulary which was trained on one big corpus obtained by concatenating all training resources for all languages (aligned parallel corpora).
+
+% Figure: LASER architecture
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{images/laser_architecture}
+	\caption[\textit{LASER} encoder architecture]
+		{The architecture of the `massively multilingual sentence embeddings' which are part of the \textit{\gls{laser}} library.
+		The image was taken from \citep{Artetxe.2018}.}
+	\label{fig:laser_architecture}
+\end{figure}
+
+The sentence representation is then passed on to the decoder which generates a sequence of words similar to the \textit{Skip-Thought} approach. However, this model additionally gets a language flag as input indicating which language the decoder has to produce. With their approach the authors attempt to create \textbf{`universal language-agnostic sentence representations'}, i.\,e. the embeddings are designed to work well across many tasks and across multiple languages.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Random Sentence Encoders
+\subsubsection{Random Sentence Encoders}
+\label{sec:rand_sent}
+
+Recent research conducted by \citep{Wieting.2019} revealed that \textbf{random sentence representations provide a solid baseline} for more sophisticated algorithms. The authors investigate the results of several models whose parameters are chosen randomly without any training. It was found that while there is a gap between the performance of such random encoders and the representations generated by trained models, it is much smaller than one would expect. Three architectures are proposed in the paper: \ding{182} \textit{\gls{borep}}, \ding{183} \textit{random (Bi-)LSTMs} and \ding{184} \textit{\glspl{esn}} \citep{Jaeger.2001} out of which the first two are used in this thesis.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Acquisition of Sentence Embeddings
+\subsection{Acquisition of Sentence Embeddings}
+\label{sec:sent_embs_acquisition}
+
+Analogously to the previous chapter, it is useful to summarize the training details for all the sentence embeddings considered in the context of the experiments. Table \vref{tab:sent_emb_sources} gives an overview.
+
+\highlight{Non-parameterized methods.} Recall, that non-parameterized methods do not require any training. Instead, they combine existing word embeddings (compositional models). The experiments will be conducted using all word embeddings discussed in section \vref{sec:word_embs} (\textit{word2vec}, \textit{FastText} and \textit{Attract-Repel}). All of these word embedding spaces have a dimensionality of 300 which entails that the sentence embeddings produced by the compositional models have the same dimensionality. An exception is the \textit{power means} embedding which is a concatenation of various means, where $p \in \{ -\infty, 0, 1, 2, +\infty \}$. Furthermore, the code for the \textit{hierarchical pooling} algorithm could not be found in the official repository, which is why it was implemented from scratch according to the paper. In the paper, a window size of $m = 5$ is used. Unfortunately, this information was discovered relatively late which is why the experiments were conducted with a different windows size of $m = 3$.
+
+\highlight{Parameterized methods.} In the context of this thesis five trained parameterized methods are going to be evaluated: \textit{InferSent}, \textit{Quick-Thought}, \textit{sent2vec}, \textit{\gls{bert}} and \textit{\gls{laser}}. Furthermore, there are two types of random encoders: \textit{\gls{borep}} and the \textit{random \gls{bilstm}}. These random methods have parameters (parameterized method), but they are not trained after a random initialization. These models will (next to the majority class) serve as a baseline.
+
+\textbf{Quick-Thought.} The \textit{Quick-Thought} models were trained on the Wikipedia dumps for the respective languages. The English model was also trained on Wikipedia and not downloaded from the official GitHub\github~ repository.\footnote{\url{https://github.com/lajanugen/S2V} (retrieved: September 04, 2019)} The reason for this is that there were some problems when trying to get the pre-trained model to work. Several issues regarding this problem have already been filed.\footnote{Cf. for example \url{https://github.com/lajanugen/S2V/issues/10} or \url{https://github.com/lajanugen/S2V/issues/8} \\ (retrieved: September 17, 2019)} Furthermore, for the Turkish and Georgian models, the number of epochs trained was increased, since there is considerably less data available for these languages.
+
+\textbf{InferSent.} We trained the \textit{InferSent} models on the \gls{snli} data set. Unfortunately, this data set is originally only available for the English language. Therefore, the resources had to be translated. This was achieved using the Google translation \gls{api}. A major problem in this context was that the number of translation requests is limited. Only a certain number of requests per day are allowed. If this limit is exceeded, the server responds with \texttt{Error Code 500: Too many Requests} and one is blocked for 24\,h. In order to increase the speed, several sentences are concatenated which are jointly translated as a batch. Unfortunately, this entails that the translated sentences have to be mapped back to the original sentences (since the result returned is only one long string). It is crucial to assure that the number of sentences returned by the server is equal to the number of sentences fed into the translation procedure. If this is not the case, one risks that sentences and labels do not match anymore which would greatly impair the learning process.
+
+In order to avoid this, the following strategy was employed: A special split token (a series of numbers) was introduced before concatenating the individual sentences in the original language. It was checked that this split token does not influence the quality of the translations in any harmful way. Further, the token was chosen such that it is not altered during the translation procedure (at least in the majority of the cases). When a translated batch arrives it is first split using this split token. The routine subsequently checks if this results in the expected number of sentences. If yes, the sentences are returned. If not, the split token is removed and the next attempt is to split at punctuation symbols (., !, ?). If this again fails, the sentences in that batch are translated one by one. The translations had to be done for Russian, Turkish and Georgian. A German translation of the \gls{snli} data set was already available.\footnote{\url{https://public.ukp.informatik.tu-darmstadt.de/arxiv2018-xling-sentence-embeddings/translated-snli/en-de-translated-snli-4x.zip} (retrieved: September 04, 2019)}
+
+Since the translation procedure nonetheless took a very long time, it was not possible to translate all of the approximately 550,000 sentence pairs for each language, which is why the training set for the low-resource languages was restricted to 60,000 sentence pairs. All models employed use the \textit{InferSent2} version (using \textit{FastText} word embeddings) and the encoder architecture leveraged was the \gls{bilstm} with max-pooling, since this architecture achieved the best results in the experiments conducted by \citep{Conneau.2017}. Training the models takes a very long time. The time for training the German model was about 4 days. The English model was again available for download.\footnote{\url{https://github.com/facebookresearch/InferSent} (retrieved: September 04, 2019)}
+
+% Table: Acquisition of sentence embeddings / models
+\begin{table}
+	\begin{adjustbox}{angle=90}
+		\input{tables/04_sent_embs_acquisition}
+	\end{adjustbox}
+	\vspace*{-5mm}
+	\caption[Sources of sentence embeddings]
+		{Overview of sentence embedding acquisition separated by non-parametric and parametric approaches.
+		Legend: \faFilter\ Compositional methods, \faDownload\ downloaded models, \faCogs\ trained models,
+		\faMagic\ random encoders}
+	\label{tab:sent_emb_sources}
+\end{table}
+
+\textbf{sent2vec.} The models for the \textit{sent2vec} approach were trained on Wikipedia (German, Russian, Turkish and Georgian). The values for the hyper-parameters can be read off from table \vref{tab:sent_emb_sources}. The training procedure was rather fast. The English model was downloaded using a link from GitHub\github.\footnote{\url{https://github.com/epfml/sent2vec} (retrieved: September 04, 2019)}
+
+\textbf{\gls{bert}.} Training \textit{\gls{bert}} is only possible if one has a \gls{tpu} at one's disposal. This was not the case. But a multilingual model is offered on GitHub\github.\footnote{\url{https://github.com/google-research/bert/blob/master/multilingual.md} (retrieved: September 04, 2019)} The model used is called \texttt{\gls{bert}-Base, Multilingual Cased}. It is applicable to 104 languages and has about 110 million parameters.
+
+\textbf{\gls{laser}.} The model is multilingual and available in pre-trained form. It was downloaded and installed following the instructions on GitHub\github.\footnote{\url{https://github.com/facebookresearch/LASER} (retrieved: September 04, 2019)}
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Chapter Summary
+\subsection{Summary}
+\label{sec:sent_embs_summary}
+
+This chapter introduced several sentence embedding algorithms. Generally speaking, there is a distinction between non-parameterized and parameterized sentence embeddings. The first kind of algorithms makes use of word embeddings as a basis and perform some kind of pooling operation in order to obtain a sentence embedding. The more sophisticated parameterized models which are often realized using neural architectures train sentence embeddings from scratch either in an unsupervised or supervised fashion.
+
+The final section then gave insights into the process of sentence embedding acquisition. Models for the English language were mostly found to be publicly accessible in a pre-trained manner and were therefore downloaded from the official websites. Especially models for the low-resource languages Russian, Turkish and Georgian were not available which is why we had to train them from scratch (\textit{sent2vec}, \textit{Quick-Thought} and \textit{InferSent}).

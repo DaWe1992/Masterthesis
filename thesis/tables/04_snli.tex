@@ -1,0 +1,51 @@
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.6}
+	\scalebox{0.98}{
+	\begin{tabularx}{\textwidth}{| c | X | X | c | c |}
+		\hline
+		\rowcolor{tud9c!50}
+		\textbf{Nr} 							&
+		\textbf{Premise} (sentence $s_1$) 		&
+		\textbf{Hypothesis} (sentence $s_2$) 	&
+		\textbf{Label} 						&
+		\textbf{Judgments}					\\
+		\hline\hline
+		\ding{182} 														&
+		A man inspects the uniform of a figure in some East Asian country. 	&
+		The man is sleeping. 												&
+		\texttt{Contradiction} 												&
+		\texttt{C C C C C}												\\
+		\hline
+		\ding{183} 														&
+		An older and younger man smiling. 								&
+		The men are smiling and laughing at the cats playing on the floor. 		&
+		\texttt{Neutral}													&
+		\texttt{N N E N N}												\\
+		\hline
+		\ding{184} 														&
+		A black race car starts up in front of a crowd of people. 				&
+		A man is driving down a lonely road.								&
+		\texttt{Contradiction}												&
+		\texttt{C C C C C}												\\
+		\hline
+		\ding{185} 														&
+		A soccer game with multiple males playing. 							&
+		Some men are playing sport. 										&
+		\texttt{Entailment} 												&
+		\texttt{E E E E E} 												\\
+		\hline
+		\ding{186} 														&
+		A smiling costumed woman is holding an umbrella. 					&
+		A happy woman in a fairy costume holds an umbrella. 				&
+		\texttt{Neutral} 													&
+		\texttt{N N E C N} 												\\
+  		\hline
+	\end{tabularx}}
+	\caption[Example sentence pairs taken from the SNLI data set]
+		{Example sentence pairs taken from the SNLI data set.
+		The `judgments' column shows the votes among the five annotators whereas the `label' column contains the gold label
+		(majority vote). The example was taken and adapted from \url{https://nlp.stanford.edu/projects/snli/}
+		(retrieved: September 04, 2019).}
+	\label{tab:snli_data_set}
+\end{table}

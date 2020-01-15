@@ -1,0 +1,59 @@
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[
+		scale=0.6,
+		every node/.style={scale=0.8},
+		arr/.style={-stealth,very thick,shorten >=1mm},
+		n/.style={draw=black,thick,minimum width=1cm},
+		box/.style={fill=tud9c!15,dashed,rounded corners}
+	]
+
+		% input
+		\node at (0,-0.75) {\textit{The}}; 		\node[n] (w1) at (0,0) {$\bm{v}_{w_1}$};
+		\node at (2,-0.75) {\textit{movie}}; 	\node[n] (w2) at (2,0) {$\bm{v}_{w_2}$};
+		\node at (4,-0.75) {\textit{was}}; 		\node[n] (w3) at (4,0) {$\bm{v}_{w_3}$};
+		\node at (6,-0.75) {\textit{great}}; 		\node[n] (w4) at (6,0) {$\bm{v}_{w_4}$};
+
+		\draw[box] (-0.75,1.25) rectangle (0.75,3.75);
+		\draw[box] (1.25,1.25) rectangle (2.75,3.75);
+		\draw[box] (3.25,1.25) rectangle (4.75,3.75);
+		\draw[box] (5.25,1.25) rectangle (6.75,3.75);
+
+		% lstm 1
+		\node[n] (lstm11) at (0,2) {$\overrightarrow{\bm{h}}_1$};
+		\node[n] (lstm12) at (2,2) {$\overrightarrow{\bm{h}}_2$}; \draw[arr] (lstm11) -- (lstm12);
+		\node[n] (lstm13) at (4,2) {$\overrightarrow{\bm{h}}_3$}; \draw[arr] (lstm12) -- (lstm13);
+		\node[n] (lstm14) at (6,2) {$\overrightarrow{\bm{h}}_4$}; \draw[arr] (lstm13) -- (lstm14);
+
+		% lstm 2
+		\node[n] (lstm21) at (0,3) {$\overleftarrow{\bm{h}}_1$};
+		\node[n] (lstm22) at (2,3) {$\overleftarrow{\bm{h}}_2$}; \draw[arr] (lstm22) -- (lstm21);
+		\node[n] (lstm23) at (4,3) {$\overleftarrow{\bm{h}}_3$}; \draw[arr] (lstm23) -- (lstm22);
+		\node[n] (lstm24) at (6,3) {$\overleftarrow{\bm{h}}_4$}; \draw[arr] (lstm24) -- (lstm23);
+		\node[rotate=90] at (7.25,2.5) {\highlight{concatenation}};
+
+		\draw[arr,shorten >=2mm] (w1) -- (lstm11); \draw[arr,shorten >=2mm] (w2) -- (lstm12);
+		\draw[arr,shorten >=2mm] (w3) -- (lstm13); \draw[arr,shorten >=2mm] (w4) -- (lstm14);
+	
+		% pooling
+		\node[n,align=center,rounded corners] (pool1) at (0,6) {$\bullet$ \\ $\circ$ \\ $\circ$ \\ $\circ$};
+		\node[n,align=center,rounded corners] (pool2) at (2,6) {$\circ$ \\ $\circ$ \\ $\circ$ \\ $\bullet$};
+		\node[n,align=center,rounded corners] (pool3) at (4,6) {$\circ$ \\ $\bullet$ \\ $\circ$ \\ $\circ$};
+		\node[n,align=center,rounded corners] (pool4) at (6,6) {$\bullet$ \\ $\circ$ \\ $\circ$ \\ $\circ$};
+
+		\draw[arr,shorten <=2mm] (lstm21) -- (pool1); \draw[arr,shorten <=2mm] (lstm22) -- (pool2);
+		\draw[arr,shorten <=2mm] (lstm23) -- (pool3); \draw[arr,shorten <=2mm] (lstm24) -- (pool4);
+
+		\node[n,rounded corners] (o) at (3,9.5) {\Large $\bullet \bullet \dots \bullet \dots \bullet$};
+		\draw[arr,shorten <=2mm] (pool1) -- (o);
+		\draw[arr,shorten <=2mm] (pool2) -- (o);
+		\draw[arr,shorten <=2mm] (pool3) -- (o);
+		\draw[arr,shorten <=2mm] (pool4) -- (o);
+	
+		% output
+		\node at (3,10.25) {\textbf{Output}};
+		
+		\node at (6,8.25) {\highlight{max-pooling}};
+		
+	\end{tikzpicture}
+\end{figure}

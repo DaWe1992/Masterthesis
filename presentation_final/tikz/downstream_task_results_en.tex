@@ -1,0 +1,416 @@
+\begin{minipage}{0.265\textwidth}
+\begin{tikzpicture}[scale=0.75,every node/.style={scale=0.8}]
+
+  	\begin{axis}[
+		title=ArgMin,
+ 	   	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		scale only axis=true,
+  		width=3cm,height=2.75cm,
+		tick label style={font=\footnotesize}
+  	]
+
+		% Average
+  		\addplot[blue,fill,draw=black] coordinates
+  			{(0.550,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% p-Means
+		\addplot[blue!50,fill,draw=black] coordinates
+			{(0.00,Average) (0.568,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+
+		% sent2vec
+		\addplot[red,fill,draw=black] coordinates 
+			{(0.00,Average) (0.00,p-Means) (0.608,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Quick-Th.
+		\addplot[red!60,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.581,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Bert
+		\addplot[red!40,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.558,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Laser
+		\addplot[red!20,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.596,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% InferSent
+		\addplot[red!10,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.604,InferSent) (0.00,rand. BiLSTM)};
+
+		% rand lstm
+		\addplot[gray,fill,draw=black] coordinates 
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.536,rand. BiLSTM)};
+
+  	\end{axis}
+
+
+
+\end{tikzpicture}
+\end{minipage}
+\hspace*{16mm}
+\begin{minipage}{0.25\textwidth}
+\begin{tikzpicture}[scale=0.75,every node/.style={scale=0.8}]
+
+  	\begin{axis}[
+		title=Senti,
+   	 	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+	    	symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=3cm,height=2.75cm,
+		tick label style={font=\footnotesize}
+  	]
+
+		% Average
+  		\addplot[blue,fill,draw=black] coordinates
+  			{(0.698,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% p-Means
+		\addplot[blue!50,fill,draw=black] coordinates
+			{(0.00,Average) (0.695,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+
+		% sent2vec
+		\addplot[red,fill,draw=black] coordinates 
+			{(0.00,Average) (0.00,p-Means) (0.656,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Quick-Th.
+		\addplot[red!60,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.636,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Bert
+		\addplot[red!40,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.644,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Laser
+		\addplot[red!20,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.727,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% InferSent
+		\addplot[red!10,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.702,InferSent) (0.00,rand. BiLSTM)};
+
+		% rand lstm
+		\addplot[gray,fill,draw=black] coordinates 
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.688,rand. BiLSTM)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.25\textwidth}
+\begin{tikzpicture}[scale=0.75,every node/.style={scale=0.8}]
+
+  	\begin{axis}[
+		title=TREC,
+ 	   	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=3cm,height=2.75cm,
+		tick label style={font=\footnotesize}
+  	]
+
+		% Average
+  		\addplot[blue,fill,draw=black] coordinates
+  			{(0.795,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% p-Means
+		\addplot[blue!50,fill,draw=black] coordinates
+			{(0.00,Average) (0.767,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+
+		% sent2vec
+		\addplot[red,fill,draw=black] coordinates 
+			{(0.00,Average) (0.00,p-Means) (0.792,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Quick-Th.
+		\addplot[red!60,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.814,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Bert
+		\addplot[red!40,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.876,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% Laser
+		\addplot[red!20,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.851,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+		% InferSent
+		\addplot[red!10,fill,draw=black] coordinates
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.920,InferSent) (0.00,rand. BiLSTM)};
+
+		% rand lstm
+		\addplot[gray,fill,draw=black] coordinates 
+			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.774,rand. BiLSTM)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+%\hfill
+%\begin{minipage}{0.2\textwidth}
+%\begin{tikzpicture}
+%
+%  	\begin{axis}[
+%		title=SUBJ,
+% 	   	xbar stacked,
+%		bar width=4pt,
+%		enlarge y limits=0.2,
+%    		symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+%		xmin=0,xmax=1,
+%  		xmajorgrids,
+%		tickwidth=0pt,
+%		xtick distance=0.40,
+%  		ytick=data,
+%		yticklabels={,,},
+%		scale only axis=true,
+%  		width=3cm,height=2cm,
+%		tick label style={font=\tiny}
+%  	]
+%
+%		% Average
+%  		\addplot[blue,fill,draw=black] coordinates
+%  			{(0.908,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% p-Means
+%		\addplot[blue!50,fill,draw=black] coordinates
+%			{(0.00,Average) (0.896,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% sent2vec
+%		\addplot[red,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.920,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Quick-Th.
+%		\addplot[red!60,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.816,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Bert
+%		\addplot[red!40,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.928,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Laser
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.914,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% InferSent
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.912,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% rand lstm
+%		\addplot[gray,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.903,rand. BiLSTM)};
+%
+%  	\end{axis}
+%
+%\end{tikzpicture}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.1\textwidth}
+%\begin{tikzpicture}
+%
+%  	\begin{axis}[
+%		title=Cluster,
+%   	 	xbar stacked,
+%		bar width=4pt,
+%		enlarge y limits=0.2,
+%	    	symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+%		xmin=0,xmax=1,
+%  		xmajorgrids,
+%		tickwidth=0pt,
+%		xtick distance=0.40,
+%  		ytick=data,
+%		yticklabels={,,},
+%		scale only axis=true,
+%  		width=1.3cm,height=2cm,
+%		tick label style={font=\tiny}
+%  	]
+%
+%		% Average
+%  		\addplot[blue,fill,draw=black] coordinates
+%  			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% p-Means
+%		\addplot[blue!50,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% sent2vec
+%		\addplot[red,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Quick-Th.
+%		\addplot[red!60,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Bert
+%		\addplot[red!40,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Laser
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% InferSent
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% rand lstm
+%		\addplot[gray,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%
+%  	\end{axis}
+%
+%\end{tikzpicture}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.1\textwidth}
+%\begin{tikzpicture}
+%
+%  	\begin{axis}[
+%		title=MR,
+%    		xbar stacked,
+%		bar width=4pt,
+%		enlarge y limits=0.2,
+%    		symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+%		xmin=0,xmax=1,
+%  		xmajorgrids,
+%		tickwidth=0pt,
+%		xtick distance=0.40,
+%  		ytick=data,
+%		yticklabels={,,},
+%		scale only axis=true,
+%  		width=1.3cm,height=2cm,
+%		tick label style={font=\tiny}
+%  	]
+%
+%		% Average
+%  		\addplot[blue,fill,draw=black] coordinates
+%  			{(0.763,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% p-Means
+%		\addplot[blue!50,fill,draw=black] coordinates
+%			{(0.00,Average) (0.753,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% sent2vec
+%		\addplot[red,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.763,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Quick-Th.
+%		\addplot[red!60,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.633,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Bert
+%		\addplot[red!40,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.683,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Laser
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.751,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% InferSent
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.748,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% rand lstm
+%		\addplot[gray,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.745,rand. BiLSTM)};
+%
+%  	\end{axis}
+%
+%\end{tikzpicture}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.1\textwidth}
+%\begin{tikzpicture}
+%
+%  	\begin{axis}[
+%		title=MPQA,
+%  	  	xbar stacked,
+%		bar width=4pt,
+%		enlarge y limits=0.2,
+%    		symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+%		xmin=0,xmax=1,
+%  		xmajorgrids,
+%		tickwidth=0pt,
+%		xtick distance=0.40,
+%  		ytick=data,
+%		yticklabels={,,},
+%		scale only axis=true,
+%  		width=1.3cm,height=2cm,
+%		tick label style={font=\tiny}
+%  	]
+%
+%		% Average
+%  		\addplot[blue,fill,draw=black] coordinates
+%  			{(0.848,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% p-Means
+%		\addplot[blue!50,fill,draw=black] coordinates
+%			{(0.00,Average) (0.841,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% sent2vec
+%		\addplot[red,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.848,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Quick-Th.
+%		\addplot[red!60,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.724,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Bert
+%		\addplot[red!40,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.809,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Laser
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.855,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% InferSent
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.836,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% rand lstm
+%		\addplot[gray,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.851,rand. BiLSTM)};
+%
+%  	\end{axis}
+%
+%\end{tikzpicture}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.1\textwidth}
+%\begin{tikzpicture}
+%
+%  	\begin{axis}[
+%		title=CR,
+% 	   	xbar stacked,
+%		bar width=4pt,
+%		enlarge y limits=0.2,
+%    		symbolic y coords={rand. BiLSTM,InferSent,Laser,Bert,Quick-Th.,sent2vec,p-Means,Average},
+%		xmin=0,xmax=1,
+%  		xmajorgrids,
+%		tickwidth=0pt,
+%		xtick distance=0.40,
+%  		ytick=data,
+%		yticklabels={,,},
+%		scale only axis=true,
+%  		width=1.3cm,height=2cm,
+%		tick label style={font=\tiny}
+%  	]
+%
+%		% Average
+%  		\addplot[blue,fill,draw=black] coordinates
+%  			{(0.772,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% p-Means
+%		\addplot[blue!50,fill,draw=black] coordinates
+%			{(0.00,Average) (0.743,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% sent2vec
+%		\addplot[red,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.751,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Quick-Th.
+%		\addplot[red!60,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.675,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Bert
+%		\addplot[red!40,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.744,Bert) (0.00,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% Laser
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.802,Laser) (0.00,InferSent) (0.00,rand. BiLSTM)};
+%		% InferSent
+%		\addplot[red!20,fill,draw=black] coordinates
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.711,InferSent) (0.00,rand. BiLSTM)};
+%
+%		% rand lstm
+%		\addplot[gray,fill,draw=black] coordinates 
+%			{(0.00,Average) (0.00,p-Means) (0.00,sent2vec) (0.00,Quick-Th.) (0.00,Bert) (0.00,Laser) (0.00,InferSent) (0.761,rand. BiLSTM)};
+%
+%  	\end{axis}
+%
+%\end{tikzpicture}
+%\end{minipage}

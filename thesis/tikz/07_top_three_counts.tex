@@ -1,0 +1,294 @@
+\begin{tikzpicture}[scale=1.0,every node/.style={scale=1.0}]
+	\begin{axis}[
+    		title=\textbf{Top-three scores (EN)},
+		scale only axis,
+		clip=false,
+		separate axis lines,
+		xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        	x tick style={draw=none},
+        	xticklabels={,,},
+		width=4cm,height=1.9cm,
+		tick label style={font=\footnotesize},
+		xticklabel style={rotate=90},
+		ymajorgrids,
+    		grid style={line width=.1pt, draw=gray!10},
+		ymin=0,ymax=1.0,
+		every axis plot/.append style={
+          		ybar,
+          		bar width=6.0,
+          		bar shift=0.5pt,
+			fill
+		},
+		scaled y ticks=false,
+		y tick label style={
+        		/pgf/number format/.cd,
+            		fixed,
+            		fixed zerofill,
+            		precision=2,
+        		/tikz/.cd
+    		}
+	]
+
+		\addplot[blue] coordinates {(1,0.00)};
+     	 	\addplot[blue!80] coordinates {(2,0.33)};
+      		\addplot[blue!60] coordinates {(3,0.00)};
+      		\addplot[blue!40] coordinates {(4,0.00)};
+		\addplot[blue!20] coordinates {(5,0.00)};
+     	 	\addplot[gray] coordinates {(6,0.00)};
+      		\addplot[lightgray] coordinates {(7,0.33)};
+      		\addplot[red] coordinates {(8,0.78)};
+     	 	\addplot[red!80] coordinates {(9,0.56)};
+      		\addplot[red!60] coordinates {(10,0.00)};
+      		\addplot[red!40] coordinates {(11,0.22)};
+		\addplot[red!20] coordinates {(12,0.78)};
+
+		\node at (axis cs: 1,0.9) {\footnotesize 0};
+		\node at (axis cs: 2,0.9) {\footnotesize 3};
+		\node at (axis cs: 3,0.9) {\footnotesize 0};
+		\node at (axis cs: 4,0.9) {\footnotesize 0};
+		\node at (axis cs: 5,0.9) {\footnotesize 0};
+		\node at (axis cs: 6,0.9) {\footnotesize 0};
+		\node at (axis cs: 7,0.9) {\footnotesize 3};
+		\node at (axis cs: 8,0.9) {\footnotesize 7};
+		\node at (axis cs: 9,0.9) {\footnotesize 5};
+		\node at (axis cs: 10,0.9) {\footnotesize 0};
+		\node at (axis cs: 11,0.9) {\footnotesize 2};
+		\node at (axis cs: 12,0.9) {\footnotesize 7};
+	\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=1.0,every node/.style={scale=1.0}]
+	\begin{axis}[
+    		title=\textbf{Top-three scores (DE)},
+		scale only axis,
+		clip=false,
+		separate axis lines,
+		xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        	x tick style={draw=none},
+        	xticklabels={,,},
+		width=4cm,height=1.9cm,
+		tick label style={font=\footnotesize},
+		xticklabel style={rotate=90},
+		ymajorgrids,
+    		grid style={line width=.1pt, draw=gray!10},
+		ymin=0,ymax=1.0,
+		every axis plot/.append style={
+          		ybar,
+          		bar width=6.0,
+          		bar shift=0.5pt,
+			fill
+		},
+		scaled y ticks=false,
+		y tick label style={
+        		/pgf/number format/.cd,
+            		fixed,
+            		fixed zerofill,
+            		precision=2,
+        		/tikz/.cd
+    		}
+	]
+
+		\addplot[blue] coordinates {(1,0.11)};
+     	 	\addplot[blue!80] coordinates {(2,0.11)};
+      		\addplot[blue!60] coordinates {(3,0.00)};
+      		\addplot[blue!40] coordinates {(4,0.11)};
+		\addplot[blue!20] coordinates {(5,0.00)};
+     	 	\addplot[gray] coordinates {(6,0.11)};
+      		\addplot[lightgray] coordinates {(7,0.22)};
+      		\addplot[red] coordinates {(8,0.22)};
+     	 	\addplot[red!80] coordinates {(9,0.56)};
+      		\addplot[red!60] coordinates {(10,0.44)};
+      		\addplot[red!40] coordinates {(11,0.33)};
+		\addplot[red!20] coordinates {(12,0.78)};
+
+		\node at (axis cs: 1,0.9) {\footnotesize 1};
+		\node at (axis cs: 2,0.9) {\footnotesize 1};
+		\node at (axis cs: 3,0.9) {\footnotesize 0};
+		\node at (axis cs: 4,0.9) {\footnotesize 1};
+		\node at (axis cs: 5,0.9) {\footnotesize 0};
+		\node at (axis cs: 6,0.9) {\footnotesize 1};
+		\node at (axis cs: 7,0.9) {\footnotesize 2};
+		\node at (axis cs: 8,0.9) {\footnotesize 2};
+		\node at (axis cs: 9,0.9) {\footnotesize 5};
+		\node at (axis cs: 10,0.9) {\footnotesize 4};
+		\node at (axis cs: 11,0.9) {\footnotesize 3};
+		\node at (axis cs: 12,0.9) {\footnotesize 7};
+	\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=1.0,every node/.style={scale=1.0}]
+	\begin{axis}[
+    		title=\textbf{Top-three scores (RU)},
+		scale only axis,
+		clip=false,
+		separate axis lines,
+		xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        	x tick style={draw=none},
+        	xticklabels={,,},
+		width=4cm,height=1.9cm,
+		tick label style={font=\footnotesize},
+		xticklabel style={rotate=90},
+		ymajorgrids,
+    		grid style={line width=.1pt, draw=gray!10},
+		ymin=0,ymax=1.0,
+		every axis plot/.append style={
+          		ybar,
+          		bar width=6.0,
+          		bar shift=0.5pt,
+			fill
+		},
+		scaled y ticks=false,
+		y tick label style={
+        		/pgf/number format/.cd,
+            		fixed,
+            		fixed zerofill,
+            		precision=2,
+        		/tikz/.cd
+    		}
+	]
+
+		\addplot[blue] coordinates {(1,0.33)};
+     	 	\addplot[blue!80] coordinates {(2,0.33)};
+      		\addplot[blue!60] coordinates {(3,0.11)};
+      		\addplot[blue!40] coordinates {(4,0.11)};
+		\addplot[blue!20] coordinates {(5,0.00)};
+     	 	\addplot[gray] coordinates {(6,0.00)};
+      		\addplot[lightgray] coordinates {(7,0.33)};
+      		\addplot[red] coordinates {(8,0.11)};
+     	 	\addplot[red!80] coordinates {(9,0.56)};
+      		\addplot[red!60] coordinates {(10,0.22)};
+      		\addplot[red!40] coordinates {(11,0.33)};
+		\addplot[red!20] coordinates {(12,0.56)};
+
+		\node at (axis cs: 1,0.9) {\footnotesize 3};
+		\node at (axis cs: 2,0.9) {\footnotesize 3};
+		\node at (axis cs: 3,0.9) {\footnotesize 1};
+		\node at (axis cs: 4,0.9) {\footnotesize 1};
+		\node at (axis cs: 5,0.9) {\footnotesize 0};
+		\node at (axis cs: 6,0.9) {\footnotesize 0};
+		\node at (axis cs: 7,0.9) {\footnotesize 3};
+		\node at (axis cs: 8,0.9) {\footnotesize 1};
+		\node at (axis cs: 9,0.9) {\footnotesize 5};
+		\node at (axis cs: 10,0.9) {\footnotesize 2};
+		\node at (axis cs: 11,0.9) {\footnotesize 3};
+		\node at (axis cs: 12,0.9) {\footnotesize 5};
+	\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=1.0,every node/.style={scale=1.0}]
+	\begin{axis}[
+    		title=\textbf{Top-three scores (TR)},
+		scale only axis,
+		clip=false,
+		separate axis lines,
+		xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        	x tick style={draw=none},
+        	xticklabels={,,},
+		width=4cm,height=1.9cm,
+		tick label style={font=\footnotesize},
+		xticklabel style={rotate=90},
+		ymajorgrids,
+    		grid style={line width=.1pt, draw=gray!10},
+		ymin=0,ymax=1.0,
+		every axis plot/.append style={
+          		ybar,
+          		bar width=6.0,
+          		bar shift=0.5pt,
+			fill
+		},
+		scaled y ticks=false,
+		y tick label style={
+        		/pgf/number format/.cd,
+            		fixed,
+            		fixed zerofill,
+            		precision=2,
+        		/tikz/.cd
+    		}
+	]
+
+		\addplot[blue] coordinates {(1,0.11)};
+     	 	\addplot[blue!80] coordinates {(2,0.33)};
+      		\addplot[blue!60] coordinates {(3,0.11)};
+      		\addplot[blue!40] coordinates {(4,0.22)};
+		\addplot[blue!20] coordinates {(5,0.00)};
+     	 	\addplot[gray] coordinates {(6,0.00)};
+      		\addplot[lightgray] coordinates {(7,0.22)};
+      		\addplot[red] coordinates {(8,0.11)};
+     	 	\addplot[red!80] coordinates {(9,0.44)};
+      		\addplot[red!60] coordinates {(10,0.11)};
+      		\addplot[red!40] coordinates {(11,0.56)};
+		\addplot[red!20] coordinates {(12,0.89)};
+		
+		\node at (axis cs: 1,0.9) {\footnotesize 1};
+		\node at (axis cs: 2,0.9) {\footnotesize 3};
+		\node at (axis cs: 3,0.9) {\footnotesize 1};
+		\node at (axis cs: 4,0.9) {\footnotesize 2};
+		\node at (axis cs: 5,0.9) {\footnotesize 0};
+		\node at (axis cs: 6,0.9) {\footnotesize 0};
+		\node at (axis cs: 7,0.9) {\footnotesize 2};
+		\node at (axis cs: 8,0.9) {\footnotesize 1};
+		\node at (axis cs: 9,0.9) {\footnotesize 4};
+		\node at (axis cs: 10,0.9) {\footnotesize 1};
+		\node at (axis cs: 11,0.9) {\footnotesize 5};
+		\node at (axis cs: 12,0.9) {\footnotesize 8};
+	\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=1.0,every node/.style={scale=1.0}]
+	\begin{axis}[
+    		title=\textbf{Top-three scores (KA)},
+		scale only axis,
+		clip=false,
+		separate axis lines,
+		xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+        	x tick style={draw=none},
+        	xticklabels={Average,p-Means,SIF,GEM,Hier. pooling,BOREP,rand. BiLSTM,InferSent,Quick-Th.,sent2vec,BERT,LASER},
+		width=4cm,height=1.9cm,
+		tick label style={font=\footnotesize},
+		xticklabel style={rotate=90},
+		ymajorgrids,
+    		grid style={line width=.1pt, draw=gray!10},
+		ymin=0,ymax=1.0,
+		every axis plot/.append style={
+          		ybar,
+          		bar width=6.0,
+          		bar shift=0.5pt,
+			fill
+		},
+		scaled y ticks=false,
+		y tick label style={
+        		/pgf/number format/.cd,
+            		fixed,
+            		fixed zerofill,
+            		precision=2,
+        		/tikz/.cd
+    		}
+	]
+
+		\addplot[blue] coordinates {(1,0.00)};
+     	 	\addplot[blue!80] coordinates {(2,0.57)};
+      		\addplot[blue!60] coordinates {(3,0.00)};
+      		\addplot[blue!40] coordinates {(4,0.00)};
+		\addplot[blue!20] coordinates {(5,0.00)};
+     	 	\addplot[gray] coordinates {(6,0.14)};
+      		\addplot[lightgray] coordinates {(7,0.29)};
+      		\addplot[red] coordinates {(8,0.43)};
+     	 	\addplot[red!80] coordinates {(9,0.29)};
+      		\addplot[red!60] coordinates {(10,0.29)};
+      		\addplot[red!40] coordinates {(11,0.43)};
+		\addplot[red!20] coordinates {(12,0.57)};
+
+		\node at (axis cs: 1,0.9) {\footnotesize 0};
+		\node at (axis cs: 2,0.9) {\footnotesize 4};
+		\node at (axis cs: 3,0.9) {\footnotesize 0};
+		\node at (axis cs: 4,0.9) {\footnotesize 0};
+		\node at (axis cs: 5,0.9) {\footnotesize 0};
+		\node at (axis cs: 6,0.9) {\footnotesize 1};
+		\node at (axis cs: 7,0.9) {\footnotesize 2};
+		\node at (axis cs: 8,0.9) {\footnotesize 3};
+		\node at (axis cs: 9,0.9) {\footnotesize 2};
+		\node at (axis cs: 10,0.9) {\footnotesize 2};
+		\node at (axis cs: 11,0.9) {\footnotesize 3};
+		\node at (axis cs: 12,0.9) {\footnotesize 4};
+	\end{axis}
+\end{tikzpicture}

@@ -1,0 +1,75 @@
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.2}
+	%\begin{adjustbox}{angle=90}
+	\scalebox{0.9}{
+	\begin{tabularx}{1.1\textwidth}{| X ? c | c | c ? c | c | c ? c | c | c ? c | c |}
+		\hline
+		\rowcolor{tud9c}
+		\multicolumn{12}{| c |}{\textcolor{white}{\textbf{Absolute performance deltas in the \caps{WordContent} task
+		(\texttt{NN\_H} classifier)}}}
+		\\ \hline
+		\rowcolor{tud9c!70}
+													&
+		\multicolumn{3}{ c ?}{
+			\ding{182} $\bm{\Delta}$ \textbf{(im-)balance}} 
+													&
+		\multicolumn{3}{ c ?}{
+			\ding{183} $\bm{\Delta}$ \textbf{(no) HP tuning}} 
+													&
+		\multicolumn{3}{ c ?}{
+			\ding{184} $\bm{\Delta}$ \textbf{\texttt{NN} $\leftrightarrow$ \texttt{NN\_H}}}
+													&
+		\multicolumn{2}{ c |}{
+			\ding{185} $\bm{\Delta}$ \textbf{size}}
+		\\
+		
+		\rowcolor{tud9c!50}
+		\multirow{-2}{*}{
+			\cellcolor{tud9c!70}\textbf{Embedding}}	&
+		\textbf{10k}		&
+		\textbf{30k}		&
+		\textbf{60k}		&
+		\textbf{10k}		&
+		\textbf{30k}		&
+		\textbf{60k}		&
+		\textbf{10k}		&
+		\textbf{30k}		&
+		\textbf{60k}		&
+		\textbf{10k $\leftrightarrow$ 30k} &
+		\textbf{30k $\leftrightarrow$ 60k}	
+		\\ \hline\hline
+		Vanilla average		& 0.21 & 0.13 & 0.09 & 0.05 & 0.01 &  0.00 & -0.04 	& -0.04 & 	-0.02 & 0.09 & 0.02
+		\\ \hline
+		p-Means 			& 0.20 & 0.12 & 0.09 & 0.02 & 0.00 &  0.00 & -0.03 	& -0.02 & 	-0.01 & 0.08 & 0.03
+		\\ \hline
+		SIF 				& 0.24 & 0.14 & 0.10 & 0.05 & 0.00 &  0.01 & -0.01 	& -0.02 & 	-0.01 & 0.07 & 0.01
+		\\ \hline
+		GEM 				& 0.17 & 0.12 & 0.09 & 0.03 & 0.04 &  0.04 &  0.01 	&  0.02 & 	 0.03 & 0.01 & 0.01
+		\\ \hline
+		hier. pooling 		& 0.29 & 0.23 & 0.22 & 0.03 & 0.01 &  0.00 & -0.04 	& -0.02 & 	-0.01 & 0.08 & 0.03
+		\\ \hline
+		BOREP			& 0.25 & 0.20 & 0.18 & 0.01 & 0.00 &  0.00 & -0.01	& -0.02 &	 0.00 & 0.08 & 0.03
+		\\ \hline
+		Random BiLSTM		& 0.23 & 0.17 & 0.14 & 0.05 & 0.00 &  0.00 & -0.08	& -0.07 &	-0.06 & 0.13 & 0.05
+		\\ \hline
+		InferSent 			& 0.07 & 0.03 & 0.01 & 0.01 & 0.00 &  0.00 & -0.02 	&  0.00 &  	 0.00 & 0.02 & 0.01
+		\\ \hline
+		Quick-Thought 		& 0.06 & 0.03 & 0.02 & 0.00 & 0.00 &  0.01 & -0.02 	&  0.00 &  	 0.00 & 0.05 & 0.02
+		\\ \hline
+		sent2vec 			& 0.22 & 0.20 & 0.18 & 0.01 & 0.00 &  0.00 &  0.00 	&  0.00 &  	 0.00 & 0.01 & 0.00
+		\\ \hline
+		BERT 			& 0.05 & 0.04 & 0.04 & 0.01 & 0.02 &  0.03 &  0.02 	&  0.03 &  	 0.02 & 0.04 & 0.03
+		\\ \hline
+		LASER 			& 0.09 & 0.03 & 0.02 & 0.02 & 0.01 &  0.00 & -0.08 	& -0.02 & 	-0.01 & 0.03 & 0.01
+		\\ \hline
+	\end{tabularx}}
+	%\end{adjustbox}
+	\caption[Absolute F1 performance deltas in the \caps{WC} task (\texttt{NN\_H})]
+		{Absolute F1 performance deltas in the \caps{WC} task (\texttt{NN\_H}):
+		\ding{182} Effect of \texttt{class balance} (positive number indicates positive effect of balanced data),
+		\ding{183} Effect of \texttt{hyper-parameter tuning} (on balanced data),
+		\ding{184} Effect of \texttt{classifier} (on balanced data; negative values indicate worse performance of \texttt{NN}) and
+		\ding{185} effect of \texttt{size} (on balanced data sets).}
+	\label{tab:wc_detail_deltas}
+\end{table}

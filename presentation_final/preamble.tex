@@ -1,0 +1,128 @@
+% usepackages
+% =============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+
+% font
+\usepackage{bm}
+\usepackage{pifont}
+\usepackage{mxedruli}
+\usepackage{soul}
+
+% tables
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{booktabs}
+
+\usepackage{adjustbox} 		% rotation of content
+
+% plotting
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+% boxes
+\usepackage[many]{tcolorbox}
+
+% misc
+\usepackage[absolute,overlay]{textpos}
+
+% template
+% =============================================================
+
+\setbeamertemplate{section in toc}[square]
+
+% some simple commands
+% =============================================================
+
+\newcommand{\highlight}[1]{\textcolor{tud1a}{\textbf{#1}}}
+
+\newcommand{\gr}{\cellcolor{lightgray}}
+
+\newcolumntype{?}{!{\vrule width 1.5pt}}
+
+% absolute positioning of images
+\newcommand{\abspos}[4]{
+	\begin{textblock}{100}(#1,#2)
+		\textblockcolour{white}
+      		\includegraphics[scale=#4]{#3}
+    	\end{textblock}
+}
+
+% divide into left and right content
+\newcommand{\divideTwo}[4]{
+	\begin{minipage}{#1\textwidth}
+		#2
+	\end{minipage}
+	\hfill
+	\begin{minipage}{#3\textwidth}
+		#4
+	\end{minipage}
+}
+
+% probing task template
+\newcommand{\probingtask}[5]{
+	\footnotesize
+	\begin{itemize}\setlength\itemsep{1em}
+		\item \textbf{Category:} \\ #1
+		\item \textbf{Description:} \\ #2
+		\item \textbf{Implementation:} \\ #3
+		\item \textbf{Languages:} #4
+		\item \textbf{Example:} \\ #5
+	\end{itemize}
+}
+
+% language template
+\newcommand{\lang}[5]{
+	EN 	\ifnum#1=51\textcolor{green}{\ding{51}}\else\textcolor{red}{\ding{55}}\fi~~~~
+	DE 	\ifnum#2=51\textcolor{green}{\ding{51}}\else\textcolor{red}{\ding{55}}\fi~~~~
+	RU 	\ifnum#3=51\textcolor{green}{\ding{51}}\else\textcolor{red}{\ding{55}}\fi~~~~
+	TR 	\ifnum#4=51\textcolor{green}{\ding{51}}\else\textcolor{red}{\ding{55}}\fi~~~~
+	KA 	\ifnum#5=51\textcolor{green}{\ding{51}}\else\textcolor{red}{\ding{55}}\fi
+}
+
+% rotated cell content
+\newcolumntype{R}[2]{%
+    >{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+    l%
+    <{\egroup}%
+}
+\newcommand*\rot{\multicolumn{1}{R{90}{1em}}}
+\newcommand*\rotff{\multicolumn{1}{R{45}{1em}}}
+
+% red star
+\newcommand{\rs}{\textcolor{red}{\textbf{*}}}
+
+% divider page
+\newcommand{\divider}[1]{
+	{\begin{frame}[plain]
+		\vfill\centering
+		\begin{tcolorbox}[width=4in,interior hidden,boxsep=5pt,left=0pt,right=0pt,top=2mm,
+			bottom=2mm,sharp corners,colback=tud1a!40,colframe=tud1a]%%
+			\centering
+			\textbf{Section:} \\
+			\Large \textbf{#1}
+		\end{tcolorbox}
+		\vfill
+		\centering
+		\includegraphics[scale=0.8]{tud_logo}
+		\vfill
+	\end{frame}}
+}
+
+% text align
+\newcommand\textalign[2][]{%
+	\ifx#1l\relax
+  		\makebox[0pt][l]{#2}%
+	\else
+  		\ifx#1r\relax
+    			\makebox[0pt][r]{#2}%
+  		\else  
+    			\ifx#1c\relax
+      				\makebox[0pt][c]{#2}%
+    	\fi\fi\fi
+}
+
+% centered X column
+\newcolumntype{Y}{>{\centering\arraybackslash}X}

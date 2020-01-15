@@ -1,0 +1,182 @@
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.65}
+	\scalebox{0.4}{
+	\begin{tabularx}{30cm}{
+		| l | Y | Y | Y | Y | Y | Y | Y | Y | 
+	}
+	\hline
+	\multicolumn{9}{| c |}{
+		\cellcolor{tud1a}\textcolor{white}{
+			\textbf{Language: Georgian}}} 				\\
+		\cellcolor{tud1a!70}\textbf{Embedding}				& 
+		\cellcolor{tud1a!70}\textbf{Sentence length} 		&
+		\cellcolor{tud1a!70}\textbf{End of sentence} 		&
+		\cellcolor{tud1a!70}\textbf{Word content}			&
+		\cellcolor{tud1a!70}\textbf{Word order} 			&
+		\cellcolor{tud1a!70}\textbf{Bi-gram shift} 			&
+		\cellcolor{tud1a!70}\textbf{Voice} 					&
+		\cellcolor{tud1a!70}\textbf{SV agreement}			&
+		\cellcolor{tud1a!70}\textbf{SV distance}				\\
+	\hline\hline
+	\multicolumn{9}{| l |}{\cellcolor{tud1a!30}\textbf{Size of the data set}} \\ \hline
+	\# instances &
+                10,000 	&
+                10,000 	&
+                8,674 		&
+                262		&
+                10,000 	&
+                10,000 	&
+                7,786 		&
+                n.\,i. 		\\  
+	\hline\hline 
+	\multicolumn{9}{| l |}{\cellcolor{tud1a!30}\textbf{Majority class (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	Majority &
+                21.300 &
+                28.200 &
+                13.000 &
+                33.500 &
+                50.100 &
+                69.100 &
+                50.400 &
+                n.\,i. \\
+	\hline\hline   
+	\multicolumn{9}{| l |}{\cellcolor{tud1a!30}\textbf{Random embeddings (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	BOREP &
+                47.640 &
+                46.000 &
+                57.157 &
+                33.084 &
+                50.570 &
+                79.390 &
+                61.847 &
+                n.\,i. \\
+        \hline
+		\rowcolor{lightgray!30}
+        ESN &
+                46.439 &
+                43.129 &
+                30.956 &
+                32.309 &
+                50.220 &
+                76.800 &
+                53.178 &
+                n.\,i. \\
+        \hline
+		\rowcolor{lightgray!30}
+        Random LSTM &
+                54.450 &
+                49.590 &
+                45.348 &
+                35.748 &
+                50.460 &
+                79.850 &
+                59.895 &
+                n.\,i. \\
+	\hline\hline
+	\multicolumn{9}{| l |}{\cellcolor{tud1a!30}\textbf{Average embeddings (fasttext)}} \\ \hline
+	Vanilla average &
+                33.400 &
+                39.200 &
+                64.786 &
+                33.075 &
+                49.630 &
+                79.040 &
+                \cellcolor{tud1a!70}64.415 &
+                n.\,i. \\
+        \hline
+        p-Means &
+                58.890 &
+                49.430 &
+                64.829 &
+                33.084 &
+                50.260 &
+                \cellcolor{tud1a!70}81.460 &
+                62.206 &
+                n.\,i. \\
+        \hline
+        SIF &
+                30.780 &
+                37.610 &
+                64.485 &
+                32.701 &
+                48.990 &
+                78.260 &
+                64.056 &
+                n.\,i. \\
+        \hline
+        GEM &
+                39.660 &
+                43.420 &
+                83.815 &
+                32.692 &
+                49.830 &
+                79.040 &
+                63.799 &
+                n.\,i. \\
+        \hline
+        hier. pooling &
+                54.870 &
+                49.400 &
+                55.816 &
+                32.683 &
+                49.710 &
+                80.580 &
+                62.271 &
+                n.\,i. \\
+	\hline\hline
+	\multicolumn{9}{| l |}{\cellcolor{tud1a!30}\textbf{Trained embeddings}} \\ \hline
+	InferSent &
+		   \textcolor{orange}{$\bm{\triangle}$} &
+		   \textcolor{orange}{$\bm{\triangle}$} &
+		   \textcolor{orange}{$\bm{\triangle}$} &
+		   \textcolor{orange}{$\bm{\triangle}$} &
+		   \textcolor{orange}{$\bm{\triangle}$} &
+		   \textcolor{orange}{$\bm{\triangle}$} &
+		   \textcolor{orange}{$\bm{\triangle}$} &
+                n.\,i. \\
+        \hline
+        QuickThought &
+                59.860 &
+                51.420 &
+                73.707 &
+                \cellcolor{tud1a!70}84.403 &
+                54.300 &
+                76.440 &
+                57.622 &
+                n.\,i. \\
+        \hline
+        sent2vec &
+                39.920 &
+                42.880 &
+                \cellcolor{tud1a!70}91.711 &
+                33.467 &
+                50.450 &
+                75.820 &
+                62.040 &
+                n.\,i. \\
+        \hline
+        BERT &
+                59.789 &
+                50.170 &
+                54.005 &
+                46.382 &
+                \cellcolor{tud1a!70}57.090 &
+                78.940 &
+                54.604 &
+                n.\,i. \\
+        \hline
+        LASER &
+                \cellcolor{tud1a!70}76.450 &
+                \cellcolor{tud1a!70}55.450 &
+                40.705 &
+                45.293 &
+                55.630 &
+                79.440 &
+                55.824 &
+                n.\,i. \\
+	\hline
+	\end{tabularx}}
+\end{table}

@@ -1,0 +1,42 @@
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[
+		scale=0.85,
+		every node/.style={scale=0.9},
+		txt/.style={text width=5cm,align=right},
+		arr/.style={-stealth,very thick},
+		box/.style={draw=black,fill=tud9c!15,rounded corners}
+	]
+
+		\node[txt] (S1) at (0,0) {\textbf{Spring had come.}};
+		\node[txt] (S2) at (0,-2) {They were so black.};
+		\node[txt] (S3) at (0,-3) {\textbf{And yet his crops didn't grow.}};
+		\node[txt] (S4) at (0,-4) {He had blue eyes.};
+		
+		\node[draw=black,tud9c] (E1) at (5,0) {Encoder ($f$)};
+		\node[draw=black,tud9c] (E2) at (5,-2) {Encoder ($g$)};
+		\node[draw=black,tud9c] (E3) at (5,-3) {Encoder ($g$)};
+		\node[draw=black,tud9c] (E4) at (5,-4) {Encoder ($g$)};
+
+		\node[box] (V1) at (8,0) {$\bullet\ \bullet\ \bullet\ \bullet$};
+		\node[box] (V2) at (8,-2) {$\bullet\ \bullet\ \bullet\ \bullet$};
+		\node[box] (V3) at (8,-3) {$\bullet\ \bullet\ \bullet\ \bullet$};
+		\node[box] (V4) at (8,-4) {$\bullet\ \bullet\ \bullet\ \bullet$};
+
+		\node[draw=black,fill=lightgray!40,minimum height=2.8cm,minimum width=2cm] (C) at (12,-3) {\textbf{Classifier}};
+
+		\draw[arr] (S1) -- (E1) -- (V1) -- ++(4,0) -- (C);
+		\draw[arr] (S2) -- (E2) -- (V2) -- node[above] {\ding{182}} (C);
+		\draw[arr] (S3) -- (E3) -- (V3) -- node[above] {\ding{183}} (C);
+		\draw[arr] (S4) -- (E4) -- (V4) -- node[above] {\ding{184}} (C);
+
+		\draw[arr] (C) -- ++(2,0) node[right] {\ding{183}};
+		
+	\end{tikzpicture}
+	\caption[\textit{QuickThought} encoder architecture]
+		{The \textit{Quick-Thought} model reformulates the encoder-decoder approach as a multi-class classification problem.
+		Given an input sentence and a set of candidate sentences (the set comprises one target sentence and other
+		contrastive sentences) a classifier learns to predict the correct context sentence. The figure was taken and adapted from
+ 		\citep{Logeswaran.2018}.}
+	\label{fig:quickthought}
+\end{figure}

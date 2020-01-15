@@ -1,0 +1,188 @@
+% =======================
+% Chapter: Downstream Applications
+%
+% Author: Daniel Wehner
+%
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Downstream Applications}
+\label{sec:downstream_applications}
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Chapter Introduction
+\subsection{Introduction}
+\label{sec:downstream_appl_intro}
+
+The intrinsic evaluation setting using probing tasks (cf. section \vref{sec:probing_tasks}) allows for computationally efficient and fast analysis. Yet it is important to keep in mind that the creation of sentence embeddings in \gls{nlp} does not end in itself. Embeddings are rather designed to serve as input for higher-order tasks like \gls{ner} or Argumentation Mining, to name just two examples. Hence, the results produced by intrinsic evaluation methods might not necessarily reflect the performance in real applications due to the isolated consideration without any reference to possible fields of application. In the evaluation of word embeddings, \citep{Chiu.2016} could show that good performance in intrinsic tasks does not entail good performance in real \gls{nlp} applications. The authors conducted intrinsic evaluation using word similarities and correlated the results with the performance in downstream tasks. They found a negative correlation between intrinsic and extrinsic performance which implies that the two methodologies focus on different aspects. On the other hand, \citep{Qiu.2018} concludes that the two approaches are mostly consistent at least for the Chinese language. \textbf{Since the research community does not seem to fully understand how results of intrinsic and extrinsic evaluation techniques connect to each other, we include downstream tasks as an additional pointer to representational quality of sentence embeddings.}
+
+The rest of this chapter is organized as follows: Section \vref{sec:arg_min} presents \caps{ArgMin} (argumentation mining) as one downstream task on which the sentence embeddings are tested. Subsequently, the \caps{Senti} task (sentiment analysis) is outlined in section \vref{sec:sentiment_analysis}, before the question type task, also known as \caps{TREC}, is introduced in section \vref{sec:trec}. The final section \vref{sec:downstream_tasks_classifier} introduces details about the classifier architecture which we leverage in the context of this thesis.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Argumentation Mining
+\subsection{Argumentation Mining}
+\label{sec:arg_min}
+
+\highlight{\caps{ArgMin} task overview.} The beginning of argumentation dates back to the philosophers of ancient Greece and is still studied by philosophers today \citep{Moens.2013}. When attempting to convince others of certain statements, people usually give arguments which support their claim in order to increase their credibility. As \citep{Park.2014} noted, contents extracted from online platforms often lack these justifications. People are free to upload statements on the internet (almost) without any restrictions. As a consequence, there is an increasing need to determine whether their claims are justified or not. However, vast amounts of data prevent processing the content manually. Argumentation mining -- \textbf{the task of automatically finding evidence supporting a claim or refuting it} -- is a field in computational linguistics and machine learning which aims to provide a remedy. Automatic argumentation mining has already been done in a multitude of applications, ranging from legal cases \citep{Moens.2007, Palau.2011} to online documents \citep{Boltuzic.2014}. It is related to opinion mining but \textbf{it is less about what people think but is rather concerned with providing reasons for why people think the way they do} \citep{Habernal.2014}. 
+
+% Table: Topics in the argumentation mining data set
+\input{tables/06_arg_min_topics}
+
+\highlight{Data set creation.} The \textit{\gls{ukp} argumentation mining} data set used in this context was published by \citep{Stab.2018}. The corpus they created comprises sentences connected to \textbf{eight different topics}. The sentences either represent an argument supporting a given topic or refuting it. Additionally, non-argumentative sentences were included. The sentences are labeled accordingly, where the labels were obtained using crowd souring on \gls{amt}.\footnote{\url{https://www.mturk.com/} (retrieved: September 08, 2019)} The data set is publicly available.\footnote{\url{https://www.informatik.tu-darmstadt.de/ukp/research_6/data/argumentation_mining_1/ukp_sentential_argument_mining_corpus/index.en.jsp} (retrieved: September 08, 2019)} We translated the sentences into all target languages. The input to the classifier is given by a concatenation of sentence embedding and topic encoding. The following table \vref{tab:arg_min_topics} enumerates the eight topics contained in the data set and shows the number of sentences for each topic:
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Sentiment Analysis
+\subsection{Sentiment Analysis}
+\label{sec:sentiment_analysis}
+
+\highlight{\caps{Senti} task overview.} Sentiment analysis is referred to as the \textbf{automatic detection of sentiment in texts}. The application areas for sentiment analysis are manifold: Ranging from e.\,g. e-learning applications \citep{Ortigosa.2014,Koehler.2015} to product reviews \citep{Fang.2015}. The knowledge about opinions is essential for many groups: Companies are able to modify products according to the customers' desires or political parties can adjust election programs based on voters' sentiment. Sentiment analysis data sets usually contain three classes: One for positive sentiment (sentences labeled as \texttt{POS}), one for negative sentiment (\texttt{NEG}) and one for neutral sentiment (\texttt{NEU}). The following exemplary sentences were taken from the \textit{Twitter US Airlines Sentiment} data set.\footnote{\url{https://www.kaggle.com/crowdflower/twitter-airline-sentiment} (retrieved: September 08, 2019)}
+
+\vspace*{-3mm}
+\begin{tabbing}
+	\hspace*{1cm}\=\hspace*{1cm}\=\kill
+	\texttt{POS} \> \textit{`@VirginAmerica it was \cbox{green!30}{\textcolor{green!30!black}{amazing}}, and arrived an hour early. You're \cbox{green!30}{\textcolor{green!30!black}{too good}} to me.'} \\[1mm]
+	\texttt{NEG} \> \textit{`@VirginAmerica you guys \cbox{red!30}{\textcolor{red}{messed up}} my seating... I reserved seating with my friends} \\ \>\> \textit{and you guys gave my seat away...'} \\[1mm]
+	\texttt{NEU} \> \textit{`@VirginAmerica are flights leaving Dallas for Seattle on time Feb 24?'}
+\end{tabbing}
+\vspace*{-3mm}
+
+\highlight{Data set creation.} Sentiment analysis is a classical \gls{nlp} application, which is why there exists an abundance of data sets for many languages. For this reason, we chose not to translate an English data set, but to select an original one for each target language. This has the advantage that no translation biases are introduced into the evaluation. The following list shows the results of the search for sentiment data sets ordered by language:
+
+\begin{tabbing}
+	\hspace*{9cm}\=\hspace*{3cm}\=\kill
+	\textbf{Corpus} \> \textbf{Link} \> \textbf{Author/Publication}
+	\\[3mm]
+	\ding{182} \textbf{English}
+	\\[2mm]
+	IMDb movie reviews
+		\> 	\href{https://www.kaggle.com/iarunava/imdb-movie-reviews-dataset}{\linkstyle{Link}}
+		\>	\citep{Maas.2011}
+	\\[2mm]
+	US Airline Twitter Sentiment
+		\> 	\href{https://www.kaggle.com/crowdflower/twitter-airline-sentiment}{\linkstyle{Link}}
+		\>	no publication found
+	\\[3mm]
+	\ding{183} \textbf{German}
+	\\[1mm]
+	GermEval
+		\> 	\href{https://sites.google.com/view/germeval2017-absa/data}{\linkstyle{Link}}
+		\>	\citep{Wojatzki.2017}
+	\\[2mm]
+	SB-10k
+		\>	\href{https://www.spinningbytes.com/resources/}{\linkstyle{Link}}
+		\>	\citep{Cieliebak.2017}
+	\\[2mm]
+	DAI Tweet Data Set
+		\>	\href{http://www.dailab.de/~narr/sentimentdataset}{\linkstyle{Link}}
+		\>	\citep{Narr.2012}
+	\\[2mm]
+	German Sentiment Data (Hasso Plattner Institut)
+		\>	\href{www.hpi.uni-potsdam.de/fileadmin/hpi/ FG_Naumann/bachelorprojekte/BP2011N2/ GermanSentimentData.zip}
+			{\linkstyle{Link}}
+		\> Hasso Plattner Institut Potsdam
+	\\[3mm]
+	\ding{184} \textbf{Russian}
+	\\[2mm]
+	Russian Twitter Corpus (RuTweetCorp)
+		\>	\href{http://study.mokoron.com/}{\linkstyle{Link}}
+		\>	\href{http://study.mokoron.com/wp-content/uploads/2014/02/rubtsova-kesw_paper-21.pdf}{\linkstyle{Paper}}
+			(Russian)
+	\\[2mm]
+	Kaggle Russian Sentiment Analysis
+		\>	\href{https://www.kaggle.com/c/sentiment-analysis-in-russian/data}{\linkstyle{Link}}
+		\> 	no publication found
+	\\[2mm]
+	RuSentiment
+		\>	\href{http://text-machine.cs.uml.edu/projects/rusentiment/}{\linkstyle{Link}}
+		\>	\citep{Rogers.2018}
+	\\[3mm]
+	\ding{185} \textbf{Turkish}
+	\\[2mm]
+	TREMO Data Set
+		\>	\href{https://journals.sagepub.com/doi/abs/10.1177/0165551518761014}{\linkstyle{Link}}
+		\>	\citep{AlpTocoglu.2018}
+	\\[2mm]
+	Turkish Sentiment Data Set
+		\>	\href{http://www.baskent.edu.tr/~msert/research/datasets/SentimentDatasetTR.html}{\linkstyle{Link}}
+		\>	\citep{Hayran.2017}
+	\\[2mm]
+	Turkish Sentiment Analysis Data Set
+		\>	\href{http://humirapps.cs.hacettepe.edu.tr/tsad.aspx}{\linkstyle{Link}}
+		\>	\citep{Ucan.2016}
+	\\[2mm]
+	Turkish Twitter Sentiment Data
+		\>	\href{https://github.com/hilalbenzer/turkish-sentiment-analysis}{\linkstyle{Link}}
+		\>	GitHub (no publication found)
+	\\[3mm]
+	\ding{186} \textbf{Georgian}
+	\\[2mm]
+	None
+\end{tabbing}
+
+\highlight{English.} Many data sets are available for the English language. The above enumeration is by far not exhaustive and only lists two of the most prominent data sets in this domain. Both, the \textit{IMDb} data set as well as the \textit{US airline Twitter sentiment} data set are used quite frequently to evaluate classifiers on the task of sentiment analysis. The \textit{IMDb} data set consists of one text file for each movie review which is associated with additional effort in the data reading phase. The \textit{US airline Twitter sentiment} data set, on the other hand, provides the tweets as well as the labels in a single file which permits comfortable data access. For this reason, we chose to use the latter one.
+
+\highlight{German.} For German, four data sets could be detected: The German sentiment data provided by the Hasso Plattner institute in Potsdam comprises only a few hundred examples which is considered insufficient. Furthermore, the official links to download the \textit{DAI Tweet} data set are unfortunately not working (server response: \texttt{Service Temporarily Unavailable}), which is why this data set was dropped from the list of candidates. \citep{Cieliebak.2017} published the \textit{SB-10k sentiment} data set which is based on German Twitter data. Unfortunately, the authors only provide tweet message IDs, which means that the tweets themselves have to be downloaded from Twitter separately. For this, a Twitter account and special software modules are required. We decided to use the \textit{GermEval} data set, since it is easily accessible using Pandas and includes sufficient amounts of data.
+
+\highlight{Russian.} We found three Russian sentiment data sets: The \textit{RuSentiment} data set comprises messages extracted from the Russian social network called `VKontakte'. Due to a request by VKontakte, the data set is no longer publicly available as mentioned in the \texttt{readme.md} file on GitHub\github.\footnote{https://github.com/text-machine-lab/rusentiment} Kaggle provides another data set which comes into question. Unfortunately, we could not find a publication which uses this data set. We finally chose the \textit{RuTweetCorp} corpus consisting of approximately 225k examples. It was annotated using only two labels, \texttt{POS} and \texttt{NEG}. For the use in this work, we abridged the data set to approximately 15k instances.
+
+\highlight{Turkish.} It was difficult to find publicly accessible sentiment data sets comprising enough training examples for the Turkish language. The three data sets authored by \citep{AlpTocoglu.2018,Hayran.2017,Ucan.2016} are not publicly available and access to the data has to be registered by filling out respective online forms. We selected a free data set which is available on GitHub\github.
+
+\highlight{Georgian.} While we were able to find sentiment data for English, German, Russian and Turkish, we could not find an annotated sentiment data set for Georgian. In order to get suitable training data for this language, we use an approach similar to \citep{Choudhary.2018}. In their paper the authors perform sentiment analysis for the Indian languages Hindi, Bengali and Telugu and were also confronted with a lack of data. They proceeded as follows:
+
+% Table: Emojis and Sentiment
+\input{tables/06_emoji_sentiment}
+
+They made use of the Twitter \gls{api} to download a considerable amount of tweets. The approach of exploiting micro-blogging platforms as a data source has already been taken quite frequently in the context of sentiment analysis \citep{Pak.2010,Agarwal.2011}. Hundreds of thousands of tweets are posted every day. Thus, one of the first questions that arises is which tweets to collect. \textbf{As a first step, the authors created word lists containing the 1k most frequent words in the respective languages.} To this end, they used the website \url{https://1000mostcommonwords.com/} (retrieved: September 08, 2019). Instead of manually labeling all collected tweets with their corresponding sentiment (\texttt{POS}, \texttt{NEG} and \texttt{NEU}), the authors chose a different approach: \textbf{They made use of emojis included in the Twitter messages}. These icons carry information about the writers' sentiments. A classification of the most common emojis was made into positive sentiment, negative and neutral sentiment (cf. table \vref{tab:emoji_sentiment}). Subsequently, the authors queried the Twitter \gls{api}, where the search string contains one word from the list as well as one emoji. The extracted tweets were then labeled according to the sentiment associated with the emoji. Since some messages contain more than one emoji, tweets can be added multiple times. To avoid this, \citep{Choudhary.2018} used a \textbf{hashing mechanism} and dropped messages, if a tweet with the same hash has already been added to the list.
+
+We adopted this approach for the Georgian language. \textbf{Additionally, we established a cleaning mechanism to remove content which might impede the analysis.} For example, characters which do not belong the the Georgian script as well as hash tags, user references and web addresses were filtered out. The final data set comprises approximately 11.5k labeled Georgian tweets.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% TREC
+\subsection{TREC Question Type Detection}
+\label{sec:trec}
+
+\highlight{\caps{TREC} task overview.} The \textit{\gls{trec}} data set consists of a set of questions which are labeled with their respective question types. For example, the label of the sentence \textit{`What U.S. state is Fort Knox in?'} is given by \texttt{LOC} for location. Such data sets are important for the task of question answering where the goal of the system is to automatically find precise answers to given questions by searching for relevant documents and extracting the correct answers from them. To this end, it is essential to determine what kind of answer the question at hand requires (e.\,g. person, location, description, time). The original \caps{TREC} data set was created by \citep{Voorhees.2000}. Further data is provided by \citep{Li.2002,Li.2005} whose data set was also integrated into \textit{SentEval}.\footnote{\url{https://cogcomp.seas.upenn.edu/page/resource_view/49} (retrieved: September 08, 2019)} 
+
+\highlight{Data set creation.} We translated the English data set into the remaining target languages. The labels used in the data set consist of two components. An example of such a label is \texttt{LOC:state}. The first part (\texttt{LOC}) specifies the general category of the question, while the second part following the colon (\texttt{state}) is a subordinate term specifying the type of location more in detail. Since the goal of this work is to evaluate sentence embeddings, rather than to perform question answering, we chose to remove the second part from the label such that only the superordinate category remains (like in \textit{SentEval}). \textbf{There are six possible labels:}
+
+\begin{enumerate}[label=\color{tud9c}\textbf{\theenumi.}]\setlength\itemsep{-0.5em}
+	\item \texttt{ABBR} -- abbreviation
+	\item \texttt{DESC} -- description
+	\item \texttt{ENTY} -- entity
+	\item \texttt{HUM} -- human/person
+	\item \texttt{LOC} -- location
+	\item \texttt{NUM} -- number
+\end{enumerate}
+
+The following table \vref{tab:class_dist_downstream_all} summarizes the class distributions in all downstream application data sets considered:
+
+% Table: Class distributions downstream tasks
+\input{tables/06_class_dist_downstream_all}
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Classifier Architecture
+\subsection{Presentation of Classifier Architecture}
+\label{sec:downstream_tasks_classifier}
+
+All of the downstream tasks introduced above are going to be classified using the following \gls{mlp} architecture, where the values of the hyper-parameters were again taken from \citep{Perone.2018} (the setup is identical to the probing task classifier):
+
+\begin{tabbing}
+	\hspace*{8.5cm}\=\kill
+	\textbf{Number of hidden layers:} 						\> 1							\\[4mm]
+	\textbf{Number of hidden units:}							\> 50 						\\[4mm]
+	\textbf{Hidden layer activation:}							\> Sigmoid	 				\\[4mm]
+	\textbf{Dropout rate:}									\> 0.00 						\\[4mm]
+	\textbf{Number of epochs:}								\> 150 						\\[4mm]
+	\textbf{Optimizer:} 									\> Adam 						\\[4mm]
+	\textbf{Training loss:} 								\> Categorical cross-entropy
+\end{tabbing}
+
+Again, the cross-validation with $n = 5$ is used for the evaluation. The \caps{TREC} task poses an exception. We found that the evaluation on the dedicated test split gave results which were much closer to the literature.
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Chapter Summary
+\subsection{Summary}
+\label{sec:downstream_appl_summary}
+
+This chapter gave a brief introduction into the downstream classification tasks which we are going to use in the subsequent evaluation. Section \vref{sec:arg_min} introduced argumentation mining (\caps{ArgMin}). The task of the classifier is to decide, if a sentence embedding represents an argument for or against a given topic, or whether it represents no argument at all. Further, section \vref{sec:sentiment_analysis} presented sentiment analysis (\caps{Senti}) as a second downstream application. The goal is to automatically detect the sentiment in short snippets of texts. Next to the general task introduction, also the corpora we use for this task were presented.
+
+In order to consider a richer and more diverse set of downstream tasks, we included an additional data set from the \textit{SentEval} framework \citep{Conneau.2018b}, namely the \caps{TREC} task commonly used in the domain of question answering (cf. section \vref{sec:trec}). The data set was translated in all target languages. Finally, section \vref{sec:downstream_tasks_classifier} outlined the architecture of the classifier which is used in all downstream applications. Basically the same architecture is used as in the probing task setup.

@@ -1,0 +1,26 @@
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.0}
+	\scalebox{0.9}{
+	\begin{tabular}{| l ? c | c | c |}
+		\hline
+		\rowcolor{tud1a}
+		\multicolumn{4}{| c |}{\textcolor{white}{\textbf{Effect of hyper-parameter tuning on other tasks}}}
+		\\ \hline
+		\rowcolor{tud1a!50}
+								&
+		$\bm{\Delta}$ \caps{Senti} 	&
+		$\bm{\Delta}$ \caps{Voice} 	&
+		$\bm{\Delta}$ \caps{SubjNum}
+		\\ \hline\hline
+		Vanilla average		& 0.02 & 0.00 & 0.00 \\ \hline
+		p-Means 			& 0.00 & 0.02 & 0.03 \\ \hline
+		BOREP 			& 0.00 & 0.02 & 0.03 \\ \hline
+		Random BiLSTM 	& 0.00 & 0.01 & 0.00 \\ \hline
+		InferSent 			& 0.05 & 0.03 & 0.03 \\ \hline
+		Quick-Thought 		& 0.03 & 0.02 & 0.04 \\ \hline
+		sent2vec 			& 0.00 & 0.00 & 0.01 \\ \hline
+		BERT 			& 0.01 & 0.02 & 0.02 \\ \hline
+		LASER 			& 0.01 & 0.03 & 0.02 \\ \hline
+	\end{tabular}}
+\end{table}

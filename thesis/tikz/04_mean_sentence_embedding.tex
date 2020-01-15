@@ -1,0 +1,40 @@
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[
+		scale=0.7,
+		every node/.style={scale=0.7},
+		arr/.style={stealth-stealth,double}
+	]
+
+		\node at (-3,0) {\Large $w_t$};
+		\node (w1) at (0,0) {\strut\large\textbf{One}};
+		\node (w2) at (3,0) {\strut\large\textbf{ring}};
+		\node (w3) at (6,0) {\strut\large\textbf{to}};
+		\node (w4) at (9,0) {\strut\large\textbf{rule}};
+		\node (w5) at (12,0) {\strut\large\textbf{them}};
+		\node (w6) at (15,0) {\strut\large\textbf{all}};
+		\node (w7) at (18,0) {\strut\large\textbf{.}};
+
+		\node at (-3,-3) {\Large $\bm{v}_{w_t}$};
+		\node (v1) at (0,-3) {$\begin{bmatrix} 5.04 \\ -3.45 \\ \vdots \\ 0.06 \end{bmatrix}$};
+		\node (v2) at (3,-3) {$\begin{bmatrix} 0.34 \\ 1.08 \\ \vdots \\ -5.87 \end{bmatrix}$};
+		\node (v3) at (6,-3) {$\begin{bmatrix} -0.05 \\ 2.46 \\ \vdots \\ -1.34 \end{bmatrix}$};
+		\node (v4) at (9,-3) {$\begin{bmatrix} -7.83 \\ 0.27 \\ \vdots \\ 3.36 \end{bmatrix}$};
+		\node (v5) at (12,-3) {$\begin{bmatrix} -8.92 \\ -0.32 \\ \vdots \\ -3.74 \end{bmatrix}$};
+		\node (v6) at (15,-3) {$\begin{bmatrix} -9.21 \\ 0.93 \\ \vdots \\ -0.05 \end{bmatrix}$};
+		\node (v7) at (18,-3) {$\begin{bmatrix} -4.12 \\ 3.57 \\ \vdots \\ 1.06 \end{bmatrix}$};
+
+		\draw[arr] (w1) -- (v1);
+		\draw[arr] (w2) -- (v2);
+		\draw[arr] (w3) -- (v3);
+		\draw[arr] (w4) -- (v4);
+		\draw[arr] (w5) -- (v5);
+		\draw[arr] (w6) -- (v6);
+		\draw[arr] (w7) -- (v7);
+
+	\end{tikzpicture}
+	\caption[Vanilla average: A simple example]
+		{An example of a sentence of length seven ($T = 7$). The single word vectors are averaged in order to
+		obtain a sentence embedding.}
+	\label{fig:mean_sentence_embedding}
+\end{figure}

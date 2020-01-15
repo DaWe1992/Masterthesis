@@ -1,0 +1,26 @@
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[
+		scale=1.2,
+		every node/.style={scale=0.8}
+	]
+		
+		\node[draw=black,minimum width=2cm,minimum height=1cm,fill=lightgray!50,very thick,align=center] (A) at (-6,0) {\textbf{The} \\ \texttt{DET}};
+		\node[draw=black,minimum width=2cm,minimum height=1cm,fill=lightgray!50,very thick,align=center] (B) at (-3,0) {\textbf{delivery} \\ \texttt{NOUN}};
+		\node[draw=black,minimum width=2cm,minimum height=1cm,fill=lightgray!50,very thick,align=center] (C) at (0,0) {\textbf{was} \\ \texttt{VERB}};
+		\node[draw=black,minimum width=2cm,minimum height=1cm,fill=lightgray!50,very thick,align=center] (D) at (3,0) {\textbf{very} \\ \texttt{ADV}};
+		\node[draw=black,minimum width=2cm,minimum height=1cm,fill=lightgray!50,very thick,align=center] (E) at (6,0) {\textbf{late} \\ \texttt{ADJ}};
+
+		\draw [-stealth,thick] (0.25,0.5) to [out=90,in=90] node[above]{\texttt{acomp}} (6.25,0.5);
+		\draw [-stealth,thick] (5.75,0.5) to [out=90,in=90] node[above]{\texttt{advmod}} (3.25,0.5);
+		\draw [-stealth,thick] (-0.25,0.5) to [out=90,in=90] node[above]{\texttt{nsubj}} (-2.75,0.5);
+		\draw [-stealth,thick] (-3.25,0.5) to [out=90,in=90] node[above]{\texttt{det}} (-5.75,0.5);
+
+		\node[draw=tud9c,thick,tud9c] at (0,-1) {\ding{182} Find main verb (\texttt{root})};
+		\node[draw=tud9c,thick,tud9c] at (-1.5,2) {\ding{183} Find \texttt{nsubj} tag};
+		\node[draw=tud9c,thick,tud9c] at (-3,-1) {\ding{184} Compute difference};
+
+	\end{tikzpicture}
+	\caption[Example of a dependency parse tree]{Example of a dependency parse tree. The image was taken and adapted from \url{https://achyutjoshi.github.io/aspect_extraction/aspectextraction} (retrieved: October 16, 2019).}
+	\label{fig:dependency_parse}
+\end{figure}

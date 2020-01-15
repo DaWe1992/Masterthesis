@@ -1,0 +1,213 @@
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{2.1}
+	\begin{adjustbox}{angle=90}
+	\scalebox{0.8}{
+	\begin{tabularx}{1.125\textheight}{
+		| l ? Y | c | Y | c ? Y | c | Y | c | Y | c | Y | c | Y | c ? Y | c | Y | c |
+	}
+	\hline
+	\multicolumn{19}{| c |}{
+		\cellcolor{tud9c}\textcolor{white}{
+			\textbf{Language: English (Accuracy)}}} 			\\
+	\hline
+
+	\rowcolor{tud9c!85}
+	\cellcolor{tud9c!85}										&
+	\multicolumn{4}{ c ?}{\textbf{Surface Tasks}} 				& 
+		\multicolumn{10}{ c ?}{\textbf{Syntactic Tasks}}		&
+		\multicolumn{4}{c |}{\textbf{Semantic Tasks}}			\\
+
+	\cellcolor{tud9c!85}										& 
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SentLen}}} 		&
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{WC}}} 			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{BiShift}}}			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SVAgree}}} 		&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SVDist}}} 			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{Voice}}}			&
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{WO}}}			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{EOS}}} 			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SubjNum}}}		\\
+
+	\rowcolor{tud9c!55}
+	\multirow{-3}{*}{\cellcolor{tud9c!85}\textbf{Embedding}}	&
+		\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} &
+	   	\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} &
+	   	\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Size of the data set}} \\ \hline
+	\# instances &
+                10,000 	& - &
+                10,000 	& - &
+                10,000 	& - &
+                10,000 	& - &
+                10,000 	& - &
+                9,999 		& - &
+                10,000 	& - &
+		   10,000 	& - &
+                9,448 		& - \\    
+	\hline\hline 
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Majority class (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	Majority &
+                17.9 & - &
+                13.3 & - &
+                50.2 & - &
+                51.1 & - &
+                47.5 & - &
+                61.0 & - &
+                33.4 & - &
+		   21.7 & - &
+                75.7 & - \\
+	\hline\hline   
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Random embeddings (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	BOREP &
+                50.728 & 8 &
+                65.800 & 10 &
+                49.780 & 8 &
+                79.680 & 7 &
+                58.659 & 11 &
+                79.490 & 7 &
+                29.591 & 8 &
+                27.780 & 6 &
+                88.073 & 8 \\
+        \hline
+	  \rowcolor{lightgray!30}
+        Random BiLSTM &
+                62.730 & 4 &
+                65.999 & 9 &
+                51.880 & 6 &
+                80.740 & 4 &
+                66.110 & 4 &
+                \cellcolor{bronze}{83.990} & \cellcolor{bronze}{3} &
+                59.889 & 4 &
+                \cellcolor{bronze}{31.101} & \cellcolor{bronze}{3} &
+                \cellcolor{bronze}{91.174} & \cellcolor{bronze}{3} \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{FastText})}} \\ \hline
+	Vanilla average &
+                30.220 & 11 &
+                75.919 & 8 &
+                49.760 & 9 &
+                77.430 & 9 &
+                61.680 & 7 &
+                80.820 & 6 &
+                25.811 & 9 &
+                24.510 & 10 &
+                89.703 & 6 \\
+        \hline
+        p-Means &
+                61.430 & 5 &
+                76.119 & 7 &
+                49.260 & 12 &
+                79.820 & 6 &
+                61.050 & 8 &
+                82.140 & 4 &
+                20.381 & 11 &
+                28.880 & 5 &
+                89.925 & 4 \\
+        \hline
+        SIF &
+                28.061 & 12 &
+                77.518 & 6 &
+                49.430 & 11 &
+                80.650 & 5 &
+                60.810 & 9 &
+                77.540 & 10 &
+                24.890 & 10 &
+                23.350 & 11 &
+                88.380 & 7 \\
+        \hline
+        GEM &
+                35.099 & 9 &
+                82.572 & 4 &
+                49.760 & 9 &
+                78.510 & 8 &
+                54.700 & 12 &
+                73.550 & 12 &
+                07.080 & 12 &
+                25.770 & 7 &
+                85.956 & 10 \\
+        \hline
+        hier. pooling &
+                55.801 & 7 &
+                55.287 & 12 &
+                50.700 & 7 &
+                65.890 & 11 &
+                62.810 & 6 &
+                78.980 & 9 &
+                37.451 & 7 &
+                30.080 & 4 &
+                87.089 & 9 \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Trained embeddings}} \\ \hline
+	InferSent &
+                \cellcolor{bronze}{68.951} & \cellcolor{bronze}{3} &
+                \cellcolor{gold}{94.780} & \cellcolor{gold}{1} &
+                54.390 & 4 &
+                \cellcolor{gold}{91.320} & \cellcolor{gold}{1} &
+                \cellcolor{silver}{69.599} & \cellcolor{silver}{2} &
+                \cellcolor{silver}{87.450} & \cellcolor{silver}{2} &
+                \cellcolor{bronze}{76.050} & \cellcolor{bronze}{3} &
+                25.050 & 8 &
+                \cellcolor{silver}{91.311} & \cellcolor{silver}{2} \\
+        \hline
+        Quick-Thought &
+                \cellcolor{silver}{68.970} & \cellcolor{silver}{2} &
+                \cellcolor{bronze}{84.480} & \cellcolor{bronze}{3} &
+                \cellcolor{bronze}{54.660} & \cellcolor{bronze}{3} &
+                \cellcolor{bronze}{88.520} & \cellcolor{bronze}{3} &
+                \cellcolor{bronze}{67.321} & \cellcolor{bronze}{3} &
+                82.140 & 4 &
+                \cellcolor{silver}{80.420} & \cellcolor{silver}{2} &
+                24.959 & 9 &
+                82.559 & 12 \\
+        \hline
+        sent2vec &
+                31.000 & 10 &
+                81.555 & 5 &
+                53.190 & 5 &
+                \cellcolor{silver}{90.900} & \cellcolor{silver}{2} &
+                59.170 & 10 &
+                79.090 & 8 &
+                38.090 & 6 &
+                22.640 & 12 &
+                82.845 & 11 \\
+        \hline
+        BERT &
+                59.169 & 6 &
+                61.608 & 11 &
+                \cellcolor{gold}{64.250} & \cellcolor{gold}{1} &
+                72.260 & 10 &
+                66.070 & 5 &
+                77.360 & 11 &
+                56.869 & 5 &
+                \cellcolor{silver}{31.921} & \cellcolor{silver}{2} &
+                89.713 & 5 \\
+        \hline
+        LASER &
+                \cellcolor{gold}{74.971} & \cellcolor{gold}{1} &
+                \cellcolor{silver}{89.979} & \cellcolor{silver}{2} &
+                \cellcolor{silver}{59.950} & \cellcolor{silver}{2} &
+                57.120 & 12 &
+                \cellcolor{gold}{72.921} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{90.920} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{84.790} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{37.790} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{92.909} & \cellcolor{gold}{1} \\
+	\hline
+	\end{tabularx}}
+	\end{adjustbox}
+	\caption[Probing task results for the English language (accuracy)]{Probing task results for the English language (accuracy).}
+	\label{tab:results_probing_tasks_en_acc}
+\end{table}	

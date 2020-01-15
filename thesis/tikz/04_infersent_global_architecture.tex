@@ -1,0 +1,42 @@
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}[
+		scale=0.65,
+		every node/.style={scale=0.8},
+		arr/.style={-stealth,very thick,shorten >=1mm},
+		n/.style={draw=black,thick,minimum width=4cm},
+		box/.style={fill=tud9c!15,rounded corners}
+	]
+
+		\draw[box] (-9,-4.75) rectangle (7,-1);
+		\draw[box] (-9,-0.75) rectangle (7,3.75);
+
+		% sentence encoders
+		\node[n,fill=black,text=white,align=center] (A) at (-4,-3.5)
+			{sentence encoder with \\ premise input};
+		\node[n,fill=black,text=white,align=center] (B) at (4,-3.5)
+			{sentence encoder with \\ hypothesis input};
+		
+		% sentence representations
+		\node[n,fill=lightgray] (C) at (-4,-1.75) {$\bm{p}$};
+		\node[n,fill=lightgray] (D) at (4,-1.75) {$\bm{h}$};
+		\node[n,fill=lightgray,minimum width=5cm] (E) at (0,0)
+			{$\bm{p}, \bm{h}, \vert \bm{p} - \bm{h} \vert, \bm{p} \odot \bm{h}$};
+
+		% snli classifier
+		\node[draw=black,fill=white] (F) at (0,1.5) {fully connected layers};
+		\node[draw=black,fill=white] (G) at (0,3) {3-way softmax};
+
+		% arrows
+		\draw[arr] (A) -- (C);
+		\draw[arr] (B) -- (D);
+		\draw[arr] (C) -- (E);
+		\draw[arr] (D) -- (E);
+		\draw[arr] (E) -- (F);
+		\draw[arr] (F) -- (G);
+
+		\node[text width=2cm] at (-7,-2.875) {\footnotesize\highlight{Encoder}};
+		\node[text width=2cm] at (-7,1.5) {\footnotesize\highlight{SNLI}\\ \footnotesize\highlight{Classifier}};
+
+	\end{tikzpicture}
+\end{figure}

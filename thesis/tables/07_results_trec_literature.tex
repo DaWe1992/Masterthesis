@@ -1,0 +1,28 @@
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.7}
+	\begin{tabular}{| l ? c | c | c |}
+		\hline
+		\rowcolor{tud9c!50}
+		\textbf{Embedding}			&
+		\textbf{Accuracy} (literature)	&
+		\textbf{Accuracy} (this work)	&
+		\textbf{Relevant Paper}			
+		\\
+		\hline
+		p-Means		 		& 91.00 / 85.60 {\footnotesize(one emb. space)} 
+										& 81.80 (81.80)	& \citep{Rueckle.2018}		\\
+		sent2vec				& 83.80 		& 78.20 (79.40)	& \citep{Pagliardini.2018}		\\
+		Quick-Thought			& 92.40 {\footnotesize(diff. model)}
+										& 81.40 (83.00)	& \citep{Logeswaran.2018}		\\
+		InferSent				& 90.80 		& 91.40 (92.20)	& \citep{Conneau.2017}		\\
+		(S)BERT					& 89.60 {\footnotesize(diff. model)}
+										& 90.80 (90.80)	& \citep{Reimers.2019}		\\
+		BOREP				& 88.80		& 84.50 (84.60)	& \citep{Wieting.2019}		\\
+		Random \gls{lstm}		& 86.50 		& 79.60 (83.80)	& \citep{Wieting.2019}		\\
+		\hline
+	\end{tabular}
+	\caption[Accuracy scores on the \caps{TREC} task reported in the literature]
+		{Important accuracy scores on the \caps{TREC} task reported in the literature. The results in parantheses are with hyper-parameter optimization.}
+	\label{tab:results_trec_literature}
+\end{table}

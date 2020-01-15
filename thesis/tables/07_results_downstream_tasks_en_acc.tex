@@ -1,0 +1,110 @@
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{2.4}
+	\begin{adjustbox}{angle=90}
+	\scalebox{0.7}{
+	\begin{tabular}{
+		| l ? >{\centering}m{2.7cm} | c ? >{\centering}m{2.7cm} | c ? >{\centering}m{2.7cm} | c |
+	}
+	\hline
+	\multicolumn{7}{| c |}{
+		\cellcolor{tud9c}\textcolor{white}{
+			\textbf{Language: English (Accuracy)}}}			\\
+	\hline
+
+	\cellcolor{tud9c!85}										& 
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{ArgMin}}}			&
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{Senti}}}			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{TREC}}}			\\
+
+	\rowcolor{tud9c!55}
+	\multirow{-3}{*}{\cellcolor{tud9c!85}\textbf{Embedding}}	&
+		\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Size of the data set}} \\ \hline
+	\# instances &
+                25,303 	& - &
+                14,148 	& - &
+                5,952 		& - \\
+	\hline\hline 
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Majority class (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	Majority &
+                56.4 & - &
+                64.0 & - &
+                22.6 & - \\
+	\hline\hline   
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Random embeddings (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	BOREP &
+                63.030 & 10 &
+                74.366 & 7 &
+                84.500 & 4 \\
+        \hline
+        \rowcolor{lightgray!30}
+        Random BiLSTM &
+                63.282 & 9 &
+                77.200 & 5 &
+                79.600 & 7 \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{FastText})}} \\ \hline
+	Vanilla average &
+                65.191 & 5 &
+                \cellcolor{bronze}{78.380} & \cellcolor{bronze}{3} &
+                79.600 & 7 \\
+        \hline
+        p-Means &
+                64.709 & 6 &
+                77.695 & 4 &
+                81.800 & 5 \\
+        \hline
+        SIF &
+                63.516 & 8 &
+                \cellcolor{silver}{78.521} & \cellcolor{silver}{2} &
+                76.200 & 11 \\
+        \hline
+        GEM &
+                61.484 & 12 &
+                72.267 & 12 &
+                78.800 & 9 \\
+        \hline
+        hier. pooling &
+                62.385 & 11 &
+                74.288 & 8 &
+                76.000 & 12 \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Trained embeddings}} \\ \hline
+	InferSent &
+                \cellcolor{bronze}{67.321} & \cellcolor{bronze}{3} &
+                77.157 & 6 &
+                \cellcolor{gold}{91.400} & \cellcolor{gold}{1} \\
+        \hline
+        Quick-Thought &
+                66.235 & 4 &
+                73.016 & 10 &
+                81.400 & 6 \\
+        \hline
+        sent2vec &
+                \cellcolor{silver}{67.693} & \cellcolor{silver}{2} &
+                74.125 & 9 &
+                78.200 & 10 \\
+        \hline
+        BERT &
+                63.642 & 7 &
+                73.002 & 11 &
+                \cellcolor{silver}{90.800} & \cellcolor{silver}{2} \\
+        \hline
+        LASER &
+                \cellcolor{gold}{67.807} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{79.942} & \cellcolor{gold}{1} &
+                \cellcolor{bronze}{90.200} & \cellcolor{bronze}{3} \\
+	\hline
+	\end{tabular}}
+	\end{adjustbox}
+	\caption[Downstream task results for the English language (accuracy)]
+		{Downstream task results for the English language (accuracy).}
+	\label{tab:downstream_probing_tasks_en_acc}
+\end{table}	

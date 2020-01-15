@@ -1,0 +1,202 @@
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{2.5}
+	{\small
+		\begin{tabular}{| l | l ? c | c | c | c | c ? c | c | c | c | c ? l |} 
+			\hline
+			\cellcolor{tud9c!50} 									&
+			\cellcolor{tud9c!50}	 								&
+			\multicolumn{5}{ c ?}{
+				\cellcolor{tud9c!50}\textbf{Applicability}}			&
+			\multicolumn{5}{ c ?}{
+				\cellcolor{tud9c!50}\textbf{Data creation}}			&
+			\cellcolor{tud9c!50}									\\
+			\multirow{-2}{*}{
+				\cellcolor{tud9c!50}\textbf{Probing task}}			&
+			\multirow{-2}{*}{
+				\cellcolor{tud9c!50}\textbf{Short description}}		&
+			{\cellcolor{tud9c!30}\textbf{EN}} 						&
+			{\cellcolor{tud9c!30}\textbf{DE}}						&
+			{\cellcolor{tud9c!30}\textbf{RU}} 						&
+			{\cellcolor{tud9c!30}\textbf{TR}}						&
+			{\cellcolor{tud9c!30}\textbf{KA}}						&
+			{\cellcolor{tud9c!30}\textbf{EN}} 						&
+			{\cellcolor{tud9c!30}\textbf{DE}} 						&
+			{\cellcolor{tud9c!30}\textbf{RU}} 						&
+			{\cellcolor{tud9c!30}\textbf{TR}} 						&
+			{\cellcolor{tud9c!30}\textbf{KA}}						&
+			\multirow{-2}{*}{
+				\cellcolor{tud9c!50}\textbf{Comments}}				
+			\\ \hline
+
+			% Surface information
+			% ==============================================
+			\multicolumn{13}{| l |}{
+				\cellcolor{tud9c!10}\textit{Probing tasks for \textbf{\underline{\smash{surface}}} information}}	
+																\\ \hline\hline
+			% Sentence length
+			\textbf{Sentence length}								&
+			Predict the binned length of a sentence 					&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+																\\ \hline
+			% Length mismatch
+			\textbf{Length mismatch} 								&
+			Test if two sentences have equal length	 				&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+																\\ \hline
+			% Word content
+			\textbf{Word content}									&
+			Decide if a word occurs in the sentence		 			&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cor													&
+			\cor													&
+																\\ \hline
+			% Word overlap
+			\textbf{Word overlap}									&
+			Given two sentences, decide if they overlap 				&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			Difficult to define overlap								\\ \hline\hline
+
+			% Syntactic information
+			% ==============================================
+			\multicolumn{13}{| l |}{
+				\cellcolor{tud9c!10}\textit{Probing tasks for \textbf{\underline{\smash{syntactic}}} information}}
+																\\ \hline\hline
+			% Bi-gram shift
+			\textbf{Bi-gram shift}									&
+			Predict if sentence has legal word order		 			&
+			\cgr 												&
+			\cgr 												&
+			\cor 												&
+			\cgr 												&
+			\cor 												&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\textit{kids play} vs. \textit{play kids}					\\ \hline
+			% Noun pronoun agreement
+			\textbf{Noun pronoun agreement}						&
+			Check if noun and pronoun agree						&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+																\\ \hline
+			% Subject verb agreement
+			\textbf{Subject verb agreement}						&
+			Check if subject and verb agree							&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\textit{He goes} vs. \textit{He go}						\\ \hline
+			% Top constituent
+			\textbf{Top constituent}								&
+			Test for top constituency of sentences.					&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\texttt{ADVP NP VP .}									\\ \hline
+			% Tree depth
+			\textbf{Tree depth} 									&
+			Test for hierarchical structure of sentences.				&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+																\\ \hline
+			% Voice
+			\textbf{Voice}										&
+			Probe for active or passive voice						&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cgr 												&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\cor													&
+			\textit{drive} vs. \textit{is driven}						\\ \hline
+			% Word order
+			\textbf{Word order} 									&
+			Predict if $w_1$ is before $w_2$ or vice versa			&
+			\cgr 												&
+			\cgr 												&
+			\cor 												&
+			\cgr 												&
+			\cor 												&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+			\cgr													&
+																\\ \hline
+		\end{tabular}
+		\caption[Overview of the implementability of the surface and syntactic probing tasks in different languages]
+				{Overview of the implementability of the surface and syntactic probing tasks in different languages.}
+			\label{tab:implementability_probing_tasks_sur_syn}
+	}
+\end{table}

@@ -1,0 +1,65 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		scale=0.7,
+		ybar,
+		ylabel=Accuracy,
+		enlargelimits=0.15,
+		bar width=4pt,
+		ymajorgrids,
+    		grid style={line width=.1pt, draw=gray!10},
+    		title=\textbf{Results Subject-Verb Agreement Task},
+		symbolic x coords={majority,p-means,laser,s2v,quickth.},
+		xtick=data,
+		scale only axis=true,
+  		width=14cm,height=2cm,
+		xticklabels={,,},
+		xtick style={draw=none}
+	]
+
+		% english
+		\addplot[ybar,fill=tud2a] coordinates {
+			(majority,54.400)
+        		(p-means,64.801)
+        		(laser,55.760)
+        		(s2v,67.773)
+			(quickth.,67.026)
+    		};
+
+		% german
+		\addplot[ybar,fill=tud1a] coordinates {
+			(majority,50.900)
+        		(p-means,74.719)
+        		(laser,59.362)
+        		(s2v,76.109)
+			(quickth.,80.117)
+    		};
+
+		% russian
+		\addplot[ybar,fill=tud1a!50] coordinates {
+			(majority,50.000)
+        		(p-means,65.416)
+        		(laser,72.240)
+        		(s2v,77.053)
+			(quickth.,75.738)
+    		};
+
+		% turkish
+		\addplot[ybar,fill=gray] coordinates {
+			(majority,51.400)
+        		(p-means,51.407)
+        		(laser,53.439)
+        		(s2v,53.703)
+			(quickth.,59.583)
+    		};
+
+		% georgian
+		\addplot[ybar,fill=white] coordinates {
+			(majority,50.400)
+        		(p-means,62.206)
+        		(laser,55.824)
+        		(s2v,62.040)
+			(quickth.,57.622)
+    		};
+
+	\end{axis}
+\end{tikzpicture}

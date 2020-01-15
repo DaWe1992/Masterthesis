@@ -1,0 +1,341 @@
+\setlength{\fboxsep}{0pt}
+\renewcommand{\arraystretch}{1.415}
+\scalebox{1.0}{
+\begin{tabularx}{0.935\textheight}{| c | l | p{0.6cm} | c | c | c | c | c | c | X |}
+	\hline
+	\cellcolor{tud9c!50}													&
+	\cellcolor{tud9c!50}													&
+	\cellcolor{tud9c!50}													&
+	\cellcolor{tud9c!50}													&
+	\cellcolor{tud9c!50}													&
+	\multicolumn{5}{c |}{\cellcolor{tud9c!50}\textbf{Training details}} 		\\
+	\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Nr.}}						&
+	\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Embedding}}				&
+	\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Lng}}						&
+	\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Source}}					&
+	\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Word emb}}				&
+	\cellcolor{tud9c!30}\textbf{dim}										&
+	\cellcolor{tud9c!30}\textbf{\# instances} 								&
+	\cellcolor{tud9c!30}\textbf{batch size} 									&
+	\cellcolor{tud9c!30}\textbf{\# epochs} 									&
+	\cellcolor{tud9c!30}\textbf{other params / comments}					\\
+	\hline\hline
+	\multicolumn{10}{| l |}{
+		\cellcolor{tud9c!5}\textbf{Non-parameterized methods}}				\\ \hline
+
+	% mean embeddings
+	\circled{1} 															&
+	\textit{Vanilla average}												&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faFilter																&
+	\textit{all} 															&
+	300																	&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	no training required													\\
+	\hline
+
+	% p-mean embeddings
+	\circled{2} 															&
+	\textit{$p$-means}													&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faFilter																&
+	\textit{all} 															&
+	1,500																	&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	no training required, $p \in \{ -\infty, 0, 1, 2, +\infty \}$								\\
+	\hline
+
+	% sif
+	\circled{3} 															&
+	\textit{\gls{sif}}														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faFilter																&
+	\textit{all} 															&
+	300																	&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	no training required													\\
+	\hline
+	
+	% gem
+	\circled{4} 															&
+	\textit{\gls{gem}}													&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faFilter																&
+	\textit{all} 															&
+	300																	&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	no training required													\\
+	\hline
+
+	% hier. pooling
+	\circled{5} 															&
+	\textit{hier. pooling}													&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faFilter																&
+	\textit{all} 															&
+	300																&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	no training required, window size $m = 3$										\\
+	\hline\hline
+
+	\multicolumn{10}{| l |}{
+		\cellcolor{tud9c!5}\textbf{Parameterized methods}}					\\
+	\hline
+
+	% quickthought
+	\circledBlk{1}														&
+	\textit{Quick-Thought} 												&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_uk}	 		&
+	\faCogs																&
+	\textit{word2vec}														&
+	2,400																&
+	97,285,870															&
+ 	2,000 																&
+	5 																	&
+	-																	\\
+	\hline
+
+	\circledBlk{2}														&
+	\textit{Quick-Thought} 												&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_germany}		&
+	\faCogs																&
+	\textit{word2vec} 													&
+	2,400																&
+	40,729,339 															&
+ 	1,000 																&
+	5 																	&
+	-																	\\
+	\hline
+
+	\circledBlk{3}														&
+	\textit{Quick-Thought} 												&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_russia} 		&
+	\faCogs																&
+	\textit{word2vec} 													&
+	2,400																&
+	25,324,234		 													&
+ 	1,000																&
+	5 																	&
+	-																	\\
+	\hline
+
+	\circledBlk{4}														&
+	\textit{Quick-Thought} 												&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_turkey} 		&
+	\faCogs																&
+	\textit{word2vec} 													&
+	2,400																&
+	3,797,955 															&
+ 	100 																&
+	5 																	&
+	-																	\\
+	\hline
+
+	\circledBlk{5}														&
+	\textit{Quick-Thought} 												&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_georgia}		&
+	\faCogs																&
+	\textit{word2vec} 													&
+	2,400																&
+	1,047,780															&
+ 	100 																&
+	12 																	&
+																		\\
+	\hline
+
+	% infersent
+	\circledBlk{6}														&
+	\textit{InferSent} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_uk}	 		&
+	\faDownload															&
+	\textit{FastText}															&
+	4,096																&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	Version: \textit{infersent2}	, max-pooling, model:
+	\href{https://dl.fbaipublicfiles.com/infersent/infersent2.pkl}
+		{\linkstyle{Link}}													\\
+	\hline
+
+	\circledBlk{7}														&
+	\textit{InferSent} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_germany}		&
+	\faCogs																&
+	\textit{FastText}														&
+	4,096																&
+	547,743		 														&
+ 	64 																	&
+	10 																	&
+	Version: \textit{infersent2}	, max-pooling								\\
+	\hline
+
+	\circledBlk{8}														&
+	\textit{InferSent} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_russia}		&
+	\faCogs																&
+	\textit{FastText}														&
+	4,096																&
+	60,000	 															&
+ 	64 																	&
+	15 																	&
+	Version: \textit{infersent2}	, max-pooling								\\
+	\hline
+
+	\circledBlk{9}														&
+	\textit{InferSent} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_turkey} 		&
+	\faCogs																&
+	\textit{FastText}														&
+	4,096																&
+	60,000	 															&
+ 	64 																	&
+	15 																	&
+	Version: \textit{infersent2}	, max-pooling								\\
+	\hline
+
+	\circledBlk{10}														&
+	\textit{InferSent} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_georgia}		&
+	\faCogs																&
+	\textit{FastText}														&
+	4,096																&
+	60,000	 															&
+ 	64 																	&
+	15 																	&
+	Version: \textit{infersent2}	, max-pooling								\\
+	\hline
+
+	% sent2vec
+	\circledBlk{11}														&
+	\textit{sent2vec} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_uk}	 		&
+	\faDownload															&
+	\textit{FastText}														&
+	700																	&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	model: \texttt{sent2vec\_wiki\_bigrams},
+	\href{https://drive.google.com/file/d/0B6VhzidiLvjSaER5YkJUdWdPWU0/view}
+		{\linkstyle{Link}}													\\
+	\hline
+
+	\circledBlk{12}														&
+	\textit{sent2vec} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_germany}		&
+	\faCogs																&
+	\textit{FastText}														&
+	700																	&
+	40,729,339		 													&
+ 	- 																	&
+	9 																	&
+	\texttt{lr}: 0.2, \texttt{wordNgrams}: 2,
+		\texttt{neg}: 10, \texttt{dropoutK}: 4								\\
+	\hline
+
+	\circledBlk{13}														&
+	\textit{sent2vec} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_russia} 		&
+	\faCogs																&
+	\textit{FastText}														&
+	700																	&
+	25,324,234		 													&
+ 	- 																	&
+	9 																	&
+	\texttt{lr}: 0.2, \texttt{wordNgrams}: 2,
+		\texttt{neg}: 10, \texttt{dropoutK}: 4								\\
+	\hline
+
+	\circledBlk{14}														&
+	\textit{sent2vec} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_turkey}		&
+	\faCogs																&
+	\textit{FastText}														&
+	700																	&
+	3,797,955		 													&
+ 	- 																	&
+	9 																	&
+	\texttt{lr}: 0.2, \texttt{wordNgrams}: 2,
+		\texttt{neg}: 10, \texttt{dropoutK}: 4								\\
+	\hline
+
+	\circledBlk{15}														&
+	\textit{sent2vec} 														&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_georgia}		&
+	\faCogs																&
+	\textit{FastText}														&
+	700																	&
+	1,047,780		 													&
+ 	- 																	&
+	9 																	&
+	\texttt{lr}: 0.2, \texttt{wordNgrams}: 2,
+		\texttt{neg}: 10, \texttt{dropoutK}: 4								\\
+	\hline
+
+	% bert
+	\circledBlk{16}														&
+	\textit{\gls{bert}} 													&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faDownload															&
+	-																	&
+	768																	&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	multilingual model:
+	\href{https://storage.googleapis.com/bert_models/2018_11_23/multi_cased_L-12_H-768_A-12.zip}
+		{\linkstyle{Link}}													\\
+	\hline
+
+	% laser
+	\circledBlk{17}														&
+	\textit{\gls{laser}}													&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faDownload															&
+	-																	&
+	1,024 																&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	multilingual model:
+	\href{https://github.com/facebookresearch/LASER}
+	{\linkstyle{Link}}														\\
+	\hline
+
+	% random sentence encoder - borep
+	\circledBlk{18}														&
+	\textit{RandSent \gls{borep}} 											&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faMagic																&
+	\textit{FastText}														&
+	4,096																&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	-																	\\
+	\hline
+
+	% random sentence encoder - lstm
+	\circledBlk{19}														&
+	\textit{RandSent \gls{bilstm}} 											&
+	\AddCellBackground{0.6cm}{1.1\baselineskip}{images/flag_all}	 		&
+	\faMagic																&
+	\textit{FastText}														&
+	8,192																&
+	-		 															&
+ 	- 																	&
+	- 																	&
+	-																	\\
+	\hline
+\end{tabularx}}

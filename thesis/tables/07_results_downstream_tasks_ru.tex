@@ -1,0 +1,161 @@
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.5}
+	\begin{adjustbox}{angle=90}
+	\scalebox{0.72}{
+	\begin{tabular}{
+		| l ? >{\centering}m{2.7cm} | c ? >{\centering}m{2.7cm} | c ? >{\centering}m{2.7cm} | c |
+	}
+	\hline
+	\multicolumn{7}{| c |}{
+		\cellcolor{tud9c}\textcolor{white}{
+			\textbf{Language: Russian (F1)}}} 					\\
+	\hline
+
+	\cellcolor{tud9c!85}										& 
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{ArgMin}}} 		&
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{Senti}}}			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{TREC}}}			\\
+
+	\rowcolor{tud9c!55}
+	\multirow{-3}{*}{\cellcolor{tud9c!85}\textbf{Embedding}}	&
+		\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Size of the data set}} \\ \hline
+	\# instances &
+                25,303 	& - &
+                30,000 	& - &
+                5,952 		& - \\  
+	\hline\hline 
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Majority class (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	Majority &
+                56.4 & - &
+                51.2 & - &
+                22.6 & - \\
+	\hline\hline   
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Random embeddings (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	 BOREP &
+                00.518 & 11 &
+                00.643 & 9 &
+                00.778 & 7 \\
+        \hline
+        \rowcolor{lightgray!30}
+        Random BiLSTM &
+                00.521 & 10 &
+                00.695 & 4 &
+                00.739 & 10 \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{FastText})}} \\ \hline
+	Vanilla average &
+                00.535 & 4 &
+                \cellcolor{silver}{00.703} & \cellcolor{silver}{2} &
+                00.767 & 8 \\
+        \hline
+        p-Means &
+                \cellcolor{silver}{00.553} & \cellcolor{silver}{2} &
+                00.695 & 4 &
+                00.799 & 5 \\
+        \hline
+        SIF &
+                00.508 & 13 &
+                \cellcolor{bronze}{00.701} & \cellcolor{bronze}{3} &
+                00.731 & 13 \\
+        \hline
+        GEM &
+                00.515 & 12 &
+                00.630 & 10 &
+                \cellcolor{bronze}{00.803} & \cellcolor{bronze}{3} \\
+        \hline
+        hier. pooling &
+                00.486 & 16 &
+                00.673 & 7 &
+                00.717 & 15 \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{word2vec})}} \\ \hline
+	Vanilla average &
+                00.531 & 6 &
+                00.601 & 14 &
+                00.738 & 11 \\
+        \hline
+        p-Means &
+                00.524 & 9 &
+                00.605 & 13 &
+                00.801 & 4 \\
+        \hline
+        SIF &
+                00.529 & 8 &
+                00.598 & 15 &
+                00.732 & 12 \\
+        \hline
+        GEM &
+                00.386 & 20 &
+                00.551 & 22 &
+                00.546 & 18 \\
+        \hline
+        hier. pooling &
+                00.501 & 14 &
+                00.584 & 17 &
+                00.745 & 9 \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{Attract-Repel})}} \\ \hline
+	Vanilla average &
+                00.371 & 21 &
+                00.568 & 21 &
+                00.399 & 21 \\
+        \hline
+        p-Means &
+                00.478 & 17 &
+                00.586 & 16 &
+                00.551 & 17 \\
+        \hline
+        SIF &
+                00.365 & 22 &
+                00.582 & 18 &
+                00.394 & 22 \\
+        \hline
+        GEM &
+                00.433 & 18 &
+                00.578 & 19 &
+                00.405 & 20 \\
+        \hline
+        hier. pooling &
+                00.409 & 19 &
+                00.574 & 20 &
+                00.410 & 19 \\
+	\hline\hline
+	\multicolumn{7}{| l |}{\cellcolor{tud9c!30}\textbf{Trained embeddings}} \\ \hline
+	InferSent &
+                00.487 & 15 &
+                00.676 & 6 &
+                00.623 & 16 \\
+        \hline
+        Quick-Thought &
+               \cellcolor{bronze}{00.540} & \cellcolor{bronze}{3} &
+                00.627 & 11 &
+                00.780 & 6 \\
+        \hline
+        sent2vec &
+                00.534 & 5 &
+                00.622 & 12 &
+                \cellcolor{gold}{00.832} & \cellcolor{gold}{1} \\
+        \hline
+        BERT &
+                00.531 & 6 &
+                00.644 & 8 &
+                \cellcolor{silver}{00.822} & \cellcolor{silver}{2} \\
+        \hline
+        LASER &
+                \cellcolor{gold}{00.582} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{00.728} & \cellcolor{gold}{1} &
+                00.728 & 14 \\
+	\hline
+	\end{tabular}}
+	\end{adjustbox}
+	\caption[Downstream task results for the Russian language (F1 scores)]{Downstream task results for the Russian language (F1 scores).}
+	\label{tab:downstream_probing_tasks_ru}
+\end{table}	

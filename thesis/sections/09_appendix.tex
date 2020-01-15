@@ -1,0 +1,213 @@
+% =======================
+% Chapter: Appendix
+%
+% Author: Daniel Wehner
+%
+
+% Probing Task Setup
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Probing Task Setup}
+\label{sec:appendix_probing_task_setup}
+
+% Table: 30 chosen nouns for each language
+\input{tables/05_word_content_task_words}
+
+\newpage
+
+% Table: Chosen verbs for each language
+\input{tables/05_subject_verb_agreement_task_words}
+
+\vfill
+\hrule
+\textbf{Remarks concerning the tables in appendix \vref{sec:appendix_probing} and \vref{sec:appendix_downstream}:} \\
+The following tables list the results on probing tasks and downstream tasks in detail. Next to the test scores, the tables furthermore contain the relative rankings of the embeddings per task. These rankings can be found in the columns labeled with `R'. In order to facilitate a quick overview, the top-three performances were highlighted: A \textcolor{gold}{golden} cell background indicates rank 1, \textcolor{silver}{silver} color rank 2, and finally, a \textcolor{bronze}{bronze} color denotes rank 3. The results were produced without hyper-parameter optimization.
+
+\newpage
+
+% Detailed Probing Task Results
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Detailed Probing Task Results}
+\label{sec:appendix_probing}
+
+% Results measured by F1 Score
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Results measured by F1 Score}
+
+\input{tables/07_results_probing_tasks_en}
+\input{tables/07_results_probing_tasks_de}
+\input{tables/07_results_probing_tasks_ru}
+\input{tables/07_results_probing_tasks_tr}
+\input{tables/07_results_probing_tasks_ka}
+
+% Table: Top three counts
+\input{tables/07_top_three_counts}
+
+% Results measured by Accuracy
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Results measured by Accuracy}
+
+\input{tables/07_results_probing_tasks_en_acc}
+
+
+% Detailed Downstream Task Results
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Detailed Downstream Task Results}
+\label{sec:appendix_downstream}
+
+% Results measured by F1 Score
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Results measured by F1 Score}
+
+\input{tables/07_results_downstream_tasks_en}
+\input{tables/07_results_downstream_tasks_de}
+\input{tables/07_results_downstream_tasks_ru}
+\input{tables/07_results_downstream_tasks_tr}
+\input{tables/07_results_downstream_tasks_ka}
+
+\newpage
+
+% Results measured by Accuracy
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Results measured by Accuracy}
+
+\input{tables/07_results_downstream_tasks_en_acc}
+\input{tables/07_results_downstream_tasks_de_acc}
+
+
+% Detailed Stability Analysis Results
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\section{Detailed Stability Analysis Results}
+\label{sec:appendix_stability_analysis}
+
+\vspace*{-8mm}
+
+% English
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{English}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.475]{images/results_wc_en_5000}
+	\caption[Stability analysis results for 5k instances (\caps{WC} task, EN)]
+		{Stability analysis results for 5k instances (\caps{WC} task, EN).}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.475]{images/results_wc_en_10000}
+	\caption[Stability analysis results for 10k instances (\caps{WC} task, EN)]
+		{Stability analysis results for 10k instances (\caps{WC} task, EN).}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.475]{images/results_wc_en_30000}
+	\caption[Stability analysis results for 30k instances (\caps{WC} task, EN)]
+		{Stability analysis results for 30k instances (\caps{WC} task, EN).}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.475]{images/results_wc_en_60000}
+	\caption[Stability analysis results for 60k instances (\caps{WC} task, EN)]
+		{Stability analysis results for 60k instances (\caps{WC} task, EN).}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_en_5000}
+	\caption[Classifier correlations with 5k instances (\caps{WC} task, EN)]
+		{Classifier correlations with 5k instances (\caps{WC} task, EN).}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_en_10000}
+	\caption[Classifier correlations with 10k instances (\caps{WC} task, EN)]
+		{Classifier correlations with 10k instances (\caps{WC} task, EN).}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_en_30000}
+	\caption[Classifier correlations with 30k instances (\caps{WC} task, EN)]
+		{Classifier correlations with 30k instances (\caps{WC} task, EN).}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_en_60000}
+	\caption[Classifier correlations with 60k instances (\caps{WC} task, EN)]
+		{Classifier correlations with 60k instances (\caps{WC} task, EN).}
+\end{figure}
+
+% Table: Experiment results WC details deltas
+\input{tables/07_wc_detail_deltas}
+
+% Table: Experiment results WC Details with hp optimization
+\input{tables/07_wc_detail_hp_opt}
+
+% Table: Experiment results WC details
+\input{tables/07_wc_detail}
+
+\newpage
+
+% Georgian
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+\subsection{Georgian}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.55]{images/results_wc_ka_5000}
+	\caption[Stability analysis results for 5k instances (\caps{WC} task, KA)]
+		{Stability analysis results for 5k instances (\caps{WC} task, KA).}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.55]{images/results_wc_ka_10000}
+	\caption[Stability analysis results for 10k instances (\caps{WC} task, KA)]
+		{Stability analysis results for 10k instances (\caps{WC} task, KA).}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.55]{images/results_wc_ka_30000}
+	\caption[Stability analysis results for 30k instances (\caps{WC} task, KA)]
+		{Stability analysis results for 30k instances (\caps{WC} task, KA).}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\includegraphics[scale=0.55]{images/results_wc_ka_60000}
+	\caption[Stability analysis results for 60k instances (\caps{WC} task, KA)]
+		{Stability analysis results for 60k instances (\caps{WC} task, KA).}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_ka_5000}
+	\caption[Classifier correlations with 5k instances (\caps{WC} task, KA)]
+		{Classifier correlations with 5k instances (\caps{WC} task, KA).}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_ka_10000}
+	\caption[Classifier correlations with 10k instances (\caps{WC} task, KA)]
+		{Classifier correlations with 10k instances (\caps{WC} task, KA).}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_ka_30000}
+	\caption[Classifier correlations with 30k instances (\caps{WC} task, KA)]
+		{Classifier correlations with 30k instances (\caps{WC} task, KA).}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{images/corr_wc_ka_60000}
+	\caption[Classifier correlations with 60k instances (\caps{WC} task, KA)]
+		{Classifier correlations with 60k instances (\caps{WC} task, KA).}
+\end{figure}

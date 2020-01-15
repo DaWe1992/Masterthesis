@@ -1,0 +1,71 @@
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{2.2}
+	\scalebox{1.0}{
+	\begin{tabularx}{0.95\textwidth}{| c | X | c | c | c | c | c | c | c | c | c |}
+		\hline
+		\cellcolor{tud9c!50}							 								&
+		\cellcolor{tud9c!50}															&
+		\multicolumn{5}{c |}{\cellcolor{tud9c!50}\textbf{Embedding source}}	 			&
+		\cellcolor{tud9c!50}								 							&
+		\multicolumn{3}{c |}{\cellcolor{tud9c!50}\textbf{Training details}}				\\
+		\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Nr.}}								&
+		\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Embedding}}						&
+		\cellcolor{tud9c!30}\textbf{EN} 												&
+		\cellcolor{tud9c!30}\textbf{DE} 												&
+		\cellcolor{tud9c!30}\textbf{RU} 												&
+		\cellcolor{tud9c!30}\textbf{TR} 												&
+		\cellcolor{tud9c!30}\textbf{KA} 												&
+		\cellcolor{tud9c!50}\multirow{-2}{*}{\textbf{Download}}							&
+		\cellcolor{tud9c!30}\textbf{Dimen.}			 									&
+		\cellcolor{tud9c!30}\textbf{Window size} 										&
+		\cellcolor{tud9c!30}\textbf{Architecture}										\\
+		\hline\hline
+
+		% word2vec
+		\ding{182} 																	&
+		\textit{word2vec} 															&
+		\faDownload 																	&
+		\faDownload																	&
+		\faCogs 																		&
+		\faCogs																		&
+		\faCogs																		&
+		\href{https://code.google.com/archive/p/word2vec/}{\linkstyle{Link1}},
+		\href{https://deepset.ai/german-word-embeddings}{\linkstyle{Link2}}				&
+		300																			&
+		10 																			&
+		CBOW 
+																					\\
+		% fastText
+		\ding{183} 																	&
+		\textit{FastText}																&
+		\faDownload 																	&
+		\faDownload 																	&
+		\faDownload 																	&
+		\faDownload 																	&
+		\faDownload																	&
+		\href{https://fasttext.cc/docs/en/crawl-vectors.html}{\linkstyle{Link}}				&
+		300																			&
+		- 																			&
+		- 
+																					\\
+		% attract-repel
+		\ding{184} 																	&
+		\textit{Attract-Repel}															&
+		\faDownload 																	&
+		\faDownload 																	&
+		\faDownload 																	&
+		\faDownload 																	&
+		\faDownload																	&
+		\href{https://drive.google.com/drive/folders/0B_pyA_IW4g-jZHlWWVBfaWRYY0E}
+			{\linkstyle{Link}}															&
+		300																			&
+		- 																			&
+		- 																			\\
+		\hline
+	\end{tabularx}}
+	\caption[Sources of word embeddings]{Overview of word embedding acquisition.
+		The \faDownload\ symbol indicates that the model was downloaded, whereas the \faCogs\ symbol refers to
+		a trained model.}
+	\label{tab:word_embs_acquisition}
+\end{table}

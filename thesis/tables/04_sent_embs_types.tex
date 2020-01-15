@@ -1,0 +1,61 @@
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\scalebox{0.95}{
+	\begin{tabularx}{\textwidth}{| X | l ? X | l |}
+		\hline
+		\multicolumn{2}{| c ?}{
+			\cellcolor{tud9c!50}
+				\textbf{Non-parameterized methods}}				&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!50}
+				\textbf{Parameterized methods}} 					\\
+		\rowcolor{tud9c!30}
+		\textbf{Algorithm} 										&
+		\textbf{Source} 											&
+		\textbf{Algorithm} 										&
+		\textbf{Source}											\\
+		\hline\hline
+
+		\ding{182} \textit{Vanilla average}							&
+		\textit{- no author found -}								&
+		\ding{182} \textit{Skip-Thought} 							&
+		\citep{Kiros.2015} 									\\
+		\hline
+
+		\ding{183} \textit{Concatenated $p$-means}				&
+		\citep{Rueckle.2018}										&
+		\ding{183} \textit{Quick-Thought}							&
+		\citep{Logeswaran.2018}									\\
+		\hline
+
+		\ding{184} \textit{\gls{gem}}		 						&
+		\citep{Yang.2018} 										&
+		\ding{184} \textit{sent2vec}								&
+		\citep{Pagliardini.2018}									\\
+  		\hline
+
+		\ding{185} \textit{\gls{sif}}	 							&
+		\citep{Arora.2017}										&
+		\ding{185} \textit{InferSent} 								&
+		\citep{Conneau.2017} 									\\
+  		\hline
+
+		\cellcolor{lightgray!50}		 							&
+		\cellcolor{lightgray!50}		 							&
+		\ding{186} \textit{\gls{sbert}} 								&
+		\citep{Reimers.2019} 										\\
+  		\hline
+
+		\cellcolor{lightgray!50}		 							&
+		\cellcolor{lightgray!50}		 							&
+		\ding{187} \textit{\gls{laser}} 								&
+		\citep{Artetxe.2018} 										\\
+  		\hline
+	\end{tabularx}}
+	\caption[Types and examples of sentence embedding algorithms]
+	{Types and examples of sentence embedding algorithms.
+		Non-parameterized methods combine existing word embeddings to obtain a sentence representation
+		whereas parameterized methods train sentence embeddings from scratch.}
+	\label{tab:sent_embs_types}
+\end{table}

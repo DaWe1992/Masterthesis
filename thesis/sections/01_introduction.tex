@@ -1,0 +1,64 @@
+% =======================
+% Chapter: Introduction
+%
+% Author: Daniel Wehner
+%
+
+% -----------------------------------------------------------------------------------------------------------------------------------------------------
+% Introduction
+\section{Introduction}
+\label{sec:introduction}
+
+Current research in artificial intelligence increasingly focuses on better interpretability of machine learning models. Recently ratified laws such as the European \textbf{\gls{gdpr}}\footnote{The regulation is called `\gls{dsgvo}' in German.} dictate that all decisions automatically made by computers have to be justified, i.\,e. manufacturers who employ machine learning systems must be able to give reasons for why certain decision were taken.\footnote{Cf. \url{https://medium.com/pachyderm-data/hold-your-machine-learning-and-ai-models-accountable-de887177174c} \\ (retrieved: October 07, 2019)} This poses a challenging problem, since many algorithms in machine learning are so-called \textbf{`black-box' models}. Such a model is usually complicated in such a manner that it is impossible to analyze all the effects that parameters and variables inside the model have on each other.\footnote{Cf. \url{https://towardsdatascience.com/the-black-box-metaphor-in-machine-learning-4e57a3a1d2b0} \\ (retrieved: October 07, 2019)} The most prominent example of such a black-box model is the neural network algorithm which is capable of successfully dealing with vast amounts of data. The fact that neural architectures are gradually replacing classical methods which were often more interpretable exacerbates the problem even further. In the domain of \gls{nlp}, workshops like \textbf{`black-box \gls{nlp}'}\footnote{Cf. \url{https://blackboxnlp.github.io/} (retrieved: September 04, 2019)} attempt to shed light onto this (`open the black box')\footnote{Image source: \url{https://blog.f1000.com/wp-content/uploads/2017/06/black_box_blog.png} (retrieved: September 04, 2019)} and to provide explanations.
+
+% Figure: black box
+\begin{wrapfigure}{l}{0.28\textwidth}
+  	\begin{center}
+    		\includegraphics[scale=0.3]{images/black_box}
+		\caption[Opening the black box to improve interpretability]{Workshops like black-box \gls{nlp} try to open the black box and improve the
+			interpretability of neural networks.}
+  	\end{center}
+\end{wrapfigure}
+
+Understanding and explaining the output of machine learning models necessitates that the input to these models is understood as well. One of the reasons for bad training or testing performance is the quality of the input features. If the features chosen for the task to be solved are not suitable or not indicative of the class label, even the best model architecture is useless. When it comes to designing machine learning systems involving natural language input, one quickly encounters a concept called \textbf{language embeddings}. An embedding is a vectorial representation of natural language in a given granularity, be it single words, sentences, paragraphs or entire documents. Sentence embeddings are vital in \gls{nlp} because textual input cannot be dealt with by most machine learning algorithms. Despite the fruitful usage of sentence embeddings in a wide range of applications, recent research has brought to light that it is not at all clear what linguistic aspects of sentences are captured by these encodings \citep[inter alia]{Conneau.2018a}. But exactly this knowledge is invaluable when choosing the right encoder architecture for a specific task at hand. Each task is different and requires that other facets of sentences be represented in order to obtain useful predictions. Very often, \textbf{probing} as well as \textbf{downstream tasks} are used to assess the representational power of sentence embedding architectures \citep[inter alia]{Conneau.2018b}. This approach is also adopted in this thesis.
+
+% research questions
+\highlight{Research Questions.} Most of the research with respect to the evaluation of sentence embeddings is restricted to the English language.  \textbf{This thesis therefore aims to extend the focus to a multi-lingual setting by also considering lower-resource languages.} For this purpose, the languages \textbf{Russian}, \textbf{Turkish} and \textbf{Georgian} were chosen. We also conduct the analysis for \textbf{English} and \textbf{German} to compare the results to higher-resource languages as well as to the literature. \textit{This work is centered around the following research questions:} \ding{182} One of the major goals is to provide an analysis which addresses the question in how far the language chosen influences the performance of state-of-the-art sentence embedding techniques. Embeddings working well in English may not do so in other languages. \ding{183} A review of the literature further reveals that the task settings to evaluate the embeddings are not standardized and as a consequence differ from publication to publication. This is why a stability analysis is performed by varying the following factors: \texttt{language}, data set \texttt{size}, \texttt{classifier} architecture, \texttt{class balance} and \texttt{hyper-parameter optimization}. This way it is possible to draw conclusions about the stability of the relative embedding ordering.
+
+% contributions
+\highlight{Contributions.} In a first step, this document provides an overview of currently used state-of-the-art embedding algorithms. The encoders were selected such that a wide range of different techniques is included in the analysis. Most of the time pre-trained models are available only for English, i.\,e. that models have to be trained from scratch for the other languages. We trained \textit{sent2vec}, \textit{Quick-Thought} and \textit{InferSent} sentence embeddings as well as \textit{word2vec} word embeddings which form the basis for some of the sentence embedding techniques. To conduct the evaluation, it was furthermore required to setup probing and downstream tasks for each target language. For this purpose, we searched special tree banks and other corpora. In order to overcome the lack of data, especially for Georgian, it was necessary to translate some of the existing English corpora or to create new data sets from scratch. Our evaluation comprises probing as well as downstream tasks. We present the results on these two task types and successively compute correlations between them. Based on the results of the stability analysis, recommendations are given for future work and research. The following list summarizes the main contributions of this thesis in a chronological order and also serves as the guiding line for the entire project:
+
+% enumeration of contributions
+\begin{enumerate}[label=\color{tud9c}\textbf{\theenumi.}]
+	\item \textbf{Review} of modern word and sentence embedding algorithms.
+	\item \textbf{Acquisition of word and sentence embedding models} for the five languages English, German, Russian,
+		Turkish and Georgian, either by downloading pre-trained models or by training the models from scratch
+			(namely \textit{word2vec}, \textit{sent2vec}, \textit{Quick-Thought} and \textit{InferSent}).
+	\item \textbf{Creation of a set of probing tasks} guided by an analysis of the characteristics of each language
+		(not all probing tasks make sense in all languages, e.\,g. testing for gender information in Turkish is not
+		sensible, since this concept is not present in this language).
+	\item \textbf{Creation of downstream task data sets}, e.\,g. an annotated sentiment data set for the Georgian language 
+		based on data extracted from Georgian Twitter.
+	\item \textbf{Translation} of downstream task data sets and other corpora, e.\,g.:
+	\vspace*{-2mm}
+	\begin{itemize}\setlength\itemsep{-1em}
+		\item \gls{snli} corpus (partially translated due to server-side constraints)
+		\item \gls{ukp} sentential argument mining corpus
+		\item \caps{TREC} question type data set
+	\end{itemize}
+	\item \textbf{Evaluation of sentence embeddings} in all five languages followed by a discussion of the results.
+		A \textbf{stability analysis} is furthermore performed for a selected probing task with respect to the factors:
+	\vspace*{-2mm}
+	\begin{itemize}\setlength\itemsep{-1em}
+		\item \texttt{Language}
+		\item Data set \texttt{size}
+		\item \texttt{Classifier} architecture
+		\item \texttt{Class balance}
+		\item \texttt{Hyper-parameter optimization}
+	\end{itemize}
+	\item \textbf{Recommendations} for future work and research.
+\end{enumerate}
+
+\highlight{Organization of the thesis.} This thesis is organized as follows: Chapter \vref{sec:rel_work} first of all introduces related work which represents the foundation of this thesis. The following chapter \vref{sec:word_embs} introduces the concept of word embeddings which is essential for many sentence-level algorithms. Three of the most common techniques in this domain are presented which are also used in the context of this work: \textit{word2vec}, \textit{FastText} and \textit{Attract-Repel}. Subsequently, chapter \vref{sec:sent_embs} introduces the major sentence embedding approaches used in modern applications. All of the presented embeddings are subject to the evaluations conducted at a later stage of the present thesis.
+
+After that, chapter \vref{sec:probing_tasks} provides detailed information about the probing tasks: The chapter begins by introducing probing tasks which were already used in the literature. Subsequently, the low-resource target languages are briefly outlined in order to enable a proper assessment of the implementability of the probing tasks in these languages. These explanations are followed by details about the selection of probing tasks and how the data sets were created. Finally, the classifier architecture employed in the probing task setup is presented. Analogously, chapter \vref{sec:downstream_applications} gives information about the set of downstream applications taken into account. The evaluation results, the discussion as well as the recommendations for future work can be found in chapter \vref{sec:results_eval}, before the final chapter \vref{sec:conclusion} summarizes the main results and concludes this document.

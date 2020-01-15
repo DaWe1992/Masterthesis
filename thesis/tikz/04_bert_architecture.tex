@@ -1,0 +1,32 @@
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[
+		scale=0.85,
+		every node/.style={scale=1.0},
+		arr/.style={-stealth,very thick,shorten >=1mm},
+		box/.style={fill=tud9c!15,rounded corners,minimum width=10cm,draw=tud9c,dashed}
+	]
+
+		\draw[rounded corners,tud9c,ultra thick] (-6.1,-0.5) rectangle (6.1,4);
+
+		\draw[arr] (-5,-1) -- (-5,4.5); \draw[arr] (-4,-1.5) -- (-4,4.5);
+		\draw[arr] (-3,-1) -- (-3,4.5); \draw[arr] (-2,-1.5) -- (-2,4.5);
+		\draw[arr] (5,-1) -- (5,4.5);
+
+		\node at (-5,-1.5) {\textit{token 1}};
+		\node at (-4,-2) {\textit{token 2}};
+		\node at (-3,-1.5) {\textit{token 3}};
+		\node at (-2,-2) {\textit{token 4}};
+		\node at (5,-1.5) {\textit{token $n$}};
+
+		\node[box] at (0,0) {\highlight{TRANSFORMER 1} (768 hidden units)};
+		\node[box] at (0,1) {\highlight{TRANSFORMER 2} (768 hidden units)};
+		\node[box] at (0,2) {\highlight{TRANSFORMER 3} (768 hidden units)};
+		\node[box] at (0,3.5) {\highlight{TRANSFORMER 12} (768 hidden units)};
+
+	\end{tikzpicture}
+	\caption[\textit{BERT\textsubscript{BASE}} encoder architecture]
+		{The \textit{BERT\textsubscript{BASE}} encoder stack using transformers as a basis.
+		The figure was taken and adapted from \url{http://jalammar.github.io/illustrated-bert/} (retrieved: September 04, 2019).}
+	\label{fig:bert_architecture}
+\end{figure}

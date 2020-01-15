@@ -1,0 +1,62 @@
+{
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=1cm, sibling distance=4cm]
+\tikzstyle{level 2}=[level distance=1cm, sibling distance=4cm]
+
+% Define styles for bags and leafs
+\tikzstyle{bag}=[circle,draw=black,fill=tud9c!30,text width=2em,text centered]
+\tikzstyle{end}=[circle,draw=black,minimum width=3pt,fill,inner sep=0pt]
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[
+		scale=0.9,
+		every node/.style={scale=0.8},
+		sloped
+	]
+		\node[bag]{\highlight{S}}
+    		child{
+        		node[bag]{\highlight{NP}}        
+        		child {
+            	    		node[end,label=below:{\textbf{John}}]{}
+            	    		edge from parent
+			}
+		}
+		child{
+                	node[bag]{\highlight{VP}}
+			child{
+				node[bag]{\highlight{V}}
+				child{
+					node[end,label=below:{\textbf{hit}}]{}
+					edge from parent
+				}
+				edge from parent
+			}
+			child{
+				node[bag]{\highlight{NP}}
+				child{
+					node[bag]{\highlight{Det}}
+					child{
+						node[end,label=below:{\textbf{the}}]{}
+						edge from parent
+					}
+					edge from parent
+				}
+				child{
+					node[bag]{\highlight{N}}
+					child{
+						node[end,label=below:{\textbf{ball}}]{}
+						edge from parent
+					}
+					edge from parent
+				}
+				edge from parent
+			}
+                	edge from parent
+            	};
+        %	edge from parent         
+    		%};
+	\end{tikzpicture}
+	\caption[Simple parse tree of a sentence]{A simple parse tree for the sentence \textit{`John hit the ball'}. Image taken and adapted from: \url{http://www.wikiwand.com/fr/Arbre_syntaxique} (retrieved: September 05, 2019).}
+	\label{fig:parse_tree} 	
+\end{figure}}

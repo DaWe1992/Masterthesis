@@ -1,0 +1,441 @@
+\documentclass[accentcolor=tud1a,colorbacktitle,inverttitle,landscape,german,presentation,t]{tudbeamer}
+
+\input{preamble}
+
+
+% begin of document
+% =============================================================
+\begin{document}
+
+% general information about presentation
+\title[]{Interpretability of Sentence Embeddings in low-resource Languages}
+\subtitle{Master thesis final presentation \\ Supervisors: Dr. Steffen Eger, Dr. Johannes Daxenberger}
+
+\author{Daniel Wehner}
+\institute[TUD UKP]{Ubiquitous Knowledge Processing, TU Darmstadt}
+\logo{\color{tudtextaccent}\large UKP}
+\date{October 15, 2019}
+
+\begin{titleframe}
+\end{titleframe}
+
+% Agenda
+\begin{frame}{Agenda}{}
+	\tableofcontents
+\end{frame}
+
+
+% Section: Introduction
+% ===============================================
+\section{Introduction}
+\divider{Introduction}
+
+% Introduction
+\begin{frame}{Introduction}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item A plethora of sentence embedding techniques has been developed
+		\item \textcolor{red}{\textbf{Problem:}} \\
+			\textcolor{red}{The knowledge about what is captured by sentence embeddings is limited!}
+		\item \textbf{Probing tasks come to the rescue:}
+		\begin{itemize}\setlength\itemsep{0.5em}
+			\item \textit{`Classification problem that focuses on simple linguistic properties of sentences'} (Conneau.2018)
+			\item Conneau.2018 introduced a \textbf{set of ten probing tasks}
+			\item E.\,g. sentence length, containment of words, subject number, tense, etc.
+			\item Conneau and colleagues mainly drew inspiration from Ettinger.2016, Shi.2016 and Adi.2017
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+% Scope of this Thesis
+\begin{frame}{Scope of this Thesis}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Most research in this domain is done for English/high-resource languages
+		\item \textbf{Low-resource languages are mainly neglected}
+		\item Languages considered in this thesis:
+
+		\vspace*{2mm}
+		{\small
+		\begin{tabbing}
+			\hspace*{2.5cm}\=\hspace*{1.5cm}\=\hspace*{3.5cm}\=\kill
+			\textbf{English} 		\> EN	\>									\>	high-resource	\\[2mm]
+			\textbf{German}		\> DE	\> Deutsch 							\> 	high-resource	\\[2mm]
+			\textbf{Russian} 	\> RU	\> \foreignlanguage{russian}{русский язык} 	\>	low-resource 	\\[2mm]
+			\textbf{Turkish} 		\> TR	\> Türkçe 								\> 	low-resource 	\\[2mm]
+			\textbf{Georgian}	\> KA	\> {\mxedr{kartuli ena}} 					\> 	low-resource
+		\end{tabbing}}
+		\item \highlight{Are patterns for English reproducible in low-resource languages?}
+	\end{itemize}
+\end{frame}
+
+% Process
+\begin{frame}{High-Level Process}{}
+	\vspace*{-6mm}
+	\begin{figure}
+		\includegraphics[scale=0.325]{images/process}
+	\end{figure}
+
+	\begin{tabbing}
+		\hspace*{3cm}\=\kill
+		\ding{182} \textbf{Embeddings}	\>	Train sentence encoders in multiple languages 				\\[2mm]
+		\ding{183} \textbf{Probing}		\>	Data generation / Evaluation on probing tasks				\\[2mm]
+		\ding{184} \textbf{Downstream}	\>	Data generation / Evaluation on downstream applications		\\[2mm]
+		\ding{185} \textbf{Stability}	\>	Discrepancies with literature / different setups in literature:		\\
+								\>	Investigate the rank stability of embeddings in various setups
+	\end{tabbing}
+\end{frame}
+
+
+% Section: Sentence Embeddings
+% ===============================================
+\section{Sentence Embeddings}
+\divider{Sentence Embeddings}
+
+% Sentence Embedding Algorithms
+\begin{frame}{Sentence Embedding Algorithms}{}
+	\vspace*{-4mm}
+	{\footnotesize
+	\divideTwo{0.49}{
+		\begin{itemize}
+			\item Vanilla average (300\,d)
+			\item $p$-Means (1,500\,d)
+			\item Geometric embeddings (300\,d)
+			\item Smooth inverse frequency (300\,d)
+			\item Hierarchical pooling (300\,d)
+		\end{itemize}
+	}{0.49}{
+		\begin{itemize}
+			\item InferSent (4,096\,d)
+			\item Quick-Thought (2,400\,d)
+			\item sent2vec (700\,d)
+			\item LASER (1,024\,d)
+			\item BERT (768\,d)
+			\item Random encoders (4,096/8,192\,d)
+		\end{itemize}
+	}}
+
+	\begin{textblock*}{4cm}(0.75cm,5.75cm)
+		\textblockcolour{tud1a!40}
+		\vspace*{1mm}
+		\centering
+   		\textbf{Non-parametric} \strut
+		\vspace*{1mm}
+	\end{textblock*}
+
+	\begin{textblock*}{4cm}(7.25cm,5.75cm)
+		\textblockcolour{tud1a!40}
+		\vspace*{1mm}
+		\centering
+   		\textbf{Parametric} \strut
+		\vspace*{1mm}
+	\end{textblock*}
+
+	\vspace*{1.5cm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Non-parametric: Aggregation of word embeddings \textbf{without training}
+		\item Parametric models are \textbf{trained from scratch} on top of word embeddings
+	\end{itemize}
+\end{frame}
+
+
+% Section: Probing and Downstream Tasks
+% ===============================================
+\section{Probing and Downstream Tasks}
+\divider{Probing and Downstream Tasks}
+
+% Probing Tasks
+\begin{frame}{Probing Task Examples}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item \highlight{Sentence Length (\caps{SentLen}):} \\ \vspace*{2mm}
+		\begin{tabbing}
+			\hspace*{4cm}\=\kill
+				E.\,g.: \textbf{Label:} \textit{short} \> \textbf{Sentence:} \textit{It felt good to smile .} \\
+			{\footnotesize (A binning approach is used for the labels.
+			Think of classes like \textit{`short'}, \textit{`medium'}, \textit{`long'})}
+		\end{tabbing}\vspace*{2mm}
+		\item \highlight{Word Content (\caps{WC}):} \\ \vspace*{2mm}
+		\begin{tabbing}
+			\hspace*{4cm}\=\kill
+			E.\,g.: \textbf{Label:} \textit{everybody} \> \textbf{Sentence:} \textit{Everybody should step back .}
+		\end{tabbing}\vspace*{2mm}
+		\item \highlight{Subject-Verb Agreement (\caps{SVAgree}):} \\ \vspace*{2mm}
+		\begin{tabbing}
+			\hspace*{4cm}\=\kill
+			E.\,g.: \textbf{Label:} \textit{disagree} \> \textbf{Sentence:} \textit{They work\textcolor{red}{s} together .}
+		\end{tabbing}
+	\end{itemize}
+\end{frame}
+
+% Probing Task Setup
+\begin{frame}{Probing Task Setup}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Implementation of 9 probing tasks for EN, DE, RU, TR as well as 7 for KA \\
+			{\footnotesize (\caps{SentLen}, \caps{WC}, \caps{BiShift}, \caps{SVAgree}, \caps{SVDist}\rs,
+			\caps{Voice}, \caps{WO}, \caps{EOS} and \caps{SubjNum}\rs)}
+		\item \highlight{New:} \caps{SVAgree} and \caps{SVDist} \textit{(inspired by Linzen.2016)}
+		\item Many tasks require corpora with \textbf{morpho-syntactic} annotations
+		\item Universal Dependencies offers tree banks for many languages / GNC
+		\item \textbf{Evaluation: MLP with 5-fold x-val}
+		\begin{itemize}
+			\item One hidden layer with 50 hidden units
+			\item Dropout: 0.00
+			\item Activation: Sigmoid
+			\item Optimizer: Adam
+		\end{itemize}
+	\end{itemize}
+
+	\vfill
+	{\footnotesize \rs\ not implemented for KA}
+\end{frame}
+
+% Probing Task Results English
+\begin{frame}{Probing Task Results for English}{}
+	\vspace*{-6mm}
+	\input{tikz/probing_task_results_en}
+\end{frame}
+
+% Probing Task Results Georgian
+\begin{frame}{Probing Task Results for Georgian}{}
+	\vspace*{-6mm}
+	\input{tikz/probing_task_results_ka}
+\end{frame}
+
+% Downstream Tasks
+\begin{frame}{Downstream Tasks}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item \textbf{Downstream tasks:}
+		\begin{enumerate}\setlength\itemsep{1em}
+			\item Sentential argumentation mining (\caps{ArgMin}) $\rightarrow$ \textit{translation necessary}
+			\item Sentiment analysis (\caps{Senti})
+			\begin{itemize}
+				\item \textbf{EN:} US Airline Twitter data
+				\item \textbf{KA:} Own Twitter data set using Emojis as label indication \textit{(Choudhary.2018)}
+			\end{itemize}
+			\item Question type detection (\caps{TREC}) $\rightarrow$ \textit{translation necessary}
+		\end{enumerate}
+		\item \textbf{Evaluation:} \\
+			Analogously to probing tasks, except for \caps{TREC} \\
+			($\rightarrow$ pre-defined splits from \textit{SentEval})
+	\end{itemize}
+\end{frame}
+
+% Downstream Task Results
+\begin{frame}{Downstream Task Results (EN)}{}
+	\input{tikz/downstream_task_results_en}
+\end{frame}
+
+% Downstream Task Results
+\begin{frame}{Downstream Task Results (KA)}{}
+	\input{tikz/downstream_task_results_ka}
+\end{frame}
+
+% Summary Observations
+\begin{frame}{Summary Observations}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item \textbf{More volatility} in probing tasks \textit{(e.\,g. \caps{SentLen}, \caps{WO})}
+		\item \textbf{No} universal embedding \textit{(Perone.2018)}
+		\item Trained encoders tend to \textbf{work best} for English
+		\item Averaging methods often provide \textbf{strong baseline} \textit{(e.\,g. \caps{SubjNum})}
+		\item Random encoders work surprisingly well \textit{(Wieting.2019)}
+		\item \textbf{Worse performance of trained models in low-resource languages} \\ \textit{(lack of training data)}
+	\end{itemize}
+\end{frame}
+
+% Correlations of Probing and Downstream Tasks
+\begin{frame}{Correlations of Probing and Downstream Tasks}{}
+	\vspace*{-4mm}
+	\begin{minipage}{0.29\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.25]{images/spearman_corr_en_f1}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.69\textwidth}
+		\begin{itemize}\setlength\itemsep{1em}
+			\item[] \highlight{English language}
+			\item \caps{WC} has high positive correlations \textit{(intuitive)}
+			\item \caps{TREC} is correlated positively with \textbf{almost all probing tasks} \textit{(found by Conneau.2018)}, also \caps{ArgMin}
+			\item \caps{Senti} is less connected to probing tasks
+			\item No negative correlations
+		\end{itemize}
+		\vfill
+		{\footnotesize \textcolor{red}{positive} / \textcolor{blue}{negative} correlations}
+	\end{minipage}
+\end{frame}
+
+% Correlations of Probing and Downstream Tasks
+\begin{frame}{Correlations of Probing and Downstream Tasks}{}
+	\vspace*{-4mm}
+	\begin{minipage}{0.29\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.25]{images/spearman_corr_ka_f1}
+		\end{center}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.69\textwidth}
+		\begin{itemize}\setlength\itemsep{1em}
+			\item[] \highlight{Georgian language}
+			\item \caps{WC} has high positive correlations
+			\item Many correlations \textbf{below an absolute value of 0.20 or negative}
+			\item \caps{WO} is negatively correlated \\ \textit{(flexible word order in KA)}
+			\item \highlight{Correlations are language-dependent!}
+		\end{itemize}
+		\vfill
+		{\footnotesize \textcolor{red}{positive} / \textcolor{blue}{negative} correlations}
+	\end{minipage}
+\end{frame}
+
+
+% Stability Analysis
+% ===============================================
+\section{Stability Analysis}
+\divider{Stability Analysis}
+
+% Stability Analysis
+\begin{frame}{Stability Analysis}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Discrepancies with the literature were found
+		\item Different evaluation setups: \\ \vspace*{2mm}
+		\begin{tabbing}
+			\hspace*{3cm}\=\hspace*{2.5cm}\=\hspace*{2cm}\=\kill
+			\texttt{Size}			\>	10k	  		\>	$\Leftrightarrow$ 	\>	90k+					\\[2mm]
+			\texttt{Class balance}		\>	imbalanced	\>	$\Leftrightarrow$ 	\>	(im)balanced			\\[2mm]
+			\texttt{Classifier}		\>	MLP 			\>	$\Leftrightarrow$ 	\>	MLP / Logistic regression	\\[2mm]
+			\texttt{HP tuning}		\>	no 			\>	$\Leftrightarrow$ 	\>	yes (sometimes no)
+		\end{tabbing}
+		\item \highlight{A stability analysis is performed in order to investigate the effects of these factors}
+		\item The word content task (English) is used as an example
+	\end{itemize}
+\end{frame}
+
+% Stability across Classifiers
+\begin{frame}{Stability across Classifiers}{}
+	\vspace*{-4mm}
+	\centering
+	\includegraphics[scale=0.4]{images/corr_wc_en_10000}
+
+	\vspace*{5mm}
+
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Rankings are quite unstable, especially for \texttt{RF} classifier
+		\item \texttt{NN} and \texttt{LR} are similar, also \texttt{NN} and \texttt{NN\_H}
+		\item \highlight{Recommendation: Use a neural architecture} (outperforms other classifiers)
+	\end{itemize}
+\end{frame}
+
+% Stability across Data Set Sizes
+\begin{frame}{Stability across Data Set Sizes}{}
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[scale=0.3]{images/corr_wc_en_nn}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[scale=0.3]{images/corr_wc_en_nn_h}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.32\textwidth}
+		\centering
+		\includegraphics[scale=0.3]{images/corr_wc_en_rf}
+	\end{minipage}
+
+	\vspace*{5mm}
+
+	\begin{itemize}\setlength\itemsep{1em}
+		\item Correlations between 5k $\Leftrightarrow$ \{ 10k, 30k, 60k \} decrease
+		\item However, high correlations for \texttt{RF} (less data sufficient for stable ranking)
+		\item Correlations between 30k $\Leftrightarrow$ 60k close to 1.0
+		\item \highlight{Recommendation: Use at least 30k instances}
+	\end{itemize}
+\end{frame}
+
+% Effects of Class Balance and HP Tuning
+\begin{frame}{Effects of Class Balance and HP Tuning}{}
+	\vspace*{-8mm}
+	\input{tikz/deltas}
+\end{frame}
+
+% Summary
+% ===============================================
+\section{Summary}
+\divider{Summary}
+
+% Summary
+\begin{frame}{Summary}{}
+	\vspace*{-4mm}
+	\begin{itemize}\setlength\itemsep{1em}
+		\item The gap between trained encoders and compositional models \textbf{vanishes in low-resource languages}
+		\item Correlations in English and Georgian differ (e.\,g. no word order in Georgian)
+		\item Nevertheless, the \textbf{results should be treated with caution}:
+		\begin{itemize}\setlength\itemsep{1em}
+			\item Use balanced data sets \textit{(considerable impact on ranking)}
+			\item Use at least 30k instances
+			\item Use an MLP with hyper-parameter tuning
+		\end{itemize}
+		\item \textbf{The evaluation should be agnostic to factors like class balance or data set size} \textit{(probing tasks suboptimal?)}
+			\highlight{$\rightarrow$ future research}
+	\end{itemize}
+\end{frame}
+
+% Thank you Page
+\begin{frame}[plain]
+	\vfill\centering
+	\begin{tcolorbox}[width=4in,interior hidden,boxsep=5pt,left=0pt,right=0pt,top=2mm,
+		bottom=2mm,sharp corners,colback=tud1a!40,colframe=tud1a]%%
+		\centering
+		\Large\textbf{Thank you very much for your attention!}
+	\end{tcolorbox}
+	\vfill
+	\begin{center}\parbox{0cm}{
+	{\footnotesize
+	\begin{tabbing}
+		\hspace*{3.5cm}\=\kill
+		\textbf{Presenter:} 	\>	Daniel Wehner 						\\[2mm]
+		\textbf{Date:}		\>	October 15, 2019 					\\[2mm]
+		\textbf{Topic:}		\>	Interpretability of sentence embeddings 	\\
+						\>	in low-resource languages 				\\
+	\end{tabbing}}}
+	\end{center}
+	\vfill
+	\centering
+	\includegraphics[scale=0.8]{tud_logo}
+	\vfill
+\end{frame}
+
+% Universal Dependencies - Example
+\begin{frame}{Universal Dependencies - Example}{}
+	% UD example
+	\input{tables/ud}
+\end{frame}
+
+% Winner Statistics
+\begin{frame}{Winner Statistics (Probing Tasks)}{}
+	\vspace*{-7mm}
+	\input{tables/top_three_counts}
+\end{frame}
+
+% Winner Statistics
+\begin{frame}{Winner Statistics (Probing Tasks)}{}
+	\vspace*{-7mm}
+	\input{tikz/top_three_counts}
+\end{frame}
+
+% Effect of Hyper-Parameter Tuning (other Tasks)
+\begin{frame}{Effect of Hyper-Parameter Tuning (other Tasks)}{}
+	\input{tables/effect_hp_other_tasks}
+\end{frame}
+
+% Stability Analysis: Effects on Ranking
+\begin{frame}{Stability Analysis: Effects on Ranking}{}
+	\vspace*{-8mm}
+	\input{tables/factor_effect_ranking}
+\end{frame}
+
+\end{document}

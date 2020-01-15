@@ -1,0 +1,515 @@
+\begin{minipage}{0.115\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=SentLen,
+ 	   	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.240,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.553,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.254,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.649,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.551,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.697,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.600,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.549,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=WC,
+   	 	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+	    	symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.581,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.657,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.786,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.848,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.531,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.832,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.919,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.462,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=BiShift,
+ 	   	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.485,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.491,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.534,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.544,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.641,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.600,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.536,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.510,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=SVAgree,
+ 	   	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.775,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.804,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.910,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.887,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.718,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.572,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.912,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.819,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=SVDist,
+  	  	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.265,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.309,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.301,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.410,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.406,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.521,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.414,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.323,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+%\hfill
+%\begin{minipage}{0.09\textwidth}
+%\begin{tikzpicture}
+%
+%  	\begin{axis}[
+%		title=TC,
+% 	   	xbar stacked,
+%		bar width=5pt,
+%		enlarge y limits=0.2,
+%    		symbolic y coords={rlstm,laser,bert,qth,s2v,pms,avg},
+%		xmin=0,xmax=1,
+%  		xmajorgrids,
+%		tickwidth=0pt,
+%		xtick distance=0.40,
+%  		ytick=data,
+%		yticklabels={,,},
+%		scale only axis=true,
+%  		width=1.3cm,height=2cm,
+%		tick label style={font=\tiny}
+%  	]
+%
+%		% avg
+%  		\addplot[blue,fill] coordinates
+%  			{(0.19,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,rlstm)};
+%		% pms
+%		\addplot[blue!50,fill] coordinates
+%			{(0.00,avg) (0.15,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,rlstm)};
+%
+%		% s2v
+%		\addplot[red,fill] coordinates 
+%			{(0.00,avg) (0.00,pms) (0.22,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,rlstm)};
+%		% qth
+%		\addplot[red!60,fill] coordinates
+%			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.30,qth) (0.00,bert) (0.00,laser) (0.00,rlstm)};
+%		% bert
+%		\addplot[red!40,fill] coordinates
+%			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.36,bert) (0.00,laser) (0.00,rlstm)};
+%		% laser
+%		\addplot[red!20,fill] coordinates
+%			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.40,laser) (0.00,rlstm)};
+%
+%		% rand lstm
+%		\addplot[gray,fill] coordinates 
+%			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.16,rlstm)};
+%
+%  	\end{axis}
+%
+%\end{tikzpicture}
+%\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=Voice,
+    		xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.798,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.807,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.779,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.811,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.760,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.904,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.868,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.833,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=WO,
+   	 	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.201,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.173,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.381,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.802,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.573,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.846,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.760,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.598,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=EOS,
+  	  	xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.150,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.231,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.191,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.221,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.282,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.319,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.230,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.246,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.09\textwidth}
+\begin{tikzpicture}
+
+  	\begin{axis}[
+		title=SubjNum,
+    		xbar stacked,
+		bar width=4pt,
+		enlarge y limits=0.2,
+    		symbolic y coords={rlstm,infers,laser,bert,qth,s2v,pms,avg},
+		xmin=0,xmax=1,
+  		xmajorgrids,
+		tickwidth=0pt,
+		xtick distance=0.40,
+  		ytick=data,
+		yticklabels={,,},
+		scale only axis=true,
+  		width=1.3cm,height=2cm,
+		tick label style={font=\tiny}
+  	]
+
+		% avg
+  		\addplot[blue,fill] coordinates
+  			{(0.855,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% pms
+		\addplot[blue!50,fill] coordinates
+			{(0.00,avg) (0.850,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+
+		% s2v
+		\addplot[red,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.759,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% qth
+		\addplot[red!60,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.758,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% bert
+		\addplot[red!40,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.858,bert) (0.00,laser) (0.00,infers) (0.00,rlstm)};
+		% laser
+		\addplot[red!20,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.899,laser) (0.00,infers) (0.00,rlstm)};
+		% infersent
+		\addplot[red!10,fill] coordinates
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.879,infers) (0.00,rlstm)};
+
+		% rand lstm
+		\addplot[gray,fill] coordinates 
+			{(0.00,avg) (0.00,pms) (0.00,s2v) (0.00,qth) (0.00,bert) (0.00,laser) (0.00,infers) (0.879,rlstm)};
+
+  	\end{axis}
+
+\end{tikzpicture}
+\end{minipage}

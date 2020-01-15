@@ -1,0 +1,69 @@
+\begin{table}[h]
+	\centering
+	\renewcommand{\arraystretch}{1.2}
+	\scalebox{0.9}{
+	\begin{tabularx}{1.1\textwidth}{| X | r ? c | c | c | c ? c | c | c | c ? c | c | c | c |}
+		\hline
+		\rowcolor{tud9c}
+		\multicolumn{14}{| c |}{\textcolor{white}{\textbf{Effect of hyper-parameter tuning in the \caps{WordContent} task
+		(\texttt{NN\_H} classifier)}}}
+		\\ \hline
+		\rowcolor{tud9c!70}
+													&
+													&
+		\multicolumn{4}{ c ?}{\textbf{10k}} 			&
+		\multicolumn{4}{ c ?}{\textbf{30k}} 			&
+		\multicolumn{4}{ c |}{\textbf{60k}}		
+		\\
+		
+		\rowcolor{tud9c!50}
+		\multirow{-2}{*}{
+			\cellcolor{tud9c!70}\textbf{Embedding}}	&
+		\multirow{-2}{*}{
+			\cellcolor{tud9c!70}\textbf{Dim.}}			&
+		\textbf{imbal.}								&
+		\textbf{R}									&
+		\textbf{bal.}									&
+		\textbf{R}									&
+		\textbf{imbal.}								&
+		\textbf{R}									&
+		\textbf{bal.}									&
+		\textbf{R}									&
+		\textbf{imbal.}								&
+		\textbf{R}									&
+		\textbf{bal.}									&
+		\textbf{R}									
+		\\ \hline\hline
+%		\rowcolor{tud9c!30}
+%		\multicolumn{14}{| c |}{\textbf{Neural net with hidden layer (\texttt{NN\_H}) \underl{and} hyper-parameter tuning}}
+%		\\ \hline
+		Vanilla average		& 300	& 0.70 & 8 	& 0.84 & 7  	& - & - & 0.89 & 7 	& - & - & 0.90 & 8 	
+		\\ \hline
+		p-Means			& 1,500	& 0.74 & 7 	& 0.82 & 8 	& - & - & 0.88 & 8 	& - & - & 0.91 & 6 	
+		\\ \hline
+		\gls{sif} 			& 300	& 0.79 & 6 	& 0.88 & 4 	& - & - & 0.90 & 5 	& - & - & 0.92 & 5 	
+		\\ \hline
+		\gls{gem} 			& 300 	& 0.84 & 4 	& 0.88 & 4 	& - & - & 0.90 & 5 	& - & - & 0.91 & 6 	
+		\\ \hline
+		hier. pooling		& 300	& 0.48 & 12 	& 0.66 & 11 	& - & - & 0.72 & 11 	& - & - & 0.74 & 11 	
+		\\ \hline
+		BOREP			& 4,096	& 0.53 & 11	& 0.75 & 10	& - & - & 0.82 &	 10	& - & - & 0.85 & 10
+		\\ \hline
+		Random BiLSTM		& 8,129	& 0.63 & 9		& 0.76 & 9		& - & - & 0.84 &	 9	& - & - & 0.89 & 9
+		\\ \hline
+		InferSent			& 4,096	& 0.93 & 1 	& 0.97 & 2 	& - & - & 0.98 & 2 	& - & - & 0.99 & 1 	
+		\\ \hline
+		Quick-Thought		& 2,400	& 0.87 & 3 	& 0.86 & 6 	& - & - & 0.91 & 4 	& - & - & 0.94 & 3 	
+		\\ \hline
+		sent2vec			& 700	& 0.80 & 5 	& 0.99 & 1 	& - & - & 0.99 & 1 	& - & - & 0.99 & 1 	
+		\\ \hline
+		BERT				& 768	& 0.55 & 10 	& 0.55 & 12 	& - & - & 0.60 & 12 	& - & - & 0.64 & 12 	
+		\\ \hline
+		LASER			& 1,024	& 0.90 & 2 	& 0.92 & 3 	& - & - & 0.94 & 3 	& - & - & 0.94 & 3 	
+		\\ \hline
+	\end{tabularx}}
+	\caption[Effect of hyper-parameter tuning on the \caps{WC} probing task results (F1 scores)]
+		{Effect of hyper-parameter tuning on the \caps{WC} probing task results (F1 scores). The results are
+		reported for the \texttt{NN\_H} classifier.}
+	\label{tab:wc_detail_hp_opt}
+\end{table}

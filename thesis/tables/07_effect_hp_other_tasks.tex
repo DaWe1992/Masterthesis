@@ -1,0 +1,34 @@
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\scalebox{1.0}{
+	\begin{tabular}{| c ? c | c | c ? c | c | c ? c | c | c |}
+		\hline
+		\rowcolor{tud9c}
+		\multicolumn{10}{| c |}{\textcolor{white}{\textbf{Effect of hyper-parameter tuning on other tasks (original data sets)}}}
+		\\ \hline
+		\rowcolor{tud9c!70}
+		\textbf{Task}								&
+		\multicolumn{3}{ c ?}{\textbf{\caps{Senti}}} 		&
+		\multicolumn{3}{ c ?}{\textbf{\caps{Voice}}} 		&
+		\multicolumn{3}{ c |}{\textbf{\caps{SubjNum}}}
+		\\ \hline
+		\rowcolor{tud9c!50}
+		\textbf{Tuning} &
+		\textbf{yes} & \textbf{no} & $\bm{\Delta}$ &
+		\textbf{yes} & \textbf{no} & $\bm{\Delta}$ &
+		\textbf{yes} & \textbf{no} & $\bm{\Delta}$
+		\\ \hline\hline
+		Vanilla average		& 0.72 & 0.70 & \textbf{0.02} & 0.80 & 0.80 & \textbf{0.00} & 0.86 & 0.86 & \textbf{0.00} \\ \hline
+		p-Means 			& 0.70 & 0.70 & \textbf{0.00} & 0.83 & 0.81 & \textbf{0.02} & 0.88 & 0.85 & \textbf{0.03} \\ \hline
+		BOREP 			& 0.65 & 0.65 & \textbf{0.00} & 0.80 & 0.78 & \textbf{0.02} & 0.87 & 0.84 & \textbf{0.03} \\ \hline
+		Random BiLSTM 	& 0.69 & 0.69 & \textbf{0.00} & 0.84 & 0.83 & \textbf{0.01} & 0.88 & 0.88 & \textbf{0.00} \\ \hline
+		InferSent 			& 0.75 & 0.70 & \textbf{0.05} & 0.90 & 0.87 & \textbf{0.03} & 0.91 & 0.88 & \textbf{0.03} \\ \hline
+		Quick-Thought 		& 0.67 & 0.64 & \textbf{0.03} & 0.83 & 0.81 & \textbf{0.02} & 0.80 & 0.76 & \textbf{0.04} \\ \hline
+		sent2vec 			& 0.66 & 0.66 & \textbf{0.00} & 0.78 & 0.78 & \textbf{0.00} & 0.77 & 0.76 & \textbf{0.01} \\ \hline
+		BERT 			& 0.65 & 0.64 & \textbf{0.01} & 0.78 & 0.76 & \textbf{0.02} & 0.88 & 0.86 & \textbf{0.02} \\ \hline
+		LASER 			& 0.74 & 0.73 & \textbf{0.01} & 0.93 & 0.90 & \textbf{0.03} & 0.92 & 0.90 & \textbf{0.02} \\ \hline
+	\end{tabular}}
+	\caption[Effect of hyper-parameter tuning in other tasks]{Effect of hyper-parameter tuning in other tasks (measured by F1 score).}
+	\label{tab:effect_hp_other_tasks}
+\end{table}

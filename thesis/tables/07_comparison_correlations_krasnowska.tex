@@ -1,0 +1,38 @@
+\begin{table}[h]
+	\renewcommand{\arraystretch}{1.5}
+	\centering
+	\scalebox{1.0}{
+	\begin{tabular}{ c c c c c c c c c c c c }
+		\rotff{\textbf{Task}}							&
+		\rotff{\textit{FastText\textsubscript{max}}} 		&
+		\rotff{\textit{FastText\textsubscript{mean}}} 	&
+		\rotff{\textit{BERT\textsubscript{max}}} 		&
+		\rotff{\textit{BERT\textsubscript{mean}}} 		&
+		\rotff{\textit{COMBO\textsubscript{max}}} 		&
+		\rotff{\textit{COMBO\textsubscript{mean}}} 		&
+		\rotff{\textit{sent2vec\textsubscript{ns}}} 		&
+		\rotff{\textit{sent2vec\textsubscript{orig}}} 		&
+		\rotff{\textit{LASER}} 						&
+		\rotff{\textit{USE}} 							&
+		\rotff{$\bm{r_s}$ \caps{Entail}}				\\
+		\hline
+		\textbf{\caps{SentLen}} 		& 52.55 & 72.27 & 72.66 & 82.13 & 85.03 & 87.38 & 71.56 & 64.76 & 85.98 & 60.00 
+									& \textbf{-0.26} 	\\
+		\hline
+		\textbf{\caps{WC}} 			& 24.44 & 46.73 & 35.24 & 45.53 & 9.39 & 11.05 & 59.96 & 79.23 & 59.79 & 43.11
+									& \textbf{0.72}	\\
+		\hline
+		\textbf{\caps{Voice}} 			& 84.13 & 89.47 & 89.77 & 92.40 & 98.48 & 98.41 & 88.73 & 89.04 & 92.85 & 86.61 
+									& \textbf{-0.36}	\\
+		\hline
+		\textbf{\caps{SubjNum}}		& 73.87 & 81.43 & 88.43 & 90.75 & 93.19 & 93.37 & 82.27 & 80.88 & 94.21 & 81.65
+									& \textbf{-0.02} 	\\
+		\hline\hline
+		\textbf{\caps{Entailment}}		& 76.72 & 76.86 & 77.71 & 77.11 & 72.82 & 72.58 & 78.59 & 78.26 & 83.26 & 81.77
+									& -- \\
+		\hline
+	\end{tabular}}
+	\caption[Results reported by Krasnowska et al. for several probing tasks as well as \caps{Entailment}]
+		{Results reported by \citep{Krasnowska.2019} for several probing tasks as well as \caps{Entailment}.}
+	\label{tab:comparison_correlation_krasnowska}
+\end{table}

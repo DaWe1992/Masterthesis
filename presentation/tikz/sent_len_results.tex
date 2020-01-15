@@ -1,0 +1,65 @@
+\begin{tikzpicture}
+	\begin{axis}[
+		scale=0.7,
+		ybar,
+		ylabel=Accuracy,
+		enlargelimits=0.15,
+		bar width=4pt,
+		ymajorgrids,
+    		grid style={line width=.1pt, draw=gray!10},
+    		title=\textbf{Results Sentence Length Task},
+		symbolic x coords={majority,p-means,laser,s2v,quickth.},
+		xtick=data,
+		scale only axis=true,
+  		width=14cm,height=2cm,
+		xticklabels={,,},
+		xtick style={draw=none}
+	]
+
+		% english
+		\addplot[ybar,fill=tud2a] coordinates {
+			(majority,17.900)
+        		(p-means,60.091)
+        		(laser,71.090)
+        		(s2v,32.490)
+			(quickth.,71.379)
+    		};
+
+		% german
+		\addplot[ybar,fill=tud1a] coordinates {
+			(majority,19.900)
+        		(p-means,59.311)
+        		(laser,67.690)
+        		(s2v,37.480)
+			(quickth.,62.721)
+    		};
+
+		% russian
+		\addplot[ybar,fill=tud1a!50] coordinates {
+			(majority,17.400)
+        		(p-means,60.240)
+        		(laser,69.580)
+        		(s2v,36.050)
+			(quickth.,33.937)
+    		};
+
+		% turkish
+		\addplot[ybar,fill=gray] coordinates {
+			(majority,43.000)
+        		(p-means,76.227)
+        		(laser,78.729)
+        		(s2v,47.545)
+			(quickth.,72.845)
+    		};
+
+		% georgian
+		\addplot[ybar,fill=white] coordinates {
+			(majority,21.300)
+        		(p-means,58.890)
+        		(laser,76.450)
+        		(s2v,39.920)
+			(quickth.,59.860)
+    		};
+
+	\end{axis}
+\end{tikzpicture}

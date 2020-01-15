@@ -1,0 +1,103 @@
+\documentclass[article,type=msc,colorback,accentcolor=tud9c]{tudthesis}
+
+\input{preamble}
+
+% BEGIN OF DOCUMENT
+% ==========================================
+\begin{document}
+
+% title of the thesis
+\thesistitle{Interpretability of Sentence Embeddings in low-resource Languages}{}
+% name of author
+\author{Daniel Wehner}
+% birhtplace of author
+\birthplace{Bad Kissingen}
+% referees
+\referee{Dr. Steffen Eger}{Dr. Johannes Daxenberger}
+% department
+\department{Fachbereich Informatik}
+% group
+\group{Ubiquitous Knowledge Processing}
+% date of the exam
+\dateofexam{\today}{\today}
+% tu prints
+%\tuprints{12345}{1234}
+
+% make the thesis title
+\makethesistitle
+
+% name under signature
+\affidavit{Daniel Wehner}
+
+\pagenumbering{roman}
+
+\section*{Abstract}
+\input{sections/abstract_en}
+\section*{Kurzfassung}
+\input{sections/abstract_de}
+\newpage
+
+% glossary
+\input{acronyms}
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+%\setlength\glsdescwidth{2.5\hsize}
+{\renewcommand*{\arraystretch}{1.7}
+	\printglossaries
+}
+\newpage
+
+% symbols
+\section*{Symbols}
+\input{symbols}
+\newpage
+
+% table of contents
+\tableofcontents
+\newpage
+
+\setcounter{table}{0}
+
+% list of figures / list of tables
+\addtocontents{lof}{\linespread{1.7}\selectfont}
+\listoffigures
+\newpage
+\addtocontents{lot}{\linespread{1.7}\selectfont}
+\listoftables
+\newpage
+
+\pagenumbering{arabic}
+
+% Sections
+% ------------------------------------------------------------------------------------
+
+\input{sections/01_introduction}
+\newpage
+\input{sections/02_related_work}
+\newpage
+\input{sections/03_word_embedding_algorithms}
+\newpage
+\input{sections/04_sentence_embedding_algorithms}
+\newpage
+\input{sections/05_probing_tasks}
+\newpage
+\input{sections/06_downstream_applications}
+\newpage
+\input{sections/07_results_evaluation}
+\newpage
+\input{sections/08_conclusion}
+\newpage
+\appendix
+\input{sections/09_appendix}
+
+% Bibliography
+% ------------------------------------------------------------------------------------
+
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliography{bib/mybib}{}
+\bibliographystyle{dwstyle}
+
+\input{sections/websites}
+
+\end{document}

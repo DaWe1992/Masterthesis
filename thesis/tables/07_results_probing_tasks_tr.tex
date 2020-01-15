@@ -1,0 +1,325 @@
+\begin{table}[H]
+	\centering
+	\renewcommand{\arraystretch}{1.36}
+	\begin{adjustbox}{angle=90}
+	\scalebox{0.8}{
+	\begin{tabularx}{1.2\textheight}{
+		| l ? Y | c | Y | c ? Y | c | Y | c | Y | c | Y | c | Y | c ? Y | c | Y | c |
+	}
+	\hline
+	\multicolumn{19}{| c |}{
+		\cellcolor{tud9c}\textcolor{white}{
+			\textbf{Language: Turkish (F1)}}} 					\\
+	\hline
+
+	\rowcolor{tud9c!85}
+	\cellcolor{tud9c!85}										&
+	\multicolumn{4}{ c ?}{\textbf{Surface Tasks}} 				& 
+		\multicolumn{10}{ c ?}{\textbf{Syntactic Tasks}}		&
+		\multicolumn{4}{c |}{\textbf{Semantic Tasks}}			\\
+
+	\cellcolor{tud9c!85}										&
+	\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SentLen}}}		&
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{WC}}} 			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{BiShift}}}			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SVAgree}}} 		&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SVDist}}} 			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{Voice}}}			&
+		\multicolumn{2}{ c ?}{
+			\cellcolor{tud9c!70}\textbf{\caps{WO}}}			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{EOS}}} 			&
+		\multicolumn{2}{ c |}{
+			\cellcolor{tud9c!70}\textbf{\caps{SubjNum}}}		\\
+
+	\rowcolor{tud9c!55}
+	\multirow{-3}{*}{\cellcolor{tud9c!85}\textbf{Embedding}}	&
+		\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} &
+		\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} &
+		\textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} & \textbf{F1} & \textbf{R} \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Size of the data set}} \\ \hline
+	\# instances &
+                10,000 	& - &
+                10,000 	& - &
+                10,000 	& - &
+                10,000 	& - &
+                2,750 		& - &
+                8,416 		& - &
+                10,000 	& - &
+                10,000 	& - &
+                4,030 		& - \\   
+	\hline\hline 
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Majority class (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	Majority &
+                37.3 & - &
+                12.6 & - &
+                50.5 & - &
+                50.6 & - &
+                39.0 & - &
+                86.2 & - &
+		   33.4 & - &
+                23.7 & - &
+                83.4 & - \\
+	\hline\hline   
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Random embeddings (baseline)}} \\ \hline
+	\rowcolor{lightgray!30}
+	BOREP &
+                00.407 & 10 &
+                00.673 & 18 &
+                00.486 & 22 &
+                00.599 & 20 &
+                00.411 & 11 &
+                00.661 & 12 &
+                00.162 & 19 &
+                00.328 & 12 &
+                00.703 & 9 \\
+        \hline
+        \rowcolor{lightgray!30}
+        Random BiLSTM &
+                00.514 & 5 &
+                00.591 & 19 &
+                00.553 & 5 &
+                00.712 & 4 &
+                00.437 & 6 &
+                \cellcolor{bronze}{00.703} & \cellcolor{bronze}{3} &
+                \cellcolor{bronze}{00.656} & \cellcolor{bronze}{3} &
+                00.382 & 4 &
+                00.736 & 7 \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{FastText})}} \\ \hline
+	Vanilla average &
+                00.174 & 18 &
+                00.705 & 16 &
+                00.487 & 20 &
+                00.631 & 17 &
+                00.359 & 15 &
+                00.682 & 6 &
+                00.203 & 13 &
+                00.264 & 18 &
+                \cellcolor{bronze}{00.752} & \cellcolor{bronze}{3} \\
+        \hline
+        p-Means &
+                00.511 & 6 &
+                00.761 & 13 &
+                00.487 & 20 &
+                00.642 & 15 &
+                00.439 & 5 &
+                00.690 & 4 &
+                00.161 & 20 &
+                00.353 & 9 &
+                00.744 & 5 \\
+        \hline
+        SIF &
+                00.158 & 20 &
+                00.738 & 14 &
+                00.492 & 17 &
+                00.643 & 14 &
+                00.352 & 16 &
+                00.689 & 5 &
+                00.203 & 13 &
+                00.249 & 20 &
+                \cellcolor{bronze}{00.752} & \cellcolor{bronze}{3} \\
+        \hline
+        GEM &
+                00.276 & 13 &
+                00.798 & 10 &
+                00.503 & 9 &
+                00.613 & 19 &
+                00.380 & 13 &
+                \cellcolor{silver}{00.710} & \cellcolor{silver}{2} &
+                00.090 & 22 &
+                00.305 & 13 &
+                \cellcolor{silver}{00.759} & \cellcolor{silver}{2} \\
+        \hline
+        hier. pooling &
+                00.419 & 9 &
+                00.516 & 20 &
+                00.507 & 6 &
+                00.557 & 22 &
+                00.420 & 9 &
+                00.627 & 18 &
+                00.322 & 7 &
+                00.356 & 7 &
+                00.697 & 10 \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{word2vec})}} \\ \hline
+	Vanilla average &
+                00.192 & 17 &
+                00.873 & 4 &
+                00.496 & 13 &
+                00.699 & 7 &
+                00.345 & 17 &
+                00.659 & 14 &
+                00.190 & 15 &
+                00.279 & 16 &
+                00.621 & 12 \\
+        \hline
+        p-Means &
+                00.471 & 8 &
+                \cellcolor{silver}{00.916} & \cellcolor{silver}{2} &
+                00.504 & 8 &
+                00.695 & 11 &
+                00.425 & 8 &
+                00.667 & 10 &
+                00.166 & 18 &
+                00.342 & 10 &
+                00.617 & 14 \\
+        \hline
+        SIF &
+                00.170 & 19 &
+                00.873 & 4 &
+                00.492 & 17 &
+                00.699 & 7 &
+                00.338 & 18 &
+                00.656 & 15 &
+                00.211 & 10 &
+                00.265 & 17 &
+                00.617 & 14 \\
+        \hline
+        GEM &
+                00.202 & 15 &
+                00.685 & 17 &
+                00.495 & 14 &
+                00.593 & 21 &
+                00.323 & 19 &
+                00.576 & 22 &
+                00.105 & 21 &
+                00.250 & 19 &
+                00.587 & 20 \\
+        \hline
+        hier. pooling &
+                00.358 & 12 &
+                00.840 & 7 &
+                00.498 & 12 &
+                00.640 & 16 &
+                00.412 & 10 &
+                00.639 & 16 &
+                00.290 & 8 &
+                00.336 & 11 &
+                00.602 & 19 \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Average embeddings (\textit{Attract-Repel})}} \\ \hline
+	Vanilla average &
+                00.139 & 21 &
+                00.768 & 12 &
+                00.500 & 11 &
+                00.699 & 7 &
+                00.298 & 22 &
+                00.625 & 19 &
+                00.212 & 9 &
+                00.245 & 22 &
+                00.605 & 18 \\
+        \hline
+        p-Means &
+                \cellcolor{bronze}{00.527} & \cellcolor{bronze}{3} &
+                \cellcolor{gold}{00.936} & \cellcolor{gold}{1} &
+                00.493 & 15 &
+                00.699 & 7 &
+                00.442 & 4 &
+                00.681 & 7 &
+                00.172 & 17 &
+                00.369 & 5 &
+                00.608 & 17 \\
+        \hline
+        SIF &
+                00.127 & 22 &
+                00.833 & 8 &
+                00.506 & 7 &
+                00.710 & 5 &
+                00.300 & 21 &
+                00.622 & 20 &
+                00.205 & 12 &
+                00.247 & 21 &
+                00.612 & 16 \\
+        \hline
+        GEM &
+                00.196 & 16 &
+                00.783 & 11 &
+                00.490 & 19 &
+                00.629 & 18 &
+                00.302 & 20 &
+                00.590 & 21 &
+                00.188 & 16 &
+                00.281 & 15 &
+                00.580 & 22 \\
+        \hline
+        hier. pooling &
+                00.395 & 11 &
+                00.722 & 15 &
+                00.501 & 10 &
+                00.645 & 13 &
+                00.399 & 12 &
+                00.634 & 17 &
+                00.360 & 6 &
+                00.358 & 6 &
+                00.584 & 21 \\
+	\hline\hline
+	\multicolumn{19}{| l |}{\cellcolor{tud9c!30}\textbf{Trained embeddings}} \\ \hline
+	InferSent &
+                00.522 & 4 &
+                00.447 & 22 &
+                00.565 & 4 &
+                00.658 & 12 &
+                00.432 & 7 &
+                00.670 & 9 &
+                00.650 & 4 &
+                \cellcolor{silver}{00.398} & \cellcolor{silver}{2} &
+                00.708 & 8 \\
+        \hline
+        Quick-Thought &
+                00.504 & 7 &
+                00.867 & 6 &
+                \cellcolor{silver}{00.587} & \cellcolor{silver}{2} &
+                \cellcolor{silver}{00.737} & \cellcolor{silver}{2} &
+                \cellcolor{bronze}{00.448} & \cellcolor{bronze}{3} &
+                00.660 & 13 &
+                \cellcolor{gold}{00.768} & \cellcolor{gold}{1} &
+                00.356 & 7 &
+                00.621 & 12 \\
+        \hline
+        sent2vec &
+                00.237 & 14 &
+                \cellcolor{bronze}{00.891} & \cellcolor{bronze}{3} &
+                00.493 & 15 &
+                00.701 & 6 &
+                00.367 & 14 &
+                00.663 & 11 &
+                00.210 & 11 &
+                00.288 & 14 &
+                00.663 & 11 \\
+        \hline
+        BERT &
+                \cellcolor{silver}{00.583} & \cellcolor{silver}{2} &
+                00.494 & 21 &
+                \cellcolor{bronze}{00.585} & \cellcolor{bronze}{3} &
+                \cellcolor{bronze}{00.725} & \cellcolor{bronze}{3} &
+                \cellcolor{silver}{00.454} & \cellcolor{silver}{2} &
+                00.676 & 8 &
+                00.585 & 5 &
+                \cellcolor{bronze}{00.396} & \cellcolor{bronze}{3} &
+                00.744 & 5 \\
+        \hline
+        LASER &
+                \cellcolor{gold}{00.615} & \cellcolor{gold}{1} &
+                00.805 & 9 &
+                \cellcolor{gold}{00.596} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{00.774} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{00.536} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{00.768} & \cellcolor{gold}{1} &
+                \cellcolor{silver}{00.743} & \cellcolor{silver}{2} &
+                \cellcolor{gold}{00.472} & \cellcolor{gold}{1} &
+                \cellcolor{gold}{00.803} & \cellcolor{gold}{1} \\
+	\hline
+	\end{tabularx}}
+	\end{adjustbox}
+	\caption[Probing task results for the Turkish language (F1 scores)]{Probing task results for the Turkish language (F1 scores).}
+	\label{tab:results_probing_tasks_tr}
+\end{table}	
